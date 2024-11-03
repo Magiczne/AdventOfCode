@@ -9,13 +9,6 @@ import (
 
 func part1(data []string) int {
 	disallowedPattern := regexp.MustCompile("ab|cd|pq|xy")
-
-	// Go is stupid and does not support backreferences in regex.
-	// In any normal language it would be as simple as matching against (\w)\1
-	doubleLetters := util.ArrayMap([]rune(util.Alphabet), func(c rune) string {
-		return fmt.Sprintf("%c%c", c, c)
-	})
-
 	niceStringsCount := 0
 
 ItemLoop:
@@ -24,8 +17,10 @@ ItemLoop:
 			continue ItemLoop
 		}
 
+		// Go is stupid and does not support backreferences in regex.
+		// In any normal language it would be as simple as matching against (\w)\1
 		containsDoubleLetter := false
-		for _, disallowedString := range doubleLetters {
+		for _, disallowedString := range util.DoubleLetters {
 			if strings.Contains(item, disallowedString) {
 				containsDoubleLetter = true
 				break
