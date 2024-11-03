@@ -21,7 +21,7 @@ const bonanza = (data) => {
     return 0
   }
 
-  return bonanza(values)
+  return bonanza(Object.values(data))
 }
 
 console.log(bonanza(json))
