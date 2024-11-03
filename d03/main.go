@@ -78,12 +78,6 @@ func part2(data string) int {
 }
 
 func main() {
-	testData := util.ReadFile("./d03/test1.txt")
-	data := util.ReadFile("./d03/input.txt")
-
-	util.TestRun1(part1(testData))
-	util.TestRun2(part2(testData))
-
-	util.SolutionPart1(part1(data))
-	util.SolutionPart2(part2(data))
+	util.TestRuns("03", util.ReadFile, part1, part2)
+	util.SolutionRuns("03", util.ReadFile, part1, part2)
 }

@@ -42,17 +42,18 @@ func part2(data []Present) int {
 
 func main() {
 	regex := regexp.MustCompile(`^(\d+)x(\d+)x(\d+)$`)
-	lines := util.ReadLines("./d02/input.txt")
-	presents := util.ArrayMap(lines, func(line string) Present {
-		match := util.ArrayMap(regex.FindStringSubmatch(line), func(match string) int {
-			value, _ := strconv.Atoi(match)
+	reader := func(file string) []Present {
+		return util.ArrayMap(util.ReadLines(file), func(line string) Present {
+			match := util.ArrayMap(regex.FindStringSubmatch(line), func(match string) int {
+				value, _ := strconv.Atoi(match)
 
-			return value
+				return value
+			})
+
+			return Present{match[1], match[2], match[3]}
 		})
+	}
 
-		return Present{match[1], match[2], match[3]}
-	})
-
-	util.SolutionPart1(part1(presents))
-	util.SolutionPart2(part2(presents))
+	util.TestRuns("02", reader, part1, part2)
+	util.SolutionRuns("02", reader, part1, part2)
 }
