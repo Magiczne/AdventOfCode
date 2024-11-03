@@ -3,7 +3,6 @@ package main
 import (
 	"aoc2015/util"
 	"regexp"
-	"strconv"
 )
 
 type Present struct {
@@ -45,9 +44,7 @@ func main() {
 	reader := func(file string) []Present {
 		return util.ArrayMap(util.ReadLines(file), func(line string) Present {
 			match := util.ArrayMap(regex.FindStringSubmatch(line), func(match string) int {
-				value, _ := strconv.Atoi(match)
-
-				return value
+				return util.StringToInt(match)
 			})
 
 			return Present{match[1], match[2], match[3]}

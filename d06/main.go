@@ -3,7 +3,6 @@ package main
 import (
 	"aoc2015/util"
 	"regexp"
-	"strconv"
 )
 
 type Instruction struct {
@@ -86,9 +85,7 @@ func main() {
 		return util.ArrayMap(util.ReadLines(file), func(line string) Instruction {
 			match := regex.FindStringSubmatch(line)
 			coords := util.ArrayMap(match[2:], func(match string) int {
-				value, _ := strconv.Atoi(match)
-
-				return value
+				return util.StringToInt(match)
 			})
 
 			return Instruction{
