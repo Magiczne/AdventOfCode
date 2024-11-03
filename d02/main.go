@@ -12,7 +12,7 @@ type Present struct {
 	H int
 }
 
-func part1(data []Present) {
+func part1(data []Present) int {
 	result := 0
 
 	for _, present := range data {
@@ -23,10 +23,10 @@ func part1(data []Present) {
 		result += (sideA+sideB+sideC)*2 + min(sideA, sideB, sideC)
 	}
 
-	util.SolutionPart1(result)
+	return result
 }
 
-func part2(data []Present) {
+func part2(data []Present) int {
 	result := 0
 
 	for _, present := range data {
@@ -37,7 +37,7 @@ func part2(data []Present) {
 		result += min(perimeterSideA, perimeterSideB, perimeterSideC) + present.H*present.L*present.W
 	}
 
-	util.SolutionPart2(result)
+	return result
 }
 
 func main() {
@@ -53,6 +53,6 @@ func main() {
 		return Present{match[1], match[2], match[3]}
 	})
 
-	part1(presents)
-	part2(presents)
+	util.SolutionPart1(part1(presents))
+	util.SolutionPart2(part2(presents))
 }

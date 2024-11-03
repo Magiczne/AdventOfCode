@@ -4,7 +4,7 @@ import (
 	"aoc2015/util"
 )
 
-func part1(data string) {
+func part1(data string) int {
 	count := 0
 
 	for _, char := range data {
@@ -15,10 +15,10 @@ func part1(data string) {
 		}
 	}
 
-	util.SolutionPart1(count)
+	return count
 }
 
-func part2(data string) {
+func part2(data string) int {
 	count := 0
 
 	for index, char := range data {
@@ -29,16 +29,16 @@ func part2(data string) {
 		}
 
 		if count < 0 {
-			util.SolutionPart2(index + 1)
-
-			return
+			return index + 1
 		}
 	}
+
+	return -1
 }
 
 func main() {
 	file := util.ReadFile("./d01/input.txt")
 
-	part1(file)
-	part2(file)
+	util.SolutionPart1(part1(file))
+	util.SolutionPart2(part2(file))
 }
