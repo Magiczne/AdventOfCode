@@ -10,15 +10,14 @@ func ArrayMap[T any, U any](sequence []T, mapper func(T) U) []U {
 	return data
 }
 
-func Combinations[T any](set []T) (subsets [][]T) {
-	length := len(set)
-	result := [][]T{}
+func ArrayFilter[T any](sequence []T, predicate func(T) bool) []T {
+	data := []T{}
 
-	for i := 0; i < length; i++ {
-		for j := 0; j < length; j++ {
-			result = append(result, []T{set[i], set[j]})
+	for _, item := range sequence {
+		if predicate(item) {
+			data = append(data, item)
 		}
 	}
 
-	return result
+	return data
 }
