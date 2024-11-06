@@ -45,7 +45,7 @@ ItemLoop:
 
 func part2(data []string) int {
 	niceStringsCount := 0
-	alphabetCombinations := util.ArrayMap(util.Combinations(util.AlphabetArray[:]), func(combination []string) string {
+	alphabetCombinations := util.ArrayMap(util.Doubles(util.AlphabetArray[:]), func(combination []string) string {
 		return fmt.Sprintf("%s%s", combination[0], combination[1])
 	})
 
