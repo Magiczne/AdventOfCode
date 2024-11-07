@@ -45,3 +45,31 @@ func Permutations[T any](array []T) (permutations [][]T) {
 
 	return res
 }
+
+// Returns all combinations of N numbers that sums to M
+func CombinationsWithSum(length, targetSum int) [][]int {
+	var results [][]int
+	var current []int
+
+	var backtrack func(length, targetSum, start int, current []int)
+	backtrack = func(length, targetSum, start int, current []int) {
+		if len(current) == length {
+			if Sum(current) == targetSum {
+				cpy := make([]int, len(current))
+				copy(cpy, current)
+				results = append(results, cpy)
+			}
+			return
+		}
+
+		for i := 0; i <= targetSum; i++ {
+			current = append(current, i)
+			backtrack(length, targetSum, start+i, current)
+			current = current[:len(current)-1]
+		}
+	}
+
+	backtrack(length, targetSum, 0, current)
+
+	return results
+}
