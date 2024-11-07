@@ -21,3 +21,21 @@ func ArrayFilter[T any](sequence []T, predicate func(T) bool) []T {
 
 	return data
 }
+
+func NeighborIndexes(index int, sequenceLength int) (leftIndex int, rightIndex int) {
+	var indexLeft, indexRight int
+
+	if index-1 < 0 {
+		indexLeft = sequenceLength - 1
+	} else {
+		indexLeft = index - 1
+	}
+
+	if index+1 > sequenceLength-1 {
+		indexRight = 0
+	} else {
+		indexRight = index + 1
+	}
+
+	return indexLeft, indexRight
+}

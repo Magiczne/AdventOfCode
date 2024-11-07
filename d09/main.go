@@ -69,6 +69,8 @@ func calculateDistances(data []Route) []int {
 	})
 }
 
+// https://pl.wikipedia.org/wiki/Problem_komiwoja%C5%BCera
+// https://en.wikipedia.org/wiki/Travelling_salesman_problem
 func part1(data []Route) int {
 	distances := calculateDistances(data)
 
