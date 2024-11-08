@@ -53,6 +53,6 @@ func main() {
 		})
 	}
 
-	util.TestRuns("15", reader, part1, part2)
+	util.TestRuns("17", reader, part1, part2)
 	util.SolutionRuns("17", reader, part1, part2)
 }
