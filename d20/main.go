@@ -2,12 +2,11 @@ package main
 
 import (
 	"aoc2015/util"
-	"math"
 )
 
 // Brute force is my best friend.
 func part1(target int) int {
-	for houseNumber := range math.MaxInt32 {
+	for houseNumber := range target {
 		giftCounter := 0
 
 		for _, factor := range util.FactorsOf(houseNumber) {
@@ -23,7 +22,7 @@ func part1(target int) int {
 }
 
 func part2(target int) int {
-	for houseNumber := range math.MaxInt32 {
+	for houseNumber := range target {
 		giftCounter := 0
 
 		for _, factor := range util.FactorsOf(houseNumber) {
