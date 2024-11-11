@@ -1,0 +1,17 @@
+{
+  "name": "@magiczne/advent-of-code",
+  "private": true,
+  "repository": "git@github.com:Magiczne/AdvenfOfCode.git",
+  "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "format": "prettier 2022 --write"
+  },
+  "dependencies": {
+    "prettier": "^3.3.3"
+  },
+  "workspaces": [
+    "2022"
+  ],
+  "packageManager": "yarn@4.5.1"
+}

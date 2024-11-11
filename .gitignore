@@ -9,5 +9,16 @@
 # Local History for Visual Studio Code
 .history/
 
+### Yarn ###
+node_modules
+.pnp.*
+.yarn/*
+yarn-error.log
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
 ### Common ###
 *.exe
