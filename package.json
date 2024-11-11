@@ -5,6 +5,7 @@
   "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "aoc": "tsx",
     "format": "prettier 2022 2023 --write",
     "postinstall": "husky"
   },
