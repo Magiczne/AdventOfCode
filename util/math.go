@@ -47,3 +47,13 @@ func Sum[T constraints.Integer | constraints.Float](numbers []T) T {
 
 	return sum
 }
+
+func MultiplySlice[T constraints.Integer | constraints.Float](numbers []T) T {
+	result := T(1)
+
+	for _, number := range numbers {
+		result *= number
+	}
+
+	return result
+}
