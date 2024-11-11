@@ -10,6 +10,7 @@ Some editions were finished later, or even done in a different time (for example
 | [2015](2015) | [Go][lang-go]         | Day 12 part 2 done using JavaScript.                            |
 | [2016](2016) | [C#][lang-c#]         |                                                                 |
 | [2017](2017) | [Python][lang-python] |                                                                 |
+| [2021](2021) | [Elixir][lang-elixir] | Why have i chosen Elixir...                                     |
 | [2022](2022) | [TypeScript][lang-ts] | With some help from [Radash][lib-radash] and [Ramda][lib-ramda] |
 | [2023](2023) | [TypeScript][lang-ts] | With some help from [Radash][lib-radash] and [Ramda][lib-ramda] |
 
