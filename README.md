@@ -15,6 +15,7 @@ Some editions were finished later, or even done in a different time (for example
 | [2023](2023) | [TypeScript][lang-ts] | With some help from [Radash][lib-radash] and [Ramda][lib-ramda] |
 
 [lang-c#]: https://learn.microsoft.com/pl-pl/dotnet/csharp/
+[lang-elixir]: https://elixir-lang.org/
 [lang-go]: https://go.dev/
 [lang-python]: https://www.python.org/
 [lang-ts]: https://www.typescriptlang.org/
