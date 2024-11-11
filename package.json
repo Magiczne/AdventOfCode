@@ -5,13 +5,22 @@
   "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "format": "prettier 2022 --write"
+    "format": "prettier 2022 2023 --write",
+    "postinstall": "husky"
   },
-  "dependencies": {
-    "prettier": "^3.3.3"
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3"
   },
   "workspaces": [
-    "2022"
+    "2022",
+    "2023"
   ],
-  "packageManager": "yarn@4.5.1"
+  "packageManager": "yarn@4.5.1",
+  "dependencies": {
+    "tsx": "^4.19.2"
+  }
 }
