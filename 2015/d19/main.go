@@ -38,7 +38,24 @@ func part1(data TaskInput) int {
 }
 
 func part2(data TaskInput) int {
-	return -1
+	// available substitutions:
+	// x => a b
+	// x => a Rn b Ar
+	// x => a Rn b Y c Ar
+	// x => a Rn b Y c Y d Ar
+
+	molecule := strings.Join(data.Molecule, "")
+
+	// Ar and Rn always are constant and appears at most one time in the substitutions,
+	// so we need one substitution for each occurence of Ar and Rn in final molecule
+	constantsCount := strings.Count(molecule, "Ar") + strings.Count(molecule, "Rn")
+
+	// Y always comes with some value before, so we multiply by two, because we need to
+	// get Y as well as the glued part to the Y
+	variablesCount := 2 * strings.Count(molecule, "Y")
+
+	// Sub 1 cause we are starting from "e", not from a blank canvas
+	return len(data.Molecule) - constantsCount - variablesCount - 1
 }
 
 func main() {
