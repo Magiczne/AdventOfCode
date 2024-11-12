@@ -31,7 +31,29 @@ func part1(reindeers []Reindeer) int {
 }
 
 func part2(reindeers []Reindeer) int {
-	return -1
+	time := 2503
+	points := make([]int, len(reindeers))
+	traveledDistance := make([]int, len(reindeers))
+
+	for t := range time {
+		for reindeerIndex, reindeer := range reindeers {
+			cycleLength := reindeer.RunningTime + reindeer.RestTime
+			cycleTime := t % cycleLength
+
+			if cycleTime < reindeer.RunningTime {
+				traveledDistance[reindeerIndex] += reindeer.Speed
+			}
+		}
+
+		maxDistance := slices.Max(traveledDistance)
+		leaders := util.IndexAllSlice(traveledDistance, maxDistance)
+
+		for _, leader := range leaders {
+			points[leader] += 1
+		}
+	}
+
+	return slices.Max(points)
 }
 
 func main() {

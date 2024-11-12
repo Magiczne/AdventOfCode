@@ -1,5 +1,9 @@
 package util
 
+import (
+	"slices"
+)
+
 func ArrayMap[T any, U any](sequence []T, mapper func(T) U) []U {
 	data := make([]U, len(sequence))
 
@@ -20,6 +24,24 @@ func ArrayFilter[T any](sequence []T, predicate func(T) bool) []T {
 	}
 
 	return data
+}
+
+func IndexAllSlice[T comparable](slice []T, element T) []int {
+	var indexes []int
+	offset := 0
+
+	for {
+		i := slices.Index(slice[offset:], element)
+
+		if i == -1 {
+			break
+		}
+
+		indexes = append(indexes, offset+i)
+		offset += i + 1
+	}
+
+	return indexes
 }
 
 func NeighborIndexes(index int, sequenceLength int) (leftIndex int, rightIndex int) {
