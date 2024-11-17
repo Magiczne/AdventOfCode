@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "aoc": "tsx",
+    "dotnet": "dotnet run --project",
     "format": "prettier 2022 2023 --write",
     "postinstall": "husky"
   },
