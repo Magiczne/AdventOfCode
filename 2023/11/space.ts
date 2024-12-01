@@ -1,6 +1,6 @@
 const enum SpaceObject {
   Nothing = '.',
-  Galaxy = '#'
+  Galaxy = '#',
 }
 
 interface Point {
@@ -11,17 +11,14 @@ interface Point {
 class Space {
   protected constructor(
     private image: Array<Array<SpaceObject>>,
-    private expansionFactor: number
-  ) {
-  }
+    private expansionFactor: number,
+  ) {}
 
   expand(points: Array<number>): Map<number, number> {
     points = [...new Set(points)]
     points.sort()
 
-    return new Map(
-      points.map((point, index) => [point, this.expansionFactor * (point - index) + index])
-    )
+    return new Map(points.map((point, index) => [point, this.expansionFactor * (point - index) + index]))
   }
 
   galaxies(): ReadonlyArray<Point> {
@@ -30,7 +27,7 @@ class Space {
         .map((object, x) => {
           return {
             object,
-            x
+            x,
           }
         })
         .filter(data => {
@@ -39,13 +36,13 @@ class Space {
         .map(data => {
           return {
             x: data.x,
-            y
+            y,
           }
         })
     })
   }
 
-  routesBetween(galaxies: ReadonlyArray<Point>): ReadonlyArray<{ from: Point, to: Point }> {
+  routesBetween(galaxies: ReadonlyArray<Point>): ReadonlyArray<{ from: Point; to: Point }> {
     return galaxies.reduce((routes, galaxy, index) => {
       const nextGalaxies = galaxies.slice(index + 1)
 
@@ -53,9 +50,9 @@ class Space {
         nextGalaxies.map(nextGalaxy => {
           return {
             from: { ...galaxy },
-            to: { ...nextGalaxy }
+            to: { ...nextGalaxy },
           }
-        })
+        }),
       )
     }, [])
   }
@@ -67,9 +64,7 @@ class Space {
   }
 
   static fromString(data: string, expansionFactor: number): Space {
-    const image: Array<Array<SpaceObject>> = data
-      .split('\n')
-      .map(line => line.split('')) as Array<Array<SpaceObject>>
+    const image: Array<Array<SpaceObject>> = data.split('\n').map(line => line.split('')) as Array<Array<SpaceObject>>
 
     return new Space(image, expansionFactor)
   }

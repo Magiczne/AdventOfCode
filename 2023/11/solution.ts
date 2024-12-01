@@ -2,11 +2,9 @@ import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { solutionExample, solutionPart1 } from '../util/index.ts'
-import { Space } from './space.ts';
+import { Space } from './space.ts'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
-
 
 const part1 = (file: string) => {
   const data = readFileSync(resolve(__dirname, file), 'utf-8').trim()
@@ -18,7 +16,7 @@ const part1 = (file: string) => {
   const galaxiesAfterExpansion = galaxies.map(galaxy => {
     return {
       x: expandedX.get(galaxy.x),
-      y: expandedY.get(galaxy.y)
+      y: expandedY.get(galaxy.y),
     }
   })
 
