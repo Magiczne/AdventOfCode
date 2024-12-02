@@ -3,7 +3,8 @@ import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { cluster, last } from 'radash'
 import { transpose } from 'ramda'
-import { isUpperCaseLetter, solutionExample, solutionPart1, solutionPart2 } from '../util'
+import { solutionExample, solutionPart1, solutionPart2 } from '../util'
+import { isUpperCaseLetter } from '@magiczne/advent-of-code-ts-core/string'
 
 type Stack = Array<Uppercase<string>>
 type Stacks = Record<number, Stack>

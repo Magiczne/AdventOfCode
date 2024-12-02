@@ -2,7 +2,8 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { first, last } from 'radash'
-import { isNumeric, solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
+import { solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
+import { isNumeric } from '@magiczne/advent-of-code-ts-core/string'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
