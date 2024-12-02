@@ -93,6 +93,7 @@ const readMonkeys = (file: string): Monkeys => {
   return Object.fromEntries(monkeys)
 }
 
+// @ts-expect-error
 const getRootMonkeyValue = (file: string): number => {
   const monkeys = readMonkeys(file)
   const monkeyOperationCache = new Map<string, number>()
@@ -106,6 +107,8 @@ const getHumanValue = (file: string): number => {
   delete monkeys['humn']
 
   const dependent = Object.values(monkeys).find(monkey => monkey.dependsOn.includes('humn'))!
+  
+  // @ts-expect-error
   const operation = getInverseOperation(dependent.dependsOn, dependent.operator!)
 
   return 0

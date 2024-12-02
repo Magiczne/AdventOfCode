@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
-import { adjacentDiff } from '@magiczne/advent-of-code-ts-core'
-import { solutionRuns, testRuns } from '../util/aoc'
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
+import { adjacentDiff } from '@magiczne/advent-of-code-ts-core/array'
 
 const isLineSafe = (line: ReadonlyArray<number>): boolean => {
   const sign = Math.sign(line[0])
@@ -44,5 +44,5 @@ const reader = (file: string): ReadonlyArray<ReadonlyArray<number>> => {
     })
 }
 
-testRuns('02', reader, part1, part2)
-solutionRuns('02', reader, part1, part2)
+runExamples(2024, '02', reader, part1, part2)
+runSolution(2024, '02', reader, part1, part2)

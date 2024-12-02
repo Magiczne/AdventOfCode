@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { counting, sum } from 'radash'
 
-import { solutionRuns, testRuns } from '../util/aoc'
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 
 const part1 = (data: ReadonlyArray<[number, number]>): number => {
   const left = data.map(item => item[0]).toSorted((a, b) => a - b)
@@ -31,5 +31,5 @@ const reader = (file: string): ReadonlyArray<[number, number]> => {
     })
 }
 
-testRuns('01', reader, part1, part2)
-solutionRuns('01', reader, part1, part2)
+runExamples(2024, '01', reader, part1, part2)
+runSolution(2024, '01', reader, part1, part2)
