@@ -107,7 +107,7 @@ const getHumanValue = (file: string): number => {
   delete monkeys['humn']
 
   const dependent = Object.values(monkeys).find(monkey => monkey.dependsOn.includes('humn'))!
-  
+
   // @ts-expect-error
   const operation = getInverseOperation(dependent.dependsOn, dependent.operator!)
 

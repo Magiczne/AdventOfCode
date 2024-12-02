@@ -1,8 +1,9 @@
+import { windows } from '@magiczne/advent-of-code-ts-core/array'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { range, xprod } from 'ramda'
-import { solutionExample, solutionPart1, solutionPart2, windows } from '../util'
+import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 type Point = { x: number; y: number }
 type Cell = '.' | '#' | 'o'

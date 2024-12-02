@@ -1,5 +1,5 @@
-import { range } from 'radash'
 import { isNumeric } from '@magiczne/advent-of-code-ts-core/string'
+import { range } from 'radash'
 
 interface Point {
   x: number

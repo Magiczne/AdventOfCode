@@ -1,5 +1,5 @@
+import { intersection } from '@magiczne/advent-of-code-ts-core/array'
 import { range } from 'ramda'
-import { intersection } from '../util/index.ts'
 
 class Card {
   private readonly matchedNumbers: ReadonlyArray<number>

@@ -1,5 +1,5 @@
+import { Range } from '@magiczne/advent-of-code-ts-core/structures'
 import { first, last, unique } from 'radash'
-import { Range } from '../util/range.ts'
 
 const enum Category {
   Seed = 'seed',

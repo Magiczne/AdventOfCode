@@ -1,9 +1,9 @@
+import { leastCommonMultiple } from '@magiczne/advent-of-code-ts-core/number'
+import { Tree, TreeNode } from '@magiczne/advent-of-code-ts-core/structures'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
-import { leastCommonMultiple } from '../util/number.ts'
-import { Tree, TreeNode } from '../util/tree.ts'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 

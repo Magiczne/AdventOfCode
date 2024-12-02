@@ -1,10 +1,10 @@
+import { isUpperCaseLetter } from '@magiczne/advent-of-code-ts-core/string'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { cluster, last } from 'radash'
 import { transpose } from 'ramda'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util'
-import { isUpperCaseLetter } from '@magiczne/advent-of-code-ts-core/string'
 
 type Stack = Array<Uppercase<string>>
 type Stacks = Record<number, Stack>

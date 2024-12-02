@@ -1,9 +1,10 @@
+import { intersection } from '@magiczne/advent-of-code-ts-core/array'
+import { isUpperCase } from '@magiczne/advent-of-code-ts-core/string'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { cluster, unique } from 'radash'
-import { intersection, solutionExample, solutionPart1, solutionPart2 } from '../util'
-import { isUpperCase } from '@magiczne/advent-of-code-ts-core/string'
+import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 type Rucksack = [Array<string>, Array<string>]
 
@@ -13,7 +14,7 @@ const getRucksacks = (file: string): Array<string> => {
   return readFileSync(resolve(__dirname, file)).toString().trim().split('\n')
 }
 
-const calculatePriorities = (itemTypes: Array<Array<string>>): number => {
+const calculatePriorities = (itemTypes: ReadonlyArray<ReadonlyArray<string>>): number => {
   return itemTypes
     .map((intersection, index) => {
       const noDuplicates = unique(intersection)

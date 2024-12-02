@@ -1,4 +1,4 @@
-import { cycle } from './array.ts'
+import { cycle } from '../array/cycle'
 
 class TreeNode<T> {
   constructor(

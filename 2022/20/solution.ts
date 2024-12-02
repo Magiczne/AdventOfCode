@@ -1,7 +1,8 @@
+import { CircularLinkedList, LinkedListNode } from '@magiczne/advent-of-code-ts-core/structures'
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { CircularLinkedList, LinkedListNode, solutionExample, solutionPart1, solutionPart2 } from '../util'
+import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const part2DecryptionKey = 811589153

@@ -1,7 +1,7 @@
 /**
- * Use with Array.map to get difference between adjacent items
+ * Difference between adjacent array items
  *
- * e.g:    [7, 6, 4, 2, 1].map(adjacentDiff)
+ * e.g:    adjacentDiff([7, 6, 4, 2, 1])
  * returns [1, 2, 2, 1]
  */
 const adjacentDiff = (line: ReadonlyArray<number>): ReadonlyArray<number> => {
