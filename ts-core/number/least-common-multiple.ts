@@ -6,4 +6,4 @@ const leastCommonMultiple = (numbers: ReadonlyArray<number>): number => {
   })
 }
 
-export { leastCommonMultiple } 
+export { leastCommonMultiple }

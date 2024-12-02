@@ -20,10 +20,4 @@ const solutionPart2 = <TResult>(result: TResult, durationInMs: number): void => 
   console.log(chalk.blue(`[SLN]\t\t\tPart 2: ${result}\t\t${durationInMs}ms`))
 }
 
-export {
-  __dirname,
-  examplePart1,
-  examplePart2,
-  solutionPart1,
-  solutionPart2,
-}
+export { __dirname, examplePart1, examplePart2, solutionPart1, solutionPart2 }

@@ -5,6 +5,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "format": "prettier --write ."
   }
 }

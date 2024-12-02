@@ -1,3 +1,4 @@
-export * from './is-numeric'
-export * from './is-upper-case'
-export * from './is-upper-case-letter'
+export { alphabet, alphabetArray } from './alphabet'
+export { isNumeric } from './is-numeric'
+export { isUpperCase } from './is-upper-case'
+export { isUpperCaseLetter } from './is-upper-case-letter'
