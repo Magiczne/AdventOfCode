@@ -1,7 +1,7 @@
+import chalk from 'chalk'
 import { existsSync, readdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import chalk from 'chalk'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
@@ -70,4 +70,4 @@ const solutionRuns = <TInput, TResult>(
   solutionPart2(valuePart2, duration2)
 }
 
-export { testRuns, solutionRuns }
+export { solutionRuns, testRuns }

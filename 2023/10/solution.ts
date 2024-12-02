@@ -1,8 +1,8 @@
-import { resolve } from 'node:path'
+import { writeFileSync } from 'fs'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
-import { writeFileSync } from 'fs'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 

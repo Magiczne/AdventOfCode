@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
-import { testRuns, solutionRuns } from '../util/aoc'
-import { nextItemDiffReducer } from '../util/array'
+import { adjacentDiff } from '@magiczne/advent-of-code-ts-core'
+import { solutionRuns, testRuns } from '../util/aoc'
 
 const isLineSafe = (line: ReadonlyArray<number>): boolean => {
   const sign = Math.sign(line[0])
@@ -10,7 +10,7 @@ const isLineSafe = (line: ReadonlyArray<number>): boolean => {
 }
 
 const part1 = (data: ReadonlyArray<ReadonlyArray<number>>): number => {
-  return data.map(nextItemDiffReducer).filter(isLineSafe).length
+  return data.map(adjacentDiff).filter(isLineSafe).length
 }
 
 const part2 = (data: ReadonlyArray<ReadonlyArray<number>>): number => {
@@ -25,7 +25,7 @@ const part2 = (data: ReadonlyArray<ReadonlyArray<number>>): number => {
       return lines
     })
     .map(lines => {
-      return lines.map(nextItemDiffReducer)
+      return lines.map(adjacentDiff)
     })
     .filter(lines => {
       return lines.some(isLineSafe)

@@ -1,6 +1,6 @@
+import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { readFileSync } from 'node:fs'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))

@@ -1,9 +1,9 @@
-import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { counting } from 'radash'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
 import { Card } from './card.ts'
-import { counting } from 'radash'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 

@@ -1,5 +1,5 @@
-import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { last } from 'radash'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util'

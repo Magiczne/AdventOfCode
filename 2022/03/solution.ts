@@ -1,5 +1,5 @@
-import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { cluster, unique } from 'radash'
 import { intersection, isUpperCase, solutionExample, solutionPart1, solutionPart2 } from '../util'

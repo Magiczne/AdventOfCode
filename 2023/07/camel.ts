@@ -124,4 +124,4 @@ class Hand {
   }
 }
 
-export { Hand, Figure }
+export { Figure, Hand }

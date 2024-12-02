@@ -26,3 +26,6 @@ obj
 
 ### Common ###
 *.exe
+
+### Turborepo ###
+.turbo

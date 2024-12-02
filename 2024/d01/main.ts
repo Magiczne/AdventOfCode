@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { counting, sum } from 'radash'
 
-import { testRuns, solutionRuns } from '../util/aoc'
+import { solutionRuns, testRuns } from '../util/aoc'
 
 const part1 = (data: ReadonlyArray<[number, number]>): number => {
   const left = data.map(item => item[0]).toSorted((a, b) => a - b)

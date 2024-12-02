@@ -114,4 +114,4 @@ class CircularLinkedList<T> extends LinkedList<T> {
   }
 }
 
-export { LinkedList, LinkedListNode, CircularLinkedList }
+export { CircularLinkedList, LinkedList, LinkedListNode }

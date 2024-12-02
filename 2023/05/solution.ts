@@ -1,9 +1,9 @@
-import { resolve } from 'node:path'
 import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { solutionExample, solutionPart1, solutionPart2 } from '../util/index.ts'
-import { Almanac, AlmanacMap, AlmanacMapRange, Category } from './almanac.ts'
 import { Range } from '../util/range.ts'
+import { Almanac, AlmanacMap, AlmanacMapRange, Category } from './almanac.ts'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
