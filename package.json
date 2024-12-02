@@ -7,7 +7,10 @@
   "scripts": {
     "aoc": "tsx",
     "dotnet": "dotnet run --project",
-    "format": "prettier 2022 2023 --write",
+    "format": "prettier 2022 2023 2024 --write",
+    "format:2022": "prettier 2022 --write",
+    "format:2023": "prettier 2023 --write",
+    "format:2024": "prettier 2024 --write",
     "postinstall": "husky"
   },
   "devDependencies": {

@@ -12,9 +12,12 @@ const part1 = (data: ReadonlyArray<[number, number]>): number => {
 }
 
 const part2 = (data: ReadonlyArray<[number, number]>): number => {
-  const rightCounts = counting(data.map(item => item[1]), item => item)
+  const rightCounts = counting(
+    data.map(item => item[1]),
+    item => item,
+  )
   const similiarityScores = data.map(item => (rightCounts[item[0]] ?? 0) * item[0])
-  
+
   return sum(similiarityScores)
 }
 
@@ -24,10 +27,7 @@ const reader = (file: string): ReadonlyArray<[number, number]> => {
     .map(line => {
       const match = line.match(/(\d+)\s+(\d+)/)
 
-      return [
-        parseInt(match[1], 10),
-        parseInt(match[2], 10)
-      ] as [number, number]
+      return [parseInt(match[1], 10), parseInt(match[2], 10)] as [number, number]
     })
 }
 
