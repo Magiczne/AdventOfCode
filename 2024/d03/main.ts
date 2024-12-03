@@ -2,35 +2,27 @@ import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 
-const dontDoMatch = /don't\(\).+?do\(\)/gm
-const mulMatch = /mul\((\d+),(\d+)\)/gm
+const dontDoMatch = /don't\(\)(.+?)(do\(\)|$)/gs
+const mulMatch = /mul\((\d{1,3}),(\d{1,3})\)/gs
 
 const part1 = (data: string): number => {
   return [...data.matchAll(mulMatch)]
     .map(match => {
-      return [
-        parseInt(match[1], 10),
-        parseInt(match[2], 10)
-      ]
+      return [parseInt(match[1], 10), parseInt(match[2], 10)]
     })
     .map(match => match[0] * match[1])
     .reduce((acc, result) => acc + result, 0)
 }
 
 const part2 = (data: string): number => {
-  const dontDoSections = data.matchAll(dontDoMatch)
-  const clearData = data.replaceAll(dontDoMatch, '')
+  data = data.replaceAll(dontDoMatch, '')
 
-  return [...clearData.matchAll(mulMatch)]
+  return [...data.matchAll(mulMatch)]
     .map(match => {
-      return [
-        parseInt(match[1], 10),
-        parseInt(match[2], 10)
-      ]
+      return [parseInt(match[1], 10), parseInt(match[2], 10)]
     })
     .map(match => match[0] * match[1])
     .reduce((acc, result) => acc + result, 0)
-
 }
 
 const reader = (file: string): string => {
