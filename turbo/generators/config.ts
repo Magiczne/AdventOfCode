@@ -30,8 +30,8 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     actions: [
       {
         type: 'add',
-        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/main.ts',
-        templateFile: 'templates/typescript/main.ts.hbs',
+        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/index.ts',
+        templateFile: 'templates/typescript/index.ts.hbs',
       },
       {
         type: 'add',
