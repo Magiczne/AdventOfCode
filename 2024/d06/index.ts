@@ -13,26 +13,32 @@ interface Input {
 }
 
 const rotate = (speed: Vec2): Vec2 => {
+  // From going downwards to going left
   if (speed.x === 0 && speed.y === 1) {
-    // From going downwards to going left
     return {
       x: -1,
       y: 0,
     }
-  } else if (speed.x === -1 && speed.y === 0) {
-    // From going left to going upwards
+  } 
+  
+  // From going left to going upwards
+  if (speed.x === -1 && speed.y === 0) {
     return {
       x: 0,
       y: -1,
     }
-  } else if (speed.x === 0 && speed.y === -1) {
-    // From going upwards to going right
+  } 
+  
+  // From going upwards to going right
+  if (speed.x === 0 && speed.y === -1) {
     return {
       x: 1,
       y: 0,
     }
-  } else if (speed.x === 1 && speed.y === 0) {
-    // From going right to going downwards
+  } 
+  
+  // From going right to going downwards
+  if (speed.x === 1 && speed.y === 0) {
     return {
       x: 0,
       y: 1,
