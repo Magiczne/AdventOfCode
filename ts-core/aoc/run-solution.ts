@@ -14,12 +14,11 @@ const runSolution = <TInput, TResult>(
   const start1 = Date.now()
   const valuePart1 = part1(data)
   const duration1 = Date.now() - start1
+  solutionPart1(valuePart1, duration1)
 
   const start2 = Date.now()
   const valuePart2 = part2(data)
   const duration2 = Date.now() - start2
-
-  solutionPart1(valuePart1, duration1)
   solutionPart2(valuePart2, duration2)
 }
 

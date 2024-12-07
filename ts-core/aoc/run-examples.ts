@@ -20,12 +20,11 @@ const runExamples = <TInput, TResult>(
       const start1 = Date.now()
       const valuePart1 = part1(testData)
       const duration1 = Date.now() - start1
+      examplePart1(valuePart1, file, duration1)
 
       const start2 = Date.now()
       const valuePart2 = part2(testData)
       const duration2 = Date.now() - start2
-
-      examplePart1(valuePart1, file, duration1)
       examplePart2(valuePart2, file, duration2)
     })
   }
