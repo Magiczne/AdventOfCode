@@ -13,6 +13,7 @@ const part1 = (data: Input): number => {
       return operators.some(operatorSet => {
         const result = line.operands.reduce((acc, _, index, array) => {
           if (index < array.length - 1) {
+            // 😈
             return eval(`${acc} ${operatorSet[index]} ${array[index + 1]}`)
           }
 
@@ -36,6 +37,7 @@ const part2 = (data: Input): number => {
       return operators.some(operatorSet => {
         const result = line.operands.reduce((acc, _, index, array) => {
           if (index < array.length - 1) {
+            // 😈
             return eval(`${acc}${operatorSet[index]}${array[index + 1]}`)
           }
 
