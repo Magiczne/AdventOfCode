@@ -1,11 +1,7 @@
 import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-
-interface Vec2 {
-  x: number
-  y: number
-}
+import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
 
 interface Input {
   map: Array<Array<'.' | '#'>>
