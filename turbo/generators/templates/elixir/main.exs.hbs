@@ -1,0 +1,19 @@
+Code.require_file("{{ year }}/framework/framework.exs")
+
+defmodule Aoc.Day{{ day }} do
+  def reader(filePath) do
+    File.stream!(filePath)
+      |> Stream.map(&String.trim/1)
+      |> Enum.to_list
+  end
+
+  def part1(data) do
+    0
+  end
+
+  def part2(data) do
+    0
+  end
+end
+
+Aoc.Core.run_solution("{{ day }}", &Aoc.Day{{ day }}.reader/1, &Aoc.Day{{ day }}.part1/1, &Aoc.Day{{ day}}.part2/1)
