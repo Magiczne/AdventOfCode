@@ -61,17 +61,20 @@ const part2 = (data: ReadonlyArray<number>): number => {
       continue
     }
 
-    if (disk[freeSpaceIndex].length > disk[fileIndex].length) {
+    const file = disk[fileIndex]
+    const freeSpace = disk[freeSpaceIndex]
+
+    if (freeSpace.length > file.length) {
       disk = [
         ...disk.slice(0, freeSpaceIndex),
-        { id: disk[fileIndex].id, length: disk[fileIndex].length },
-        { id: EMPTY, length: disk[freeSpaceIndex].length - disk[fileIndex].length },
+        { id: file.id, length: file.length },
+        { id: EMPTY, length: freeSpace.length - file.length },
         ...disk.slice(freeSpaceIndex + 1),
       ]
       disk[fileIndex + 1].id = EMPTY
-    } else if (disk[freeSpaceIndex].length === disk[fileIndex].length) {
-      disk[freeSpaceIndex].id = disk[fileIndex].id
-      disk[fileIndex].id = EMPTY
+    } else if (freeSpace.length === file.length) {
+      freeSpace.id = file.id
+      file.id = EMPTY
     }
   }
 
