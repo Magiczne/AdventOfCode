@@ -29,24 +29,31 @@ defmodule Aoc.Core do
     )
   end
 
-  def run_example do
+  def run_examples(day, reader, part1, part2) do
+    directory = "2021/d#{day}/test-runs"
+
+    if File.exists?(directory) do
+      File.ls!(directory)
+      |> Enum.each(fn file ->
+        testData = reader.("#{directory}/#{file}")
+
+        {duration1microSeconds, resultPart1} = :timer.tc(part1, [testData])
+        example_part1(resultPart1, file, duration1microSeconds / 1000)
+
+        {duration2microSeconds, resultPart2} = :timer.tc(part2, [testData])
+        example_part2(resultPart2, file, duration2microSeconds / 1000)
+      end)
+    end
   end
 
   def run_solution(day, reader, part1, part2) do
     filePath = "2021/d#{day}/input.txt"
     data = reader.(filePath)
 
-    # TODO: Timing
-    resultPart1 = part1.(data)
-    solution_part1(resultPart1, 0)
+    {duration1microSeconds, resultPart1} = :timer.tc(part1, [data])
+    solution_part1(resultPart1, duration1microSeconds / 1000)
 
-    resultPart2 = part2.(data)
-    solution_part1(resultPart2, 0)
-
-    # {timePart1, resultPart1} = :timer.tc(part1, data)
-    # solution_part1(resultPart1, timePart1)
-
-    # {timePart2, resultPart2} = :timer.tc(part2, data)
-    # solution_part2(resultPart2, timePart2)
+    {duration2microSeconds, resultPart2} = :timer.tc(part2, [data])
+    solution_part2(resultPart2, duration2microSeconds / 1000)
   end
 end

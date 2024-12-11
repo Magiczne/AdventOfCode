@@ -44,4 +44,5 @@ defmodule Aoc.Day02 do
   end
 end
 
+Aoc.Core.run_examples("02", &Aoc.Day02.reader/1, &Aoc.Day02.part1/1, &Aoc.Day02.part2/1)
 Aoc.Core.run_solution("02", &Aoc.Day02.reader/1, &Aoc.Day02.part1/1, &Aoc.Day02.part2/1)

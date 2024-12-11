@@ -131,4 +131,5 @@ defmodule Aoc.Day03 do
   end
 end
 
+Aoc.Core.run_examples("03", &Aoc.Day03.reader/1, &Aoc.Day03.part1/1, &Aoc.Day03.part2/1)
 Aoc.Core.run_solution("03", &Aoc.Day03.reader/1, &Aoc.Day03.part1/1, &Aoc.Day03.part2/1)

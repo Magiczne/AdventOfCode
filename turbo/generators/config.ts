@@ -14,7 +14,10 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
         type: 'input',
         name: 'day',
         message: 'Enter day which you are working on',
-        default: (new Date()).getDate().toString().padStart(2, '0')
+        default: (new Date()).getDate().toString().padStart(2, '0'),
+        transformer(input, answers, flags) {
+          return input.toString().padStart(2, '0')
+        },
       },
       {
         type: 'list',
