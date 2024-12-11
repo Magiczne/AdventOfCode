@@ -5,30 +5,31 @@ defmodule Aoc.Core do
 
   def example_part1(result, test_file_name, duration_in_ms) do
     IO.puts(
-      IO.ANSI.yellow <> build_string("[EXM]", "(#{test_file_name})", "Part 1:", result, "#{duration_in_ms}ms")
+      IO.ANSI.yellow() <>
+        build_string("[EXM]", "(#{test_file_name})", "Part 1:", result, "#{duration_in_ms}ms")
     )
   end
 
   def example_part2(result, test_file_name, duration_in_ms) do
     IO.puts(
-      IO.ANSI.red <> build_string("[EXM]", "(#{test_file_name})", "Part 1:", result, "#{duration_in_ms}ms")
+      IO.ANSI.red() <>
+        build_string("[EXM]", "(#{test_file_name})", "Part 1:", result, "#{duration_in_ms}ms")
     )
   end
 
   def solution_part1(result, duration_in_ms) do
     IO.puts(
-      IO.ANSI.green <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms")
+      IO.ANSI.green() <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms")
     )
   end
 
   def solution_part2(result, duration_in_ms) do
     IO.puts(
-      IO.ANSI.black <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms")
+      IO.ANSI.black() <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms")
     )
   end
 
   def run_example do
-
   end
 
   def run_solution(day, reader, part1, part2) do
