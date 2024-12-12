@@ -29,7 +29,7 @@ class ObjectSet<T> {
     return this.hashFn(item) in this.items
   }
 
-  [Symbol.iterator](): SetIterator<T> {  
+  [Symbol.iterator](): SetIterator<T> {
     return Object.values(this.items)[Symbol.iterator]()
   }
 
