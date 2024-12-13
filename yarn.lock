@@ -297,6 +297,7 @@ __metadata:
     tsx: "npm:^4.19.2"
     turbo: "npm:^2.3.3"
     typescript: "npm:^5.7.2"
+    z3-solver: "npm:^4.13.3"
   languageName: unknown
   linkType: soft
 
@@ -631,6 +632,15 @@ __metadata:
   dependencies:
     tslib: "npm:^2.0.1"
   checksum: 10c0/3a1a409764faa1471601a0ad01b3aa699292991aa9c8a30c7717002cabdf5d98008e7b53ae61f6e058f757fc6ba965e147967a93c13e62692c907d79cfb245f8
+  languageName: node
+  linkType: hard
+
+"async-mutex@npm:^0.3.2":
+  version: 0.3.2
+  resolution: "async-mutex@npm:0.3.2"
+  dependencies:
+    tslib: "npm:^2.3.1"
+  checksum: 10c0/456c6cc480f2fa5afce6e0bd375fed7fc9f3705e77545c29218b01e7283a652928d38a571c5375787a5c198ea3c6679cf0e28b0109f369545881702daec64128
   languageName: node
   linkType: hard
 
@@ -3285,7 +3295,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.1, tslib@npm:^2.1.0":
+"tslib@npm:^2.0.1, tslib@npm:^2.1.0, tslib@npm:^2.3.1":
   version: 2.8.1
   resolution: "tslib@npm:2.8.1"
   checksum: 10c0/9c4759110a19c53f992d9aae23aac5ced636e99887b51b9e61def52611732872ff7668757d4e4c61f19691e36f4da981cd9485e869b4a7408d689f6bf1f14e62
@@ -3628,5 +3638,14 @@ __metadata:
   version: 3.1.1
   resolution: "yn@npm:3.1.1"
   checksum: 10c0/0732468dd7622ed8a274f640f191f3eaf1f39d5349a1b72836df484998d7d9807fbea094e2f5486d6b0cd2414aad5775972df0e68f8604db89a239f0f4bf7443
+  languageName: node
+  linkType: hard
+
+"z3-solver@npm:^4.13.3":
+  version: 4.13.3
+  resolution: "z3-solver@npm:4.13.3"
+  dependencies:
+    async-mutex: "npm:^0.3.2"
+  checksum: 10c0/1fe3b8b636e3a2f44ab2845c29a96e550674208d0da206e6d32585075dd672c5898267bbdf73d5d2487cdffa51fbddbdf7ca807eeefa8a088a87519fa3540275
   languageName: node
   linkType: hard
