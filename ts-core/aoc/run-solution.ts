@@ -5,8 +5,8 @@ const runSolution = async <TInput, TResult>(
   year: number,
   day: string,
   reader: (file: string) => TInput,
-  part1: (data: TInput) => TResult | PromiseLike<TResult>,
-  part2: (data: TInput) => TResult | PromiseLike<TResult>,
+  part1: (data: TInput) => TResult | Promise<TResult>,
+  part2: (data: TInput) => TResult | Promise<TResult>,
 ): Promise<void> => {
   const filePath = join(__dirname, `../../${year}/d${day}/input.txt`)
   const data = reader(filePath)

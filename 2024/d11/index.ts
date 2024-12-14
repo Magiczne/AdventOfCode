@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs'
+import { sep } from 'node:path'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 
@@ -55,7 +56,7 @@ const part2 = (input: Input): number => {
 }
 
 const reader = (file: string): Input => {
-  const fileParts = file.split('/')
+  const fileParts = file.split(sep)
   const fileName = fileParts[fileParts.length - 1]
 
   return {
