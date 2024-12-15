@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
+import { Direction, Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 
 interface Input {
   map: Array<Array<'.' | '#'>>
@@ -11,42 +11,30 @@ interface Input {
 const rotate = (speed: Vec2): Vec2 => {
   // From going downwards to going left
   if (speed.x === 0 && speed.y === 1) {
-    return {
-      x: -1,
-      y: 0,
-    }
+    return Direction.left
   }
 
   // From going left to going upwards
   if (speed.x === -1 && speed.y === 0) {
-    return {
-      x: 0,
-      y: -1,
-    }
+    return Direction.up
   }
 
   // From going upwards to going right
   if (speed.x === 0 && speed.y === -1) {
-    return {
-      x: 1,
-      y: 0,
-    }
+    return Direction.right
   }
 
   // From going right to going downwards
   if (speed.x === 1 && speed.y === 0) {
-    return {
-      x: 0,
-      y: 1,
-    }
+    return Direction.down
   }
 
   throw new Error('WTF')
 }
 
 const part1 = (input: Input): number => {
-  const guardPos: Vec2 = { x: input.guard.x, y: input.guard.y }
-  const speed: Vec2 = { x: 0, y: -1 }
+  const guardPos = input.guard.clone()
+  const speed = Direction.up
 
   const visited = new Set<string>()
   visited.add(`${guardPos.y}_${guardPos.x}`)
@@ -57,16 +45,12 @@ const part1 = (input: Input): number => {
     }
 
     if (input.map[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-      const { x, y } = rotate(speed)
-
-      speed.x = x
-      speed.y = y
+      speed.updateInPlace(rotate(speed))
 
       continue
     }
 
-    guardPos.x += speed.x
-    guardPos.y += speed.y
+    guardPos.addInPlace(speed)
     visited.add(`${guardPos.y}_${guardPos.x}`)
   }
 
@@ -74,8 +58,8 @@ const part1 = (input: Input): number => {
 }
 
 const part2 = (input: Input): number => {
-  const guardPos: Vec2 = { x: input.guard.x, y: input.guard.y }
-  const speed: Vec2 = { x: 0, y: -1 }
+  const guardPos = input.guard.clone()
+  const speed = Direction.up
 
   const visited = new Set<string>()
   visited.add(`${guardPos.y}_${guardPos.x}`)
@@ -86,16 +70,12 @@ const part2 = (input: Input): number => {
     }
 
     if (input.map[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-      const { x, y } = rotate(speed)
-
-      speed.x = x
-      speed.y = y
+      speed.updateInPlace(rotate(speed))
 
       continue
     }
 
-    guardPos.x += speed.x
-    guardPos.y += speed.y
+    guardPos.addInPlace(speed)
     visited.add(`${guardPos.y}_${guardPos.x}`)
   }
 
@@ -109,8 +89,8 @@ const part2 = (input: Input): number => {
     newMap[pathPart[0]][pathPart[1]] = '#'
 
     // walk and check cycles
-    const guardPos: Vec2 = { x: input.guard.x, y: input.guard.y }
-    const speed: Vec2 = { x: 0, y: -1 }
+    const guardPos = input.guard.clone()
+    const speed = Direction.up
     const visited = new Set<string>()
     visited.add(`${guardPos.y}_${guardPos.x}_${speed.y}_${speed.x}`)
 
@@ -120,16 +100,12 @@ const part2 = (input: Input): number => {
       }
 
       if (newMap[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-        const { x, y } = rotate(speed)
-
-        speed.x = x
-        speed.y = y
+        speed.updateInPlace(rotate(speed))
 
         continue
       }
 
-      guardPos.x += speed.x
-      guardPos.y += speed.y
+      guardPos.addInPlace(speed)
 
       if (visited.has(`${guardPos.y}_${guardPos.x}_${speed.y}_${speed.x}`)) {
         cycles++
@@ -164,10 +140,7 @@ const reader = (file: string): Input => {
 
   return {
     map: map as Array<Array<'.' | '#'>>,
-    guard: {
-      x: guardX,
-      y: guardY,
-    },
+    guard: new Vec2({ x: guardX, y: guardY }),
   }
 }
 

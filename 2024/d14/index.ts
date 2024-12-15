@@ -3,7 +3,7 @@ import { sep } from 'node:path'
 import { createInterface } from 'node:readline/promises'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
+import { Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 import { group } from 'radash'
 
 interface Robot {
@@ -67,10 +67,10 @@ const part1 = (data: Input): number => {
     const positiveSpeedY = robot.speed.y > 0 ? robot.speed.y : data.mapSize.y - Math.abs(robot.speed.y)
 
     return {
-      position: {
+      position: new Vec2({
         x: (robot.position.x + positiveSpeedX * SECONDS) % data.mapSize.x,
         y: (robot.position.y + positiveSpeedY * SECONDS) % data.mapSize.y,
-      },
+      }),
       speed: robot.speed,
     }
   })
@@ -95,10 +95,10 @@ const part2 = async (data: Input): Promise<number> => {
       const positiveSpeedY = robot.speed.y > 0 ? robot.speed.y : data.mapSize.y - Math.abs(robot.speed.y)
 
       return {
-        position: {
+        position: new Vec2({
           x: (robot.position.x + positiveSpeedX) % data.mapSize.x,
           y: (robot.position.y + positiveSpeedY) % data.mapSize.y,
-        },
+        }),
         speed: robot.speed,
       }
     })
@@ -118,8 +118,8 @@ const reader = (file: string): Input => {
 
   return {
     mapSize: {
-      '0.txt': { x: 11, y: 7 },
-      'input.txt': { x: 101, y: 103 },
+      '0.txt': new Vec2({ x: 11, y: 7 }),
+      'input.txt': new Vec2({ x: 101, y: 103 }),
     }[fileName],
     robots: readFileSync(file, 'utf-8')
       .trim()
@@ -128,14 +128,14 @@ const reader = (file: string): Input => {
         const match = line.match(/(\d+),(\d+) v=([-\d]+),([-\d]+)/)
 
         return {
-          position: {
+          position: new Vec2({
             x: parseInt(match[1], 10),
             y: parseInt(match[2], 10),
-          },
-          speed: {
+          }),
+          speed: new Vec2({
             x: parseInt(match[3], 10),
             y: parseInt(match[4], 10),
-          },
+          }),
         }
       }),
   }

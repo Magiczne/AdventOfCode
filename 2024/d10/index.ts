@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { unique } from 'radash'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
+import { Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 
 interface Input {
   map: ReadonlyArray<ReadonlyArray<number>>
@@ -12,10 +12,10 @@ interface Input {
 // Find every neighbor that is larger than one from current position
 const findIncrementedNeighbors = (map: ReadonlyArray<ReadonlyArray<number>>, position: Vec2): ReadonlyArray<Vec2> => {
   return [
-    { x: position.x, y: position.y - 1 },
-    { x: position.x, y: position.y + 1 },
-    { x: position.x - 1, y: position.y },
-    { x: position.x + 1, y: position.y },
+    new Vec2({ x: position.x, y: position.y - 1 }),
+    new Vec2({ x: position.x, y: position.y + 1 }),
+    new Vec2({ x: position.x - 1, y: position.y }),
+    new Vec2({ x: position.x + 1, y: position.y }),
   ].filter(item => {
     return map[item.y]?.[item.x] === map[position.y][position.x] + 1
   })
@@ -85,7 +85,7 @@ const reader = (file: string): Input => {
         return acc
       }
 
-      return [...acc, { x, y }]
+      return [...acc, new Vec2({ x, y })]
     }, [])
   })
 

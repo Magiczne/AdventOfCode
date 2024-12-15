@@ -16,6 +16,10 @@ class Direction {
   static get left(): Vec2 {
     return new Vec2({ x: -1, y: 0 })
   }
+
+  static get cardnial(): [Vec2, Vec2, Vec2, Vec2] {
+    return [Direction.up, Direction.right, Direction.down, Direction.left]
+  }
 }
 
 export { Direction }

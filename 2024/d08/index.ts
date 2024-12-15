@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { combinationsWithoutRepetition } from '@magiczne/advent-of-code-ts-core/combinatorics'
-import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
+import { Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 
 type Antenna = Vec2 & { type: 'Antenna'; code: string }
 type Antinode = { type: 'Antinode'; code: string }
@@ -47,18 +47,24 @@ const part1 = (input: Input): number => {
       const distanceX = Math.abs(firstNode.x - secondNode.x)
       const distanceY = Math.abs(firstNode.y - secondNode.y)
 
-      const secondAntinodeDir: Vec2 = { x: firstNode.x < secondNode.x ? -1 : 1, y: firstNode.y < secondNode.y ? -1 : 1 }
-      const firstAntinodeDir: Vec2 = { x: firstNode.x < secondNode.x ? 1 : -1, y: firstNode.y < secondNode.y ? 1 : -1 }
+      const secondAntinodeDir = new Vec2({
+        x: firstNode.x < secondNode.x ? -1 : 1,
+        y: firstNode.y < secondNode.y ? -1 : 1,
+      })
+      const firstAntinodeDir = new Vec2({
+        x: firstNode.x < secondNode.x ? 1 : -1,
+        y: firstNode.y < secondNode.y ? 1 : -1,
+      })
 
       const antinodes: ReadonlyArray<Vec2> = [
-        {
+        new Vec2({
           x: firstNode.x - firstAntinodeDir.x * distanceX,
           y: firstNode.y - firstAntinodeDir.y * distanceY,
-        },
-        {
+        }),
+        new Vec2({
           x: secondNode.x - secondAntinodeDir.x * distanceX,
           y: secondNode.y - secondAntinodeDir.y * distanceY,
-        },
+        }),
       ]
 
       antinodes.forEach(antinode => {
@@ -92,8 +98,14 @@ const part2 = (input: Input): number => {
       const distanceX = Math.abs(firstNode.x - secondNode.x)
       const distanceY = Math.abs(firstNode.y - secondNode.y)
 
-      const secondAntinodeDir: Vec2 = { x: firstNode.x < secondNode.x ? -1 : 1, y: firstNode.y < secondNode.y ? -1 : 1 }
-      const firstAntinodeDir: Vec2 = { x: firstNode.x < secondNode.x ? 1 : -1, y: firstNode.y < secondNode.y ? 1 : -1 }
+      const secondAntinodeDir = new Vec2({
+        x: firstNode.x < secondNode.x ? -1 : 1,
+        y: firstNode.y < secondNode.y ? -1 : 1,
+      })
+      const firstAntinodeDir = new Vec2({
+        x: firstNode.x < secondNode.x ? 1 : -1,
+        y: firstNode.y < secondNode.y ? 1 : -1,
+      })
 
       let antinodes: Array<Vec2> = []
 
@@ -106,7 +118,7 @@ const part2 = (input: Input): number => {
           break
         }
 
-        antinodes.push({ x, y })
+        antinodes.push(new Vec2({ x, y }))
       }
 
       // Generate antinodes in second direction
@@ -118,7 +130,7 @@ const part2 = (input: Input): number => {
           break
         }
 
-        antinodes.push({ x, y })
+        antinodes.push(new Vec2({ x, y }))
       }
 
       antinodes.forEach(antinode => {

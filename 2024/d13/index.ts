@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { Context, init as initZ3, IntNum } from 'z3-solver'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
+import { Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 
 interface Machine {
   buttonA: Vec2
@@ -11,9 +11,11 @@ interface Machine {
 }
 
 const { Context } = await initZ3()
+
+// @ts-expect-error Something is wrong with z3-solver
 const ctx: Context = new Context('aoc')
 
-const optimizeMachine = async (machine: Machine, prizeCoefficient): Promise<number> => {
+const optimizeMachine = async (machine: Machine, prizeCoefficient = 0): Promise<number> => {
   const solver = new ctx.Optimize()
   const x = ctx.Int.const('x')
   const y = ctx.Int.const('y')
@@ -73,18 +75,18 @@ const reader = (file: string): ReadonlyArray<Machine> => {
       const lines = machine.split('\n').map(line => line.match(/(\d+).+?(\d+)/))
 
       return {
-        buttonA: {
+        buttonA: new Vec2({
           x: parseInt(lines[0][1], 10),
           y: parseInt(lines[0][2], 10),
-        },
-        buttonB: {
+        }),
+        buttonB: new Vec2({
           x: parseInt(lines[1][1], 10),
           y: parseInt(lines[1][2], 10),
-        },
-        prize: {
+        }),
+        prize: new Vec2({
           x: parseInt(lines[2][1], 10),
           y: parseInt(lines[2][2], 10),
-        },
+        }),
       }
     })
 }

@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
+import { Direction, Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 import { ObjectSet } from '@magiczne/advent-of-code-ts-core/structures'
-import type { Vec2 } from '@magiczne/advent-of-code-ts-core/types'
 
 type Garden = Array<Array<string>>
 
@@ -17,19 +17,9 @@ interface Wall {
   direction: Vec2
 }
 
-const directions: ReadonlyArray<Vec2> = [
-  { x: -1, y: 0 },
-  { x: 1, y: 0 },
-  { x: 0, y: -1 },
-  { x: 0, y: 1 },
-]
-
 const neighbors = (pos: Vec2): ReadonlyArray<Vec2> => {
-  return directions.map(direction => {
-    return {
-      x: pos.x + direction.x,
-      y: pos.y + direction.y,
-    }
+  return Direction.cardnial.map(direction => {
+    return direction.add(pos)
   })
 }
 
@@ -49,11 +39,8 @@ const floodFill = (garden: Garden, position: Vec2) => {
       if (garden[neighbor.y]?.[neighbor.x] !== crop && !visited.has(neighbor)) {
         wallSegments.push({
           point: pos,
-          direction: {
-            // If I had direction here... but i have only neighbors xD
-            x: neighbor.x - pos.x,
-            y: neighbor.y - pos.y,
-          },
+          // If I had direction here... but i have only neighbors xD
+          direction: neighbor.sub(pos),
         })
       }
 
@@ -115,9 +102,9 @@ const floodFill = (garden: Garden, position: Vec2) => {
         foundWall.end.y = Math.max(foundWall.end.y, wallSegment.point.y)
       } else {
         walls.push({
-          direction: { ...wallSegment.direction },
-          start: { ...wallSegment.point },
-          end: { ...wallSegment.point },
+          direction: wallSegment.direction.clone(),
+          start: wallSegment.point.clone(),
+          end: wallSegment.point.clone(),
         })
       }
 
@@ -142,9 +129,9 @@ const floodFill = (garden: Garden, position: Vec2) => {
         foundWall.end.x = Math.max(foundWall.end.x, wallSegment.point.x)
       } else {
         walls.push({
-          direction: { ...wallSegment.direction },
-          start: { ...wallSegment.point },
-          end: { ...wallSegment.point },
+          direction: wallSegment.direction.clone(),
+          start: wallSegment.point.clone(),
+          end: wallSegment.point.clone(),
         })
       }
 
@@ -168,7 +155,7 @@ const part1 = (data: Garden): number => {
   for (let y = 0; y < floodedGarden.length; y++) {
     for (let x = 0; x < floodedGarden.length; x++) {
       if (floodedGarden[y][x] !== '.') {
-        const floodedRegion = floodFill(floodedGarden, { x, y })
+        const floodedRegion = floodFill(floodedGarden, new Vec2({ x, y }))
 
         price += floodedRegion.perimeter * floodedRegion.points.length
       }
@@ -185,7 +172,7 @@ const part2 = (data: Garden): number => {
   for (let y = 0; y < floodedGarden.length; y++) {
     for (let x = 0; x < floodedGarden.length; x++) {
       if (floodedGarden[y][x] !== '.') {
-        const floodedRegion = floodFill(floodedGarden, { x, y })
+        const floodedRegion = floodFill(floodedGarden, new Vec2({ x, y }))
 
         price += floodedRegion.sides * floodedRegion.points.length
       }

@@ -1,6 +1,6 @@
-interface Vec2 {
+interface IVec2 {
   x: number
   y: number
 }
 
-export type { Vec2 }
+export type { IVec2 }
