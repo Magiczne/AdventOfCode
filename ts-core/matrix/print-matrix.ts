@@ -5,7 +5,7 @@ const printMatrix = <T>(
   for (let y = 0; y < matrix.length; y++) {
     let row = ''
 
-    for (let x = 0; x < matrix.length; x++) {
+    for (let x = 0; x < matrix[0].length; x++) {
       row += mapper?.(x, y, matrix[y][x]) ?? matrix[y][x]
     }
 
