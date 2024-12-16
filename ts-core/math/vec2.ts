@@ -43,6 +43,17 @@ class Vec2 implements IVec2 {
     this.x = other.x
     this.y = other.y
   }
+
+  static hashFn(vec: IVec2): string {
+    return `${vec.x}_${vec.y}`
+  }
+
+  toRaw(): IVec2 {
+    return {
+      x: this.x,
+      y: this.y
+    }
+  }
 }
 
 export { Vec2 }

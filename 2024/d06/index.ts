@@ -8,30 +8,6 @@ interface Input {
   guard: Vec2
 }
 
-const rotate = (speed: Vec2): Vec2 => {
-  // From going downwards to going left
-  if (speed.x === 0 && speed.y === 1) {
-    return Direction.left
-  }
-
-  // From going left to going upwards
-  if (speed.x === -1 && speed.y === 0) {
-    return Direction.up
-  }
-
-  // From going upwards to going right
-  if (speed.x === 0 && speed.y === -1) {
-    return Direction.right
-  }
-
-  // From going right to going downwards
-  if (speed.x === 1 && speed.y === 0) {
-    return Direction.down
-  }
-
-  throw new Error('WTF')
-}
-
 const part1 = (input: Input): number => {
   const guardPos = input.guard.clone()
   const speed = Direction.up
@@ -45,7 +21,7 @@ const part1 = (input: Input): number => {
     }
 
     if (input.map[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-      speed.updateInPlace(rotate(speed))
+      speed.updateInPlace(speed.rotateClockwise())
 
       continue
     }
@@ -70,7 +46,7 @@ const part2 = (input: Input): number => {
     }
 
     if (input.map[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-      speed.updateInPlace(rotate(speed))
+      speed.updateInPlace(speed.rotateClockwise())
 
       continue
     }
@@ -100,7 +76,7 @@ const part2 = (input: Input): number => {
       }
 
       if (newMap[guardPos.y + speed.y][guardPos.x + speed.x] === '#') {
-        speed.updateInPlace(rotate(speed))
+        speed.updateInPlace(speed.rotateClockwise())
 
         continue
       }

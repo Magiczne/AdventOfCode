@@ -18,7 +18,7 @@ interface Wall {
 }
 
 const neighbors = (pos: Vec2): ReadonlyArray<Vec2> => {
-  return Direction.cardnial.map(direction => {
+  return Direction.cardinal.map(direction => {
     return direction.add(pos)
   })
 }
