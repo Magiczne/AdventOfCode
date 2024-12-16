@@ -51,7 +51,7 @@ class Vec2 implements IVec2 {
   toRaw(): IVec2 {
     return {
       x: this.x,
-      y: this.y
+      y: this.y,
     }
   }
 }

@@ -62,6 +62,4 @@ class Direction extends Vec2 {
   }
 }
 
-
-
 export { Direction }

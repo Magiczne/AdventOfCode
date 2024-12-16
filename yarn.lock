@@ -290,6 +290,7 @@ __metadata:
   dependencies:
     "@turbo/gen": "npm:^2.3.3"
     "@types/node": "npm:^22.10.1"
+    heap-js: "npm:^2.5.0"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.2.10"
     prettier: "npm:^3.4.1"
@@ -1624,6 +1625,13 @@ __metadata:
     no-case: "npm:^2.2.0"
     upper-case: "npm:^1.1.3"
   checksum: 10c0/973b81b3fba82140cf8cdc819edb32edd5959ff61ff42128c5f54e56f7454bb8f61c0197180c38cde84a4be1dddbc780e1413d5e1602c96caf0195d863e6bd03
+  languageName: node
+  linkType: hard
+
+"heap-js@npm:^2.5.0":
+  version: 2.5.0
+  resolution: "heap-js@npm:2.5.0"
+  checksum: 10c0/11a8ff8abdea5087770d62bcf235fc5b7ffcb832d328264e91034cac1a898fb18259386f3cc12003ef49189d82e216498fdf8c486da197b36c44cda3e12ff3ac
   languageName: node
   linkType: hard
 
