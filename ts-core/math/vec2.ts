@@ -23,6 +23,10 @@ class Vec2 implements IVec2 {
     })
   }
 
+  inside(topLeft: IVec2, bottomRight: IVec2): boolean {
+    return this.x >= topLeft.x && this.x <= bottomRight.x && this.y >= topLeft.y && this.y <= bottomRight.y
+  }
+
   equals(other: IVec2): boolean {
     return this.x === other.x && this.y === other.y
   }
@@ -53,6 +57,10 @@ class Vec2 implements IVec2 {
       x: this.x,
       y: this.y,
     }
+  }
+
+  toString(): string {
+    return `Vec2(${this.x}, ${this.y})`
   }
 }
 
