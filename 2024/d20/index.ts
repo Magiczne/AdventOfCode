@@ -3,7 +3,6 @@ import { readFileSync } from 'node:fs'
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { Direction, Vec2 } from '@magiczne/advent-of-code-ts-core/math'
 import { ObjectSet } from '@magiczne/advent-of-code-ts-core/structures'
-import { counting } from 'radash'
 
 interface Input {
   start: Vec2
@@ -25,7 +24,7 @@ const part1 = (data: Input): number => {
       const point = queue.shift()
 
       Direction.cardinal.forEach(direction => {
-        const neighbor = point.add(direction) 
+        const neighbor = point.add(direction)
 
         if (!neighbor.inside(boundaryMin, boundaryMax)) {
           return
@@ -55,7 +54,7 @@ const part1 = (data: Input): number => {
       if (data.map[y][x] !== '#') {
         continue
       }
-      
+
       Direction.cardinal.forEach(direction => {
         const neighbor = point.add(direction)
 
@@ -87,7 +86,7 @@ const reader = (file: string): Input => {
     .trim()
     .split('\n')
     .map(line => line.trim().split(''))
-    
+
   const start = new Vec2()
   const end = new Vec2()
 
@@ -108,7 +107,7 @@ const reader = (file: string): Input => {
   return {
     start,
     end,
-    map: map as ReadonlyArray<ReadonlyArray<'.' | '#'>>
+    map: map as ReadonlyArray<ReadonlyArray<'.' | '#'>>,
   }
 }
 

@@ -60,6 +60,26 @@ class Direction extends Vec2 {
 
     throw new Error('WTF')
   }
+
+  override toString(): string {
+    if (this.equals(Direction.down)) {
+      return 'v'
+    }
+
+    if (this.equals(Direction.right)) {
+      return '>'
+    }
+
+    if (this.equals(Direction.up)) {
+      return '^'
+    }
+
+    if (this.equals(Direction.left)) {
+      return '<'
+    }
+
+    throw new Error('WTF')
+  }
 }
 
 export { Direction }
