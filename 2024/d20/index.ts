@@ -1,87 +1,95 @@
 import { readFileSync } from 'node:fs'
+import { sep } from 'node:path'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { Direction, Vec2 } from '@magiczne/advent-of-code-ts-core/math'
-import { ObjectSet } from '@magiczne/advent-of-code-ts-core/structures'
 
 interface Input {
   start: Vec2
   end: Vec2
   map: ReadonlyArray<ReadonlyArray<'.' | '#'>>
+  savings: {
+    part1: number
+    part2: number
+  }
 }
 
-// Only 70s, not so bad :P
-const part1 = (data: Input): number => {
-  const boundaryMin = new Vec2({ x: 1, y: 1 })
-  const boundaryMax = new Vec2({ x: data.map[0].length - 2, y: data.map.length - 2 })
-  const possibleCheats = new ObjectSet<Vec2>(Vec2.hashFn)
+const traverse = (map: ReadonlyArray<ReadonlyArray<'.' | '#'>>, start: Vec2): Map<string, number> => {
+  const boundaryMin = new Vec2({ x: 0, y: 0 })
+  const boundaryMax = new Vec2({ x: map[0].length - 1, y: map.length - 1 })
+  const queue: Array<{ position: Vec2; distance: number }> = [{ position: start, distance: 0 }]
+  const distances = new Map<string, number>()
 
-  const traverse = (map: ReadonlyArray<ReadonlyArray<'.' | '#'>>, start: Vec2, end: Vec2): number => {
-    const queue: Array<Vec2> = [start]
-    const distances = new Map<string, number>()
+  distances.set(Vec2.hashFn(start), 0)
 
-    while (queue.length > 0) {
-      const point = queue.shift()
+  while (queue.length > 0) {
+    const current = queue.shift()
 
-      Direction.cardinal.forEach(direction => {
-        const neighbor = point.add(direction)
+    Direction.cardinal.forEach(direction => {
+      const neighbor = current.position.add(direction)
 
-        if (!neighbor.inside(boundaryMin, boundaryMax)) {
-          return
-        }
-
-        if (map[neighbor.y][neighbor.x] === '#') {
-          return
-        }
-
-        if (!distances.has(Vec2.hashFn(neighbor))) {
-          distances.set(Vec2.hashFn(neighbor), (distances.get(Vec2.hashFn(point)) ?? 0) + 1)
-          queue.push(neighbor)
-        }
-      })
-    }
-
-    return distances.get(Vec2.hashFn(end))
-  }
-
-  const baseTime = traverse(data.map, data.start, data.end)
-
-  // Skipping borders
-  for (let y = 1; y < data.map.length - 1; y++) {
-    for (let x = 1; x < data.map[0].length - 1; x++) {
-      const point = new Vec2({ x, y })
-
-      if (data.map[y][x] !== '#') {
-        continue
+      if (!neighbor.inside(boundaryMin, boundaryMax)) {
+        return
       }
 
-      Direction.cardinal.forEach(direction => {
-        const neighbor = point.add(direction)
+      if (map[neighbor.y][neighbor.x] === '#') {
+        return
+      }
 
-        if (data.map[neighbor.y]?.[neighbor.x] === '#') {
-          return
-        }
+      const distance = current.distance + 1
 
-        possibleCheats.add(point)
-      })
-    }
+      if (!distances.has(Vec2.hashFn(neighbor)) || distances.get(Vec2.hashFn(neighbor)) > distance) {
+        queue.push({ position: neighbor, distance })
+        distances.set(Vec2.hashFn(neighbor), distance)
+      }
+    })
   }
 
-  const cheatSavings = [...possibleCheats].map(cheat => {
-    const map = data.map.map(row => [...row])
-    map[cheat.y][cheat.x] = '.'
+  return distances
+}
 
-    return baseTime - traverse(map, data.start, data.end)
-  })
+const countCheatedPaths = (data: Input, maxCheatLength: number, savings: number): number => {
+  const distances = traverse(data.map, data.end)
+  const pathPoints = [...distances.keys()]
 
-  return cheatSavings.filter(saving => saving >= 100).length
+  return pathPoints.reduce((acc, startPoint) => {
+    return (
+      acc +
+      pathPoints.reduce((acc2, endPoint) => {
+        if (startPoint === endPoint) {
+          return acc2
+        }
+
+        const start = Vec2.fromHash(startPoint)
+        const end = Vec2.fromHash(endPoint)
+        const dist = start.manhattanDistance(end)
+
+        if (dist > maxCheatLength) {
+          return acc2
+        }
+
+        if (distances.get(startPoint) - distances.get(endPoint) - dist >= savings) {
+          return acc2 + 1
+        }
+
+        return acc2
+      }, 0)
+    )
+  }, 0)
+}
+
+const part1 = (data: Input): number => {
+  return countCheatedPaths(data, 2, data.savings.part1)
 }
 
 const part2 = (data: Input): number => {
-  return 0
+  return countCheatedPaths(data, 20, data.savings.part2)
 }
 
 const reader = (file: string): Input => {
+  const fileParts = file.split(sep)
+  const fileName = fileParts[fileParts.length - 1]
+
   const map = readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
@@ -108,6 +116,16 @@ const reader = (file: string): Input => {
     start,
     end,
     map: map as ReadonlyArray<ReadonlyArray<'.' | '#'>>,
+    savings: {
+      '0.txt': {
+        part1: 20,
+        part2: 76,
+      },
+      'input.txt': {
+        part1: 100,
+        part2: 100,
+      },
+    }[fileName] ?? { part1: 0, part2: 0 },
   }
 }
 

@@ -48,8 +48,21 @@ class Vec2 implements IVec2 {
     this.y = other.y
   }
 
+  manhattanDistance(other: IVec2): number {
+    return Math.abs(this.x - other.x) + Math.abs(this.y - other.y)
+  }
+
   static hashFn(vec: IVec2): string {
     return `${vec.x}_${vec.y}`
+  }
+
+  static fromHash(hash: string): Vec2 {
+    const [rawX, rawY] = hash.split('_')
+
+    return new Vec2({
+      x: parseInt(rawX, 10),
+      y: parseInt(rawY, 10),
+    })
   }
 
   toRaw(): IVec2 {
