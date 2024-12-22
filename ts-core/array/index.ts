@@ -1,4 +1,5 @@
-export { adjacentDiff } from './adjacent-diff'
+export { adjacentDiff, adjacentDiffRight } from './adjacent-diff'
 export { cycle } from './cycle'
+export { indexOfAll } from './index-of-all'
 export { intersection } from './intersection'
 export { windows } from './windows'
