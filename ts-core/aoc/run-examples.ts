@@ -2,12 +2,12 @@ import { existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
 import { __dirname, examplePart1, examplePart2 } from './util'
 
-const runExamples = async <TInput, TResult>(
+const runExamples = async <TInput, TPart1Result, TPart2Result>(
   year: number,
   day: string,
   reader: (file: string) => TInput,
-  part1: (data: TInput) => TResult | PromiseLike<TResult>,
-  part2: (data: TInput) => TResult | PromiseLike<TResult>,
+  part1: (data: TInput) => TPart1Result | PromiseLike<TPart1Result>,
+  part2: (data: TInput) => TPart2Result | PromiseLike<TPart2Result>,
 ): Promise<void> => {
   const dirPath = join(__dirname, `../../${year}/d${day}/test-runs`)
 
