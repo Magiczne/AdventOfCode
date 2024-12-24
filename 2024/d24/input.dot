@@ -1,0 +1,668 @@
+digraph GG {
+  x08 -> hdk  
+  y08 -> hdk
+  hdk [label="AND(hdk)"]
+  y44 -> gwr  
+  x44 -> gwr
+  gwr [label="AND(gwr)"]
+  vqt -> z43  
+  wbv -> z43
+  z43 [label="XOR(z43)", color=blue]
+  gwr -> z45  
+  mmj -> z45
+  z45 [label="OR(z45)"]
+  fsf -> hgh  
+  jkd -> hgh
+  hgh [label="AND(hgh)"]
+  scp -> ctg  
+  gbp -> ctg
+  ctg [label="AND(ctg)"]
+  vfr -> gjt  
+  wqn -> gjt
+  gjt [label="OR(gjt)"]
+  hsd -> tqr  
+  ktq -> tqr
+  tqr [label="OR(tqr)"]
+  mkh -> cbb  
+  dsd -> cbb
+  cbb [label="OR(cbb)"]
+  jgv -> brv  
+  hbm -> brv
+  brv [label="AND(brv)"]
+  y03 -> kfr  
+  x03 -> kfr
+  kfr [label="XOR(kfr)"]
+  mdm -> z32  
+  mhn -> z32
+  z32 [label="XOR(z32)", color=blue]
+  mdm -> snk  
+  mhn -> snk
+  snk [label="AND(snk)"]
+  jgr -> hnd  
+  gvg -> hnd
+  hnd [label="AND(hnd)"]
+  rpv -> hpt  
+  ksg -> hpt
+  hpt [label="OR(hpt)"]
+  x00 -> kqn  
+  y00 -> kqn
+  kqn [label="AND(kqn)"]
+  dsp -> frp  
+  jpc -> frp
+  frp [label="OR(frp)"]
+  hdv -> jtf  
+  tcc -> jtf
+  jtf [label="OR(jtf)"]
+  qbg -> vgg  
+  qbd -> vgg
+  vgg [label="OR(vgg)"]
+  y12 -> cqg  
+  x12 -> cqg
+  cqg [label="AND(cqg)"]
+  x33 -> twr  
+  y33 -> twr
+  twr [label="AND(twr)"]
+  fqm -> fsf  
+  hcq -> fsf
+  fsf [label="OR(fsf)"]
+  x38 -> mps  
+  y38 -> mps
+  mps [label="AND(mps)"]
+  kqn -> z01  
+  knr -> z01
+  z01 [label="XOR(z01)", color=blue]
+  sgj -> z28  
+  vfk -> z28
+  z28 [label="XOR(z28)", color=blue]
+  x09 -> dqr  
+  y09 -> dqr
+  dqr [label="XOR(dqr)"]
+  cbb -> ccj  
+  rmq -> ccj
+  ccj [label="AND(ccj)"]
+  smh -> rpv  
+  gvv -> rpv
+  rpv [label="AND(rpv)"]
+  y16 -> bmp  
+  x16 -> bmp
+  bmp [label="AND(bmp)"]
+  qqp -> z10  
+  bjg -> z10
+  z10 [label="XOR(z10)", color=blue]
+  ckb -> pcr  
+  wjk -> pcr
+  pcr [label="OR(pcr)"]
+  x19 -> fqj  
+  y19 -> fqj
+  fqj [label="AND(fqj)"]
+  x07 -> wjk  
+  y07 -> wjk
+  wjk [label="AND(wjk)"]
+  fhg -> mkg  
+  stk -> mkg
+  mkg [label="OR(mkg)"]
+  bjg -> dsp  
+  qqp -> dsp
+  dsp [label="AND(dsp)"]
+  y01 -> knr  
+  x01 -> knr
+  knr [label="XOR(knr)"]
+  jkt -> z44  
+  ghh -> z44
+  z44 [label="XOR(z44)", color=blue]
+  gsb -> rwd  
+  cqg -> rwd
+  rwd [label="OR(rwd)"]
+  y35 -> jgm  
+  x35 -> jgm
+  jgm [label="AND(jgm)"]
+  qkd -> qvr  
+  hjm -> qvr
+  qvr [label="AND(qvr)"]
+  hpt -> vjc  
+  vgv -> vjc
+  vjc [label="AND(vjc)"]
+  vqr -> hcq  
+  cth -> hcq
+  hcq [label="AND(hcq)"]
+  x12 -> ngj  
+  y12 -> ngj
+  ngj [label="XOR(ngj)"]
+  y13 -> ktt  
+  x13 -> ktt
+  ktt [label="XOR(ktt)"]
+  y09 -> wtn  
+  x09 -> wtn
+  wtn [label="AND(wtn)"]
+  snk -> mbg  
+  fmp -> mbg
+  mbg [label="OR(mbg)"]
+  ccj -> gvh  
+  fdw -> gvh
+  gvh [label="OR(gvh)"]
+  y14 -> fdn  
+  x14 -> fdn
+  fdn [label="AND(fdn)"]
+  rwd -> z13  
+  ktt -> z13
+  z13 [label="XOR(z13)", color=blue]
+  x03 -> ttq  
+  y03 -> ttq
+  ttq [label="AND(ttq)"]
+  tft -> prq  
+  vgg -> prq
+  prq [label="AND(prq)"]
+  x04 -> pvm  
+  y04 -> pvm
+  pvm [label="AND(pvm)"]
+  khq -> ccb  
+  nbj -> ccb
+  ccb [label="AND(ccb)"]
+  gfv -> jgk  
+  wpj -> jgk
+  jgk [label="OR(jgk)"]
+  x36 -> hcm  
+  y36 -> hcm
+  hcm [label="AND(hcm)"]
+  y02 -> mrq  
+  x02 -> mrq
+  mrq [label="AND(mrq)"]
+  y41 -> rdd  
+  x41 -> rdd
+  rdd [label="XOR(rdd)"]
+  ftk -> z24  
+  wgn -> z24
+  z24 [label="XOR(z24)", color=blue]
+  hhk -> rpq  
+  fqj -> rpq
+  rpq [label="OR(rpq)"]
+  x28 -> wgg  
+  y28 -> wgg
+  wgg [label="AND(wgg)"]
+  mkg -> z02  
+  sbv -> z02
+  z02 [label="XOR(z02)", color=blue]
+  thv -> z36  
+  hcm -> z36
+  z36 [label="XOR(z36)", color=blue]
+  qfm -> wbv  
+  vdn -> wbv
+  wbv [label="OR(wbv)"]
+  fps -> kqb  
+  qgw -> kqb
+  kqb [label="OR(kqb)"]
+  tpc -> mdm  
+  rdk -> mdm
+  mdm [label="OR(mdm)"]
+  jth -> bng  
+  brv -> bng
+  bng [label="OR(bng)"]
+  bmp -> z16  
+  vjc -> z16
+  z16 [label="OR(z16)"]
+  thr -> z20  
+  rpq -> z20
+  z20 [label="XOR(z20)", color=blue]
+  sct -> gnq  
+  mbg -> gnq
+  gnq [label="AND(gnq)"]
+  mkg -> wwd  
+  sbv -> wwd
+  wwd [label="AND(wwd)"]
+  x38 -> tft  
+  y38 -> tft
+  tft [label="XOR(tft)"]
+  y36 -> gfv  
+  x36 -> gfv
+  gfv [label="XOR(gfv)"]
+  x15 -> gvv  
+  y15 -> gvv
+  gvv [label="XOR(gvv)"]
+  x32 -> fmp  
+  y32 -> fmp
+  fmp [label="AND(fmp)"]
+  x19 -> ndd  
+  y19 -> ndd
+  ndd [label="XOR(ndd)"]
+  scp -> vwr  
+  gbp -> vwr
+  vwr [label="XOR(vwr)"]
+  y28 -> sgj  
+  x28 -> sgj
+  sgj [label="XOR(sgj)"]
+  x18 -> fdw  
+  y18 -> fdw
+  fdw [label="AND(fdw)"]
+  wtn -> bjg  
+  bgg -> bjg
+  bjg [label="OR(bjg)"]
+  y34 -> ssg  
+  x34 -> ssg
+  ssg [label="XOR(ssg)"]
+  fcw -> z37  
+  jgk -> z37
+  z37 [label="XOR(z37)", color=blue]
+  jtw -> z34  
+  ssg -> z34
+  z34 [label="XOR(z34)", color=blue]
+  y11 -> sqv  
+  x11 -> sqv
+  sqv [label="XOR(sqv)"]
+  y05 -> qjv  
+  x05 -> qjv
+  qjv [label="AND(qjv)"]
+  pcr -> z08  
+  kqg -> z08
+  z08 [label="XOR(z08)", color=blue]
+  jgr -> z30  
+  gvg -> z30
+  z30 [label="XOR(z30)", color=blue]
+  qvr -> qts  
+  hfp -> qts
+  qts [label="OR(qts)"]
+  y25 -> rch  
+  x25 -> rch
+  rch [label="XOR(rch)"]
+  gfq -> z03  
+  kfr -> z03
+  z03 [label="XOR(z03)", color=blue]
+  x11 -> mjt  
+  y11 -> mjt
+  mjt [label="AND(mjt)"]
+  hnd -> tdr  
+  vfp -> tdr
+  tdr [label="OR(tdr)"]
+  jgk -> qbd  
+  fcw -> qbd
+  qbd [label="AND(qbd)"]
+  x21 -> hjm  
+  y21 -> hjm
+  hjm [label="XOR(hjm)"]
+  x10 -> jpc  
+  y10 -> jpc
+  jpc [label="AND(jpc)"]
+  y35 -> qsv  
+  x35 -> qsv
+  qsv [label="XOR(qsv)"]
+  wgn -> vfr  
+  ftk -> vfr
+  vfr [label="AND(vfr)"]
+  y39 -> khq  
+  x39 -> khq
+  khq [label="XOR(khq)"]
+  x20 -> npb  
+  y20 -> npb
+  npb [label="AND(npb)"]
+  kfr -> fdc  
+  gfq -> fdc
+  fdc [label="AND(fdc)"]
+  mbg -> z33  
+  sct -> z33
+  z33 [label="XOR(z33)", color=blue]
+  x41 -> bdj  
+  y41 -> bdj
+  bdj [label="AND(bdj)"]
+  y15 -> ksg  
+  x15 -> ksg
+  ksg [label="AND(ksg)"]
+  y42 -> qfm  
+  x42 -> qfm
+  qfm [label="AND(qfm)"]
+  y32 -> mhn  
+  x32 -> mhn
+  mhn [label="XOR(mhn)"]
+  gws -> vfk  
+  hgh -> vfk
+  vfk [label="OR(vfk)"]
+  x34 -> hsd  
+  y34 -> hsd
+  hsd [label="AND(hsd)"]
+  x06 -> z06  
+  y06 -> z06
+  z06 [label="AND(z06)"]
+  svd -> gsb  
+  ngj -> gsb
+  gsb [label="AND(gsb)"]
+  rpq -> bbd  
+  thr -> bbd
+  bbd [label="AND(bbd)"]
+  pvm -> ctv  
+  kdq -> ctv
+  ctv [label="OR(ctv)"]
+  vjr -> z29  
+  jrr -> z29
+  z29 [label="XOR(z29)", color=blue]
+  gvh -> hhk  
+  ndd -> hhk
+  hhk [label="AND(hhk)"]
+  dpf -> nqv  
+  hdk -> nqv
+  nqv [label="OR(nqv)"]
+  jgv -> z40  
+  hbm -> z40
+  z40 [label="XOR(z40)", color=blue]
+  bdj -> wkv  
+  bhq -> wkv
+  wkv [label="OR(wkv)"]
+  tft -> z38  
+  vgg -> z38
+  z38 [label="XOR(z38)", color=blue]
+  khq -> z39  
+  nbj -> z39
+  z39 [label="XOR(z39)", color=blue]
+  y43 -> qsd  
+  x43 -> qsd
+  qsd [label="AND(qsd)"]
+  y43 -> vqt  
+  x43 -> vqt
+  vqt [label="XOR(vqt)"]
+  bng -> z41  
+  rdd -> z41
+  z41 [label="XOR(z41)", color=blue]
+  tkp -> vdn  
+  wkv -> vdn
+  vdn [label="AND(vdn)"]
+  x31 -> tpc  
+  y31 -> tpc
+  tpc [label="AND(tpc)"]
+  x17 -> mkh  
+  y17 -> mkh
+  mkh [label="AND(mkh)"]
+  fdf -> ftk  
+  mbh -> ftk
+  ftk [label="OR(ftk)"]
+  ssg -> ktq  
+  jtw -> ktq
+  ktq [label="AND(ktq)"]
+  x05 -> mpk  
+  y05 -> mpk
+  mpk [label="XOR(mpk)"]
+  hmg -> thv  
+  jgm -> thv
+  thv [label="OR(thv)"]
+  rch -> wsq  
+  gjt -> wsq
+  wsq [label="AND(wsq)"]
+  frp -> tqm  
+  sqv -> tqm
+  tqm [label="XOR(tqm)"]
+  kqb -> z14  
+  prr -> z14
+  z14 [label="XOR(z14)", color=blue]
+  y16 -> vgv  
+  x16 -> vgv
+  vgv [label="XOR(vgv)"]
+  qkd -> z21  
+  hjm -> z21
+  z21 [label="XOR(z21)", color=blue]
+  x24 -> wgn  
+  y24 -> wgn
+  wgn [label="XOR(wgn)"]
+  kkp -> ckb  
+  jcn -> ckb
+  ckb [label="AND(ckb)"]
+  x31 -> gpp  
+  y31 -> gpp
+  gpp [label="XOR(gpp)"]
+  sgj -> wnn  
+  vfk -> wnn
+  wnn [label="AND(wnn)"]
+  dqw -> mbh  
+  jtf -> mbh
+  mbh [label="AND(mbh)"]
+  x40 -> jgv  
+  y40 -> jgv
+  jgv [label="XOR(jgv)"]
+  vgv -> kfs  
+  hpt -> kfs
+  kfs [label="XOR(kfs)"]
+  y40 -> jth  
+  x40 -> jth
+  jth [label="AND(jth)"]
+  dqr -> bgg  
+  nqv -> bgg
+  bgg [label="AND(bgg)"]
+  ngj -> z12  
+  svd -> z12
+  z12 [label="XOR(z12)", color=blue]
+  y22 -> tcc  
+  x22 -> tcc
+  tcc [label="AND(tcc)"]
+  rdd -> bhq  
+  bng -> bhq
+  bhq [label="AND(bhq)"]
+  x26 -> fqm  
+  y26 -> fqm
+  fqm [label="AND(fqm)"]
+  x22 -> wqd  
+  y22 -> wqd
+  wqd [label="XOR(wqd)"]
+  jrr -> jtq  
+  vjr -> jtq
+  jtq [label="AND(jtq)"]
+  y23 -> dqw  
+  x23 -> dqw
+  dqw [label="XOR(dqw)"]
+  y18 -> rmq  
+  x18 -> rmq
+  rmq [label="XOR(rmq)"]
+  y39 -> mtq  
+  x39 -> mtq
+  mtq [label="AND(mtq)"]
+  gpp -> rdk  
+  tdr -> rdk
+  rdk [label="AND(rdk)"]
+  vwr -> kkp  
+  ctg -> kkp
+  kkp [label="OR(kkp)"]
+  x23 -> fdf  
+  y23 -> fdf
+  fdf [label="AND(fdf)"]
+  kqn -> fhg  
+  knr -> fhg
+  fhg [label="AND(fhg)"]
+  kkp -> z07  
+  jcn -> z07
+  z07 [label="XOR(z07)", color=blue]
+  x13 -> qgw  
+  y13 -> qgw
+  qgw [label="AND(qgw)"]
+  tqr -> z35  
+  qsv -> z35
+  z35 [label="XOR(z35)", color=blue]
+  y04 -> ffw  
+  x04 -> ffw
+  ffw [label="XOR(ffw)"]
+  njk -> z17  
+  kfs -> z17
+  z17 [label="XOR(z17)", color=blue]
+  kqb -> fgj  
+  prr -> fgj
+  fgj [label="AND(fgj)"]
+  dph -> ghh  
+  qsd -> ghh
+  ghh [label="OR(ghh)"]
+  tgb -> vqr  
+  wsq -> vqr
+  vqr [label="OR(vqr)"]
+  nqv -> z09  
+  dqr -> z09
+  z09 [label="XOR(z09)", color=blue]
+  wqd -> z22  
+  qts -> z22
+  z22 [label="XOR(z22)", color=blue]
+  x37 -> qbg  
+  y37 -> qbg
+  qbg [label="AND(qbg)"]
+  prq -> nbj  
+  mps -> nbj
+  nbj [label="OR(nbj)"]
+  gjt -> z25  
+  rch -> z25
+  z25 [label="XOR(z25)", color=blue]
+  jtq -> jgr  
+  wnc -> jgr
+  jgr [label="OR(jgr)"]
+  mjt -> svd  
+  tqm -> svd
+  svd [label="OR(svd)"]
+  y17 -> njk  
+  x17 -> njk
+  njk [label="XOR(njk)"]
+  mpk -> z05  
+  ctv -> z05
+  z05 [label="XOR(z05)", color=blue]
+  x25 -> tgb  
+  y25 -> tgb
+  tgb [label="AND(tgb)"]
+  cth -> z26  
+  vqr -> z26
+  z26 [label="XOR(z26)", color=blue]
+  x14 -> prr  
+  y14 -> prr
+  prr [label="XOR(prr)"]
+  wwd -> gfq  
+  mrq -> gfq
+  gfq [label="OR(gfq)"]
+  y37 -> fcw  
+  x37 -> fcw
+  fcw [label="XOR(fcw)"]
+  mtq -> hbm  
+  ccb -> hbm
+  hbm [label="OR(hbm)"]
+  y29 -> wnc  
+  x29 -> wnc
+  wnc [label="AND(wnc)"]
+  npb -> qkd  
+  bbd -> qkd
+  qkd [label="OR(qkd)"]
+  y06 -> gbp  
+  x06 -> gbp
+  gbp [label="XOR(gbp)"]
+  gpp -> z31  
+  tdr -> z31
+  z31 [label="XOR(z31)", color=blue]
+  bnb -> scp  
+  qjv -> scp
+  scp [label="OR(scp)"]
+  y24 -> wqn  
+  x24 -> wqn
+  wqn [label="AND(wqn)"]
+  y07 -> jcn  
+  x07 -> jcn
+  jcn [label="XOR(jcn)"]
+  y10 -> qqp  
+  x10 -> qqp
+  qqp [label="XOR(qqp)"]
+  y02 -> sbv  
+  x02 -> sbv
+  sbv [label="XOR(sbv)"]
+  njk -> dsd  
+  kfs -> dsd
+  dsd [label="AND(dsd)"]
+  mwb -> kdq  
+  ffw -> kdq
+  kdq [label="AND(kdq)"]
+  fdn -> smh  
+  fgj -> smh
+  smh [label="OR(smh)"]
+  kqg -> dpf  
+  pcr -> dpf
+  dpf [label="AND(dpf)"]
+  sqv -> z11  
+  frp -> z11
+  z11 [label="AND(z11)"]
+  x44 -> jkt  
+  y44 -> jkt
+  jkt [label="XOR(jkt)"]
+  ghh -> mmj  
+  jkt -> mmj
+  mmj [label="AND(mmj)"]
+  tkp -> z42  
+  wkv -> z42
+  z42 [label="XOR(z42)", color=blue]
+  y30 -> vfp  
+  x30 -> vfp
+  vfp [label="AND(vfp)"]
+  x30 -> gvg  
+  y30 -> gvg
+  gvg [label="XOR(gvg)"]
+  wbv -> dph  
+  vqt -> dph
+  dph [label="AND(dph)"]
+  y27 -> gws  
+  x27 -> gws
+  gws [label="AND(gws)"]
+  y08 -> kqg  
+  x08 -> kqg
+  kqg [label="XOR(kqg)"]
+  y29 -> jrr  
+  x29 -> jrr
+  jrr [label="XOR(jrr)"]
+  jkd -> z27  
+  fsf -> z27
+  z27 [label="XOR(z27)", color=blue]
+  x01 -> stk  
+  y01 -> stk
+  stk [label="AND(stk)"]
+  gnq -> jtw  
+  twr -> jtw
+  jtw [label="OR(jtw)"]
+  x26 -> cth  
+  y26 -> cth
+  cth [label="XOR(cth)"]
+  wnn -> vjr  
+  wgg -> vjr
+  vjr [label="OR(vjr)"]
+  y42 -> tkp  
+  x42 -> tkp
+  tkp [label="XOR(tkp)"]
+  ffw -> z04  
+  mwb -> z04
+  z04 [label="XOR(z04)", color=blue]
+  gvv -> z15  
+  smh -> z15
+  z15 [label="XOR(z15)", color=blue]
+  rwd -> fps  
+  ktt -> fps
+  fps [label="AND(fps)"]
+  qsv -> hmg  
+  tqr -> hmg
+  hmg [label="AND(hmg)"]
+  x33 -> sct  
+  y33 -> sct
+  sct [label="XOR(sct)"]
+  fdc -> mwb  
+  ttq -> mwb
+  mwb [label="OR(mwb)"]
+  x00 -> z00  
+  y00 -> z00
+  z00 [label="XOR(z00)", color=blue]
+  mpk -> bnb  
+  ctv -> bnb
+  bnb [label="AND(bnb)"]
+  rmq -> z18  
+  cbb -> z18
+  z18 [label="XOR(z18)", color=blue]
+  qts -> hdv  
+  wqd -> hdv
+  hdv [label="AND(hdv)"]
+  ndd -> z19  
+  gvh -> z19
+  z19 [label="XOR(z19)", color=blue]
+  y27 -> jkd  
+  x27 -> jkd
+  jkd [label="XOR(jkd)"]
+  thv -> wpj  
+  hcm -> wpj
+  wpj [label="AND(wpj)"]
+  y21 -> hfp  
+  x21 -> hfp
+  hfp [label="AND(hfp)"]
+  jtf -> z23  
+  dqw -> z23
+  z23 [label="XOR(z23)", color=blue]
+  x20 -> thr  
+  y20 -> thr
+  thr [label="XOR(thr)"]
+}
