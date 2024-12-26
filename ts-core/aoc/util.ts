@@ -1,8 +1,8 @@
 import chalk from 'chalk'
-import { dirname } from 'node:path'
+import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const rootDirectory = join(dirname(fileURLToPath(import.meta.url)), '../../')
 
 const buildString = <TResult>(
   type: string,
@@ -11,7 +11,7 @@ const buildString = <TResult>(
   result: TResult,
   durationInMs: number,
 ): string => {
-  return [type, label.padEnd(20, ' '), part, result.toString().padEnd(15, ' '), `${durationInMs.toFixed(4)}ms`].join(
+  return [type, label.padEnd(10, ' '), part, result.toString().padEnd(45, ' '), `${durationInMs.toFixed(4)}ms`].join(
     ' ',
   )
 }
@@ -32,4 +32,4 @@ const solutionPart2 = <TResult>(result: TResult, durationInMs: number): void => 
   console.log(chalk.blue(buildString('[SLN]', '', 'Part 2:', result, durationInMs)))
 }
 
-export { __dirname, examplePart1, examplePart2, solutionPart1, solutionPart2 }
+export { examplePart1, examplePart2, rootDirectory, solutionPart1, solutionPart2 }

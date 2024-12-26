@@ -1,6 +1,6 @@
 import { existsSync, readdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { __dirname, examplePart1, examplePart2 } from './util'
+import { examplePart1, examplePart2, rootDirectory } from './util'
 
 const runExamples = async <TInput, TPart1Result, TPart2Result>(
   year: number,
@@ -9,7 +9,7 @@ const runExamples = async <TInput, TPart1Result, TPart2Result>(
   part1: (data: TInput) => TPart1Result | PromiseLike<TPart1Result>,
   part2: (data: TInput) => TPart2Result | PromiseLike<TPart2Result>,
 ): Promise<void> => {
-  const dirPath = join(__dirname, `../../${year}/d${day}/test-runs`)
+  const dirPath = join(rootDirectory, `${year}/d${day}/test-runs`)
 
   if (existsSync(dirPath)) {
     const testFiles = readdirSync(dirPath)

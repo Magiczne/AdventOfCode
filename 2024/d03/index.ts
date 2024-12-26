@@ -26,5 +26,5 @@ const reader = (file: string): string => {
   return readFileSync(file, 'utf-8').trim()
 }
 
-runExamples(2024, '03', reader, part1, part2)
-runSolution(2024, '03', reader, part1, part2)
+await runExamples(2024, '03', reader, part1, part2)
+await runSolution(2024, '03', reader, part1, part2)

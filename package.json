@@ -27,6 +27,7 @@
     "2022",
     "2023",
     "2024",
+    "tsconfig",
     "ts-core"
   ],
   "packageManager": "yarn@4.5.1",

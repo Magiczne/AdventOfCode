@@ -191,5 +191,5 @@ const reader = (file: string): Garden => {
     })
 }
 
-runExamples(2024, '12', reader, part1, part2)
-runSolution(2024, '12', reader, part1, part2)
+await runExamples(2024, '12', reader, part1, part2)
+await runSolution(2024, '12', reader, part1, part2)

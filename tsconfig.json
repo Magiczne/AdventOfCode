@@ -1,20 +1,9 @@
 {
   "compilerOptions": {
-    "allowImportingTsExtensions": true,
-    "forceConsistentCasingInFileNames": true,
-    "lib": ["ESNext"],
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "noEmit": true,
-    "noImplicitAny": true,
-    "noImplicitOverride": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "pretty": true,
-    "skipLibCheck": true,
-    "strict": false,
-    "target": "ESNext",
-    "useUnknownInCatchVariables": true
-  }
+    "noEmit": true
+  },
+  "references": [
+    { "path": "./2024" },
+    { "path": "./ts-core" },
+  ]
 }

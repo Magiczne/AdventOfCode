@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { __dirname, solutionPart1, solutionPart2 } from './util'
+import { rootDirectory, solutionPart1, solutionPart2 } from './util'
 
 const runSolution = async <TInput, TPart1Result, TPart2Result>(
   year: number,
@@ -8,7 +8,7 @@ const runSolution = async <TInput, TPart1Result, TPart2Result>(
   part1: (data: TInput) => TPart1Result | Promise<TPart1Result>,
   part2: (data: TInput) => TPart2Result | Promise<TPart2Result>,
 ): Promise<void> => {
-  const filePath = join(__dirname, `../../${year}/d${day}/input.txt`)
+  const filePath = join(rootDirectory, `${year}/d${day}/input.txt`)
   const data = reader(filePath)
 
   const start1 = Date.now()

@@ -66,5 +66,5 @@ const reader = (file: string): Input => {
     })
 }
 
-runExamples(2024, '07', reader, part1, part2) // 3s
-runSolution(2024, '07', reader, part1, part2) // 120s :D
+await runExamples(2024, '07', reader, part1, part2) // 3s
+await runSolution(2024, '07', reader, part1, part2) // 120s :D

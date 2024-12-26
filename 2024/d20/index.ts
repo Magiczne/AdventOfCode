@@ -129,5 +129,5 @@ const reader = (file: string): Input => {
   }
 }
 
-await runExamples(2024, '20', reader, part1, part2)
+await runExamples(2024, '20', reader, part1, part2) // 21s
 await runSolution(2024, '20', reader, part1, part2)

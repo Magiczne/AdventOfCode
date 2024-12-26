@@ -282,6 +282,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@magiczne/advent-of-code-tsconfig@workspace:tsconfig":
+  version: 0.0.0-use.local
+  resolution: "@magiczne/advent-of-code-tsconfig@workspace:tsconfig"
+  languageName: unknown
+  linkType: soft
+
 "@magiczne/advent-of-code@workspace:.":
   version: 0.0.0-use.local
   resolution: "@magiczne/advent-of-code@workspace:."

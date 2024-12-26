@@ -30,7 +30,7 @@ const printMap = (map: Array<Array<string>>, robot: Vec2, positionsInQuestion: A
     return
   }
 
-  printMatrix(map, (x: number, y: number, item: Item) => {
+  printMatrix(map, ({ x, y }, item: Item) => {
     if (x === robot.x && y === robot.y) {
       return chalk.red('@')
     }
