@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import { rotateClockwise, rotateCounterClockwise } from '@magiczne/advent-of-code-ts-core/matrix'
+import { Matrix } from '@magiczne/advent-of-code-ts-core/structures'
 
 type Lock = [number, number, number, number, number]
 type Key = [number, number, number, number, number]
@@ -40,33 +40,23 @@ const reader = (file: string): Input => {
     locks: data
       .filter(item => item.startsWith('#####'))
       .map(item => {
-        return item
-          .trim()
-          .split('\n')
-          .slice(1)
-          .map(line => line.trim().split(''))
+        return Matrix.fromString(item, Matrix.identityMapper).rotateCounterClockwise()
       })
-      .map(item => rotateCounterClockwise(item))
-      .map(item => {
-        return item
+      .map(matrix => {
+        return matrix.rows
           .map(row => {
-            return row.filter(value => value === '#').length
+            return row.filter(value => value === '#').length - 1
           })
           .toReversed() as Lock
       }),
     keys: data
       .filter(item => item.startsWith('.....'))
       .map(item => {
-        return item
-          .trim()
-          .split('\n')
-          .slice(0, -1)
-          .map(line => line.trim().split(''))
+        return Matrix.fromString(item, Matrix.identityMapper).rotateClockwise()
       })
-      .map(item => rotateClockwise(item))
-      .map(item => {
-        return item.map(row => {
-          return row.filter(value => value === '#').length
+      .map(matrix => {
+        return matrix.rows.map(row => {
+          return row.filter(value => value === '#').length - 1
         }) as Key
       }),
   }

@@ -1,12 +1,12 @@
 import { Heap } from 'heap-js'
-import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { Direction, Vec2 } from '@magiczne/advent-of-code-ts-core/math'
-import { ObjectSet } from '@magiczne/advent-of-code-ts-core/structures'
+import { Matrix, ObjectSet } from '@magiczne/advent-of-code-ts-core/structures'
+import { readFileSync } from 'fs'
 
 interface Input {
-  map: ReadonlyArray<ReadonlyArray<'.' | '#'>>
+  map: Matrix<'.' | '#'>
   start: Vec2
   end: Vec2
 }
@@ -31,7 +31,7 @@ const part1 = (input: Input): number => {
   const propagate = (positions: Heap<HeapNode>, node: HeapNode, direction: Direction): void => {
     const nextPosition = node.position.add(direction)
 
-    if (input.map[nextPosition.y][nextPosition.x] === '#') {
+    if (input.map.get(nextPosition) === '#') {
       return
     }
 
@@ -75,7 +75,7 @@ const part2 = (input: Input): number => {
   const propagate = (positions: Heap<HeapNode2>, node: HeapNode2, direction: Direction): void => {
     const nextPosition = node.position.add(direction)
 
-    if (input.map[nextPosition.y][nextPosition.x] === '#') {
+    if (input.map.get(nextPosition) === '#') {
       return
     }
 
@@ -147,31 +147,15 @@ const part2 = (input: Input): number => {
 }
 
 const reader = (file: string): Input => {
-  const start = new Vec2({ x: 0, y: 0 })
-  const end = new Vec2({ x: 0, y: 0 })
-  const map = readFileSync(file, 'utf-8')
-    .trim()
-    .split('\n')
-    .map(line => {
-      return line.trim().split('')
-    })
+  const map = Matrix.fromString(readFileSync(file, 'utf-8'), Matrix.identityMapper)
+  const start = map.find('S')
+  const end = map.find('E')
 
-  for (let y = 0; y < map.length; y++) {
-    for (let x = 0; x < map[0].length; x++) {
-      if (map[y][x] === 'S') {
-        map[y][x] = '.'
-        start.updateInPlace({ x, y })
-      }
-
-      if (map[y][x] === 'E') {
-        map[y][x] = '.'
-        end.updateInPlace({ x, y })
-      }
-    }
-  }
+  map.set(start, '.')
+  map.set(end, '.')
 
   return {
-    map: map as ReadonlyArray<ReadonlyArray<'.' | '#'>>,
+    map: map as Matrix<'.' | '#'>,
     start,
     end,
   }

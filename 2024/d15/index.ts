@@ -318,3 +318,4 @@ const reader = (file: string): Input => {
 
 await runExamples(2024, '15', reader, part1, part2)
 await runSolution(2024, '15', reader, part1, part2)
+readline.close()

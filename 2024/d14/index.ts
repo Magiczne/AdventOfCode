@@ -16,6 +16,11 @@ interface Input {
   mapSize: Vec2
 }
 
+const readline = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+})
+
 const SECONDS = 100
 
 const print = (mapSize: Vec2, robots: ReadonlyArray<Robot>): void => {
@@ -82,11 +87,6 @@ const part2 = async (data: Input): Promise<number> => {
   const averageSafetyFactor = part1(data)
   let movedRobots = data.robots
 
-  const readline = createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  })
-
   let iteration = 0
   while (true) {
     iteration++
@@ -143,3 +143,4 @@ const reader = (file: string): Input => {
 
 runExamples(2024, '14', reader, part1, part2)
 runSolution(2024, '14', reader, part1, part2)
+readline.close()

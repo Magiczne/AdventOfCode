@@ -1,55 +1,41 @@
 import { readFileSync } from 'node:fs'
 
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
-import { getNeighborsWithLength } from '@magiczne/advent-of-code-ts-core/matrix'
+import { Matrix } from '@magiczne/advent-of-code-ts-core/structures'
 
-const part1 = (data: ReadonlyArray<ReadonlyArray<string>>): number => {
+const part1 = (data: Matrix<string>): number => {
   const target = 'XMAS'
 
-  let sum = 0
-
-  for (let i = 0; i < data.length; i++) {
-    for (let j = 0; j < data[0].length; j++) {
-      const neighborhoodXmas = getNeighborsWithLength(i, j, target.length, data)
-        .map(neighbor => neighbor.filter(Boolean).join(''))
-        .filter(neighbor => neighbor === target)
-
-      sum += neighborhoodXmas.length
-    }
-  }
-
-  return sum
+  return data.reduce((acc, position) => {
+    return acc + data.neighborsListWithStart(position, target.length)
+      .map(neighbors => neighbors.join(''))
+      .filter(neighbors => neighbors === target).length
+  }, 0)
 }
 
-const part2 = (data: ReadonlyArray<ReadonlyArray<string>>): number => {
+const part2 = (data: Matrix<string>): number => {
   const targets = ['MAS', 'SAM']
 
-  let sum = 0
-
-  for (let i = 0; i < data.length; i++) {
-    for (let j = 0; j < data[0].length; j++) {
-      if (data[i][j] !== 'A') {
-        continue
-      }
-
-      const diag1 = [data[i - 1]?.[j - 1], data[i][j], data[i + 1]?.[j + 1]].filter(Boolean).join('')
-      const diag2 = [data[i - 1]?.[j + 1], data[i][j], data[i + 1]?.[j - 1]].filter(Boolean).join('')
-
-      if (targets.includes(diag1) && targets.includes(diag2)) {
-        sum++
-      }
+  return data.reduce((acc, position) => {
+    if (data.get(position) !== 'A') {
+      return acc
     }
-  }
 
-  return sum
+    const { y, x } = position
+    const diag1 = [data.rows[y - 1]?.[x - 1], data.rows[y][x], data.rows[y + 1]?.[x + 1]].filter(Boolean).join('')
+    const diag2 = [data.rows[y - 1]?.[x + 1], data.rows[y][x], data.rows[y + 1]?.[x - 1]].filter(Boolean).join('')
+
+    if (targets.includes(diag1) && targets.includes(diag2)) {
+      return acc + 1
+    }
+
+    return acc
+  }, 0)
 }
 
-const reader = (file: string): ReadonlyArray<ReadonlyArray<string>> => {
-  return readFileSync(file, 'utf-8')
-    .trim()
-    .split('\n')
-    .map(line => line.trim().split(''))
+const reader = (file: string): Matrix<string> => {
+  return Matrix.fromString(readFileSync(file, 'utf-8'), Matrix.identityMapper)
 }
 
-runExamples(2024, '04', reader, part1, part2)
-runSolution(2024, '04', reader, part1, part2)
+await runExamples(2024, '04', reader, part1, part2)
+await runSolution(2024, '04', reader, part1, part2)

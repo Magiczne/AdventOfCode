@@ -1,5 +1,6 @@
 export { DirectedGraph } from './directed-graph'
 export { CircularLinkedList, LinkedList, LinkedListNode } from './linked-list'
+export { Matrix } from './matrix'
 export { ObjectSet } from './object-set'
 export { Range } from './range'
 export { Tree, TreeNode } from './tree'
