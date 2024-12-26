@@ -18,11 +18,11 @@ class Matrix<TItem> {
     return this.data[Symbol.iterator]()
   }
 
-  get({ x,y }: IVec2): TItem | undefined {
+  get({ x, y }: IVec2): TItem | undefined {
     return this.data[y]?.[x]
   }
 
-  set({ x,y }: IVec2, value: TItem): void {
+  set({ x, y }: IVec2, value: TItem): void {
     this.data[y][x] = value
   }
 
@@ -42,13 +42,13 @@ class Matrix<TItem> {
   /**
    * Returns list of neighbor lists in every direction excluding the starting point of specified length
    * Order of returned neighbors is counter clockwise.
-   * 
+   *
    * 1 2 3 4 5
    * 6 7 8 9 0
    * 1 2 X 4 5
    * 0 9 8 7 6
    * 5 4 3 2 1
-   * 
+   *
    * For above matrix neighboringLists({ x: 2, y: 2 }, 2) would return:
    * [7, 1]
    * [2, 1]
@@ -77,13 +77,13 @@ class Matrix<TItem> {
   /**
    * Returns list of neighbor lists in every direction including the starting point of specified length
    * Order of returned neighbors is counter clockwise.
-   * 
+   *
    * 1 2 3 4 5
    * 6 7 8 9 0
    * 1 2 X 4 5
    * 0 9 8 7 6
    * 5 4 3 2 1
-   * 
+   *
    * For above matrix neighboringLists({ x: 2, y: 2 }, 3) would return:
    * [X, 7, 1]
    * [X, 2, 1]
@@ -129,7 +129,7 @@ class Matrix<TItem> {
     return new Matrix(rotateCounterClockwise(this.data), Matrix.identityMapper)
   }
 
-  reduce <TReduced>(reducer: (accumulator: TReduced, cell: IVec2) => TReduced, initialValue: TReduced): TReduced {
+  reduce<TReduced>(reducer: (accumulator: TReduced, coordinates: IVec2) => TReduced, initialValue: TReduced): TReduced {
     let reduced = initialValue
 
     for (let y = 0; y < this.data.length; y++) {

@@ -3,11 +3,12 @@ import { readFileSync } from 'node:fs'
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { combinationsWithoutRepetition } from '@magiczne/advent-of-code-ts-core/combinatorics'
 import { Vec2 } from '@magiczne/advent-of-code-ts-core/math'
+import { Matrix } from '@magiczne/advent-of-code-ts-core/structures'
 
 type Antenna = Vec2 & { type: 'Antenna'; code: string }
 type Antinode = { type: 'Antinode'; code: string }
 type MapItem = null | Antenna | Antinode
-type Map = Array<Array<MapItem>>
+type Map = Matrix<MapItem>
 
 interface Input {
   map: Map
@@ -20,28 +21,20 @@ const printMap = (map: Map): void => {
     return
   }
 
-  map.forEach(row => {
-    let rowString = ''
+  map.print((_, cell) => {
+    if (cell.type === 'Antenna') {
+      return cell.code
+    }
 
-    row.forEach(cell => {
-      if (cell.type === 'Antenna') {
-        rowString += cell.code
-      } else if (cell.type === 'Antinode') {
-        rowString += '#'
-      } else {
-        rowString += '.'
-      }
-    })
+    if (cell.type === 'Antinode') {
+      return '#'
+    }
 
-    console.log(rowString)
+    return '.'
   })
-
-  console.log('')
 }
 
 const part1 = (input: Input): number => {
-  const map = structuredClone(input.map)
-
   Object.values(input.antennas).forEach(antennaSet => {
     combinationsWithoutRepetition(antennaSet, 2).forEach(([firstNode, secondNode]) => {
       const distanceX = Math.abs(firstNode.x - secondNode.x)
@@ -51,6 +44,7 @@ const part1 = (input: Input): number => {
         x: firstNode.x < secondNode.x ? -1 : 1,
         y: firstNode.y < secondNode.y ? -1 : 1,
       })
+
       const firstAntinodeDir = new Vec2({
         x: firstNode.x < secondNode.x ? 1 : -1,
         y: firstNode.y < secondNode.y ? 1 : -1,
@@ -68,31 +62,30 @@ const part1 = (input: Input): number => {
       ]
 
       antinodes.forEach(antinode => {
-        if (map[antinode.y]?.[antinode.x] !== undefined) {
-          map[antinode.y][antinode.x] = { type: 'Antinode', code: firstNode.code }
+        if (input.map.get(antinode) !== undefined) {
+          input.map.set(antinode, {
+            code: firstNode.code,
+            type: 'Antinode',
+          })
         }
       })
     })
   })
 
-  printMap(map)
+  printMap(input.map)
 
-  return map
-    .map(row => {
-      return row.reduce((acc, item) => {
-        if (item?.type === 'Antinode') {
-          return acc + 1
-        }
+  return input.map.reduce((acc, position) => {
+    const item = input.map.get(position)
 
-        return acc
-      }, 0)
-    })
-    .reduce((acc, rowCount) => acc + rowCount, 0)
+    if (item?.type === 'Antinode') {
+      return acc + 1
+    }
+
+    return acc
+  }, 0)
 }
 
 const part2 = (input: Input): number => {
-  const map = structuredClone(input.map)
-
   Object.values(input.antennas).forEach(antennaSet => {
     combinationsWithoutRepetition(antennaSet, 2).forEach(([firstNode, secondNode]) => {
       const distanceX = Math.abs(firstNode.x - secondNode.x)
@@ -114,7 +107,7 @@ const part2 = (input: Input): number => {
         const x = firstNode.x - firstAntinodeDir.x * (distanceX * i)
         const y = firstNode.y - firstAntinodeDir.y * (distanceY * i)
 
-        if (map[y]?.[x] === undefined) {
+        if (input.map.get({ x, y }) === undefined) {
           break
         }
 
@@ -126,7 +119,7 @@ const part2 = (input: Input): number => {
         const x = secondNode.x - secondAntinodeDir.x * (distanceX * i)
         const y = secondNode.y - secondAntinodeDir.y * (distanceY * i)
 
-        if (map[y]?.[x] === undefined) {
+        if (input.map.get({ x, y }) === undefined) {
           break
         }
 
@@ -134,49 +127,50 @@ const part2 = (input: Input): number => {
       }
 
       antinodes.forEach(antinode => {
-        if (map[antinode.y]?.[antinode.x] !== undefined) {
-          map[antinode.y][antinode.x] = { type: 'Antinode', code: firstNode.code }
+        if (input.map.get(antinode) !== undefined) {
+          input.map.set(antinode, {
+            code: firstNode.code,
+            type: 'Antinode',
+          })
         }
       })
     })
   })
 
-  printMap(map)
+  printMap(input.map)
 
-  return map
-    .map(row => {
-      return row.reduce((acc, item) => {
-        if (item !== null) {
-          return acc + 1
-        }
+  return input.map.reduce((acc, position) => {
+    if (input.map.get(position) !== null) {
+      return acc + 1
+    }
 
-        return acc
-      }, 0)
-    })
-    .reduce((acc, rowCount) => acc + rowCount, 0)
+    return acc
+  }, 0)
 }
 
 const reader = (file: string): Input => {
-  const map = readFileSync(file, 'utf-8')
-    .trim()
-    .split('\n')
-    .map((line, y) => {
-      return line.split('').map((item, x) => {
-        if (item === '.') {
-          return null
-        }
+  const map = Matrix.fromArray(
+    readFileSync(file, 'utf-8')
+      .trim()
+      .split('\n')
+      .map((line, y) => {
+        return line.split('').map((item, x) => {
+          if (item === '.') {
+            return null
+          }
 
-        return {
-          type: 'Antenna',
-          code: item,
-          x,
-          y,
-        }
-      })
-    })
+          return {
+            type: 'Antenna',
+            code: item,
+            x,
+            y,
+          }
+        })
+      }),
+  )
 
   const antennas = Object.groupBy(
-    map.flatMap(row => {
+    map.rows.flatMap(row => {
       return row.filter(item => item !== null)
     }),
     antenna => antenna.code,
@@ -184,9 +178,9 @@ const reader = (file: string): Input => {
 
   return {
     antennas: antennas as Record<string, Array<Antenna>>,
-    map: map as Array<Array<MapItem>>,
+    map: map as Matrix<MapItem>,
   }
 }
 
-runExamples(2024, '08', reader, part1, part2)
-runSolution(2024, '08', reader, part1, part2)
+await runExamples(2024, '08', reader, part1, part2)
+await runSolution(2024, '08', reader, part1, part2)

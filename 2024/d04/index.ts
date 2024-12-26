@@ -7,9 +7,13 @@ const part1 = (data: Matrix<string>): number => {
   const target = 'XMAS'
 
   return data.reduce((acc, position) => {
-    return acc + data.neighborsListWithStart(position, target.length)
-      .map(neighbors => neighbors.join(''))
-      .filter(neighbors => neighbors === target).length
+    return (
+      acc +
+      data
+        .neighborsListWithStart(position, target.length)
+        .map(neighbors => neighbors.join(''))
+        .filter(neighbors => neighbors === target).length
+    )
   }, 0)
 }
 
