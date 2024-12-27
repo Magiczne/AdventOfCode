@@ -1,2 +1,4 @@
-export * from './run-examples'
-export * from './run-solution'
+export { runAll } from './run-all'
+export { runExamples } from './run-examples'
+export { runSolution } from './run-solution'
+export { rootDirectory } from './util'
