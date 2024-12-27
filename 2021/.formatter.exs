@@ -1,6 +1,7 @@
 [
   inputs: [
     ".formatter.exs",
-    "**/*.exs"
+    "mix.exs",
+    "**/*.{ex,exs}"
   ]
 ]

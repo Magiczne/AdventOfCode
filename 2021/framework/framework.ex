@@ -24,9 +24,7 @@ defmodule Aoc.Core do
   end
 
   def solution_part2(result, duration_in_ms) do
-    IO.puts(
-      IO.ANSI.black() <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms")
-    )
+    IO.puts(IO.ANSI.blue() <> build_string("[SLN]", "", "Part 1:", result, "#{duration_in_ms}ms"))
   end
 
   def run_examples(day, reader, part1, part2) do

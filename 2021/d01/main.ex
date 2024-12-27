@@ -1,4 +1,4 @@
-Code.require_file("2021/framework/framework.exs")
+Code.require_file("2021/framework/framework.ex")
 
 defmodule Aoc.Day01 do
   def reader(filePath) do
