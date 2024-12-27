@@ -24,6 +24,9 @@ yarn-error.log
 bin
 obj
 
+### Typescript ###
+*.tsbuildinfo
+
 ### Common ###
 *.exe
 
