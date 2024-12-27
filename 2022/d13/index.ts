@@ -1,16 +1,13 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 type Packet = Array<number | Packet>
 type PacketPair = [Packet, Packet]
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const dividerPackets: PacketPair = [[[2]], [[6]]]
 
 const readPackets = (file: string): Array<PacketPair> => {
-  return readFileSync(resolve(__dirname, file), 'utf-8')
+  return readFileSync(file, 'utf-8')
     .trim()
     .split('\n\n')
     .map(packets => {
@@ -98,8 +95,7 @@ const getDecoderKey = (file: string): number => {
     .reduce<number>((acc, index) => acc * (index + 1), 1)
 }
 
-solutionExample(countPairsInRightOrder('example.txt'))
-solutionPart1(countPairsInRightOrder('input.txt'))
+const reader = (file: string): string => file
 
-solutionExample(getDecoderKey('example.txt'))
-solutionPart2(getDecoderKey('input.txt'))
+await runExamples(2022, '13', reader, countPairsInRightOrder, getDecoderKey)
+await runSolution(2022, '13', reader, countPairsInRightOrder, getDecoderKey)

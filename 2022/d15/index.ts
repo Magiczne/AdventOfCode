@@ -1,7 +1,6 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionExample, solutionPart1, solutionPart2 } from '../util'
+import { sep } from 'node:path'
 
 type Position = { x: number; y: number }
 type Dataset = {
@@ -37,8 +36,6 @@ type Dataset = {
 //   }
 // }
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
 const manhattanDistance = (a: Position, b: Position): number => {
   return Math.abs(a.x - b.x) + Math.abs(a.y - b.y)
 }
@@ -48,7 +45,7 @@ const readData = (file: string): Dataset => {
   const sensors: Array<Position> = []
   const beacons: Array<Position> = []
 
-  readFileSync(resolve(__dirname, file), 'utf-8')
+  readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .map(line => {
@@ -169,8 +166,33 @@ const findTuningFrequency = (file: string, limit: number): number => {
   return distressBeacon.x * 4000000 + distressBeacon.y
 }
 
-solutionExample(countBeaconImpossiblePositionsInRow('example.txt', 10))
-solutionPart1(countBeaconImpossiblePositionsInRow('input.txt', 2000000))
+const reader = (file: string): string => file
 
-solutionExample(findTuningFrequency('example.txt', 20))
-solutionPart2(findTuningFrequency('input.txt', 4000000))
+const part1 = (file: string): number => {
+  const fileParts = file.split(sep)
+  const fileName = fileParts[fileParts.length - 1]
+
+  return countBeaconImpossiblePositionsInRow(
+    file,
+    {
+      '0.txt': 10,
+      'input.txt': 2_000_000,
+    }[fileName] ?? 0,
+  )
+}
+
+const part2 = (file: string): number => {
+  const fileParts = file.split(sep)
+  const fileName = fileParts[fileParts.length - 1]
+
+  return findTuningFrequency(
+    file,
+    {
+      '0.txt': 20,
+      'input.txt': 4_000_000,
+    }[fileName] ?? 0,
+  )
+}
+
+await runExamples(2022, '15', reader, part1, part2)
+await runSolution(2022, '15', reader, part1, part2)

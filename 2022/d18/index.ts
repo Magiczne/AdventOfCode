@@ -1,8 +1,6 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { max } from 'radash'
-import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 const enum CellType {
   Nothing = 'N',
@@ -13,7 +11,6 @@ const enum CellType {
 type Point = { x: number; y: number; z: number }
 type Grid = Array<Array<Array<CellType>>>
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const directions: ReadonlyArray<Point> = [
   { x: 1, y: 0, z: 0 },
   { x: -1, y: 0, z: 0 },
@@ -24,7 +21,7 @@ const directions: ReadonlyArray<Point> = [
 ]
 
 const readPoints = (file: string): Array<Point> => {
-  return readFileSync(resolve(__dirname, file), 'utf-8')
+  return readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .map(line => {
@@ -122,8 +119,7 @@ const calculateOutsideSurfaceArea = (file: string): number => {
   }, 0)
 }
 
-solutionExample(calculateSurfaceArea('example.txt'))
-solutionPart1(calculateSurfaceArea('input.txt'))
+const reader = (file: string): string => file
 
-solutionExample(calculateOutsideSurfaceArea('example.txt'))
-solutionPart2(calculateOutsideSurfaceArea('input.txt'))
+await runExamples(2022, '18', reader, calculateSurfaceArea, calculateOutsideSurfaceArea)
+await runSolution(2022, '18', reader, calculateSurfaceArea, calculateOutsideSurfaceArea)

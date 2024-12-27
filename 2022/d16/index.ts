@@ -1,7 +1,5 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionPart1, solutionPart2 } from '../util'
 
 interface GraphNode {
   id: string
@@ -28,7 +26,6 @@ interface StartingNodes {
   elephant: string
 }
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const readGraph = (file: string): [Graph, number] => {
   const regex = /[a-zA-Z]+ (?<id>[A-Z]{2})[a-zA-Z =]+(?<rate>[0-9]+);[a-z ]+(?<adjacent_valves>[A-Z, ]+)/
 
@@ -37,7 +34,7 @@ const readGraph = (file: string): [Graph, number] => {
     adjacency: new Map<string, Array<string>>(),
   }
 
-  readFileSync(resolve(__dirname, file), 'utf-8')
+  readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .forEach(line => {
@@ -103,6 +100,8 @@ const createPossibleTimePaths = (graph: Graph, node: GraphNode): Array<TimePath>
 }
 
 const part1 = (file: string): number => {
+  possiblePathsCache.clear()
+
   const [graph, valveRateSum] = readGraph(file)
   const optimisticPressure = valveRateSum / 2
   let bestPressure = 0
@@ -139,6 +138,8 @@ const part1 = (file: string): number => {
 }
 
 const part2 = (file: string): number => {
+  possiblePathsCache.clear()
+
   const [graph, valveRateSum] = readGraph(file)
   const optimisticPressure = valveRateSum / 4
   let bestPressure = 0
@@ -193,9 +194,7 @@ const part2 = (file: string): number => {
   return bestPressure
 }
 
-// Only one can run at the time ??? Nvm, it's working
-// solutionExample(part1('example.txt'))
-solutionPart1(part1('input.txt'))
+const reader = (file: string): string => file
 
-// solutionExample(part2('example.txt'))
-solutionPart2(part2('input.txt'))
+await runExamples(2022, '16', reader, part1, part2)
+await runSolution(2022, '16', reader, part1, part2)

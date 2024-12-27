@@ -1,14 +1,11 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { CircularLinkedList, LinkedListNode } from '@magiczne/advent-of-code-ts-core/structures'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const part2DecryptionKey = 811589153
 
 const readNodes = (file: string, decryptionKey: number): Array<LinkedListNode<number>> => {
-  return readFileSync(resolve(__dirname, file), 'utf-8')
+  return readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .map(item => new LinkedListNode(parseInt(item, 10) * decryptionKey))
@@ -42,8 +39,15 @@ const sumCoordinates = (file: string, decryptionKey = 1, rounds = 1): number => 
   return nth1000 + nth2000 + nth3000
 }
 
-solutionExample(sumCoordinates('example.txt'))
-solutionPart1(sumCoordinates('input.txt'))
+const reader = (file: string): string => file
 
-solutionExample(sumCoordinates('example.txt', part2DecryptionKey, 10))
-solutionPart2(sumCoordinates('input.txt', part2DecryptionKey, 10))
+const part1 = (file: string): number => {
+  return sumCoordinates(file)
+}
+
+const part2 = (file: string): number => {
+  return sumCoordinates(file, part2DecryptionKey, 10)
+}
+
+await runExamples(2022, '20', reader, part1, part2)
+await runSolution(2022, '20', reader, part1, part2)

@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionExample } from '../util'
+
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 
 type Monkeys = Record<string, Monkey>
 type MonkeyOperationCache = Map<string, number>
@@ -15,8 +14,6 @@ interface Monkey {
   operation: MonkeyOperation
 }
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
 const getInverseOperation = (operands: Array<string>, operator: Operator): string => {
   const reverseMap: Record<Operator, { op: Operator; reverseOperands: boolean }> = {
     '+': { op: '-', reverseOperands: false },
@@ -29,7 +26,7 @@ const getInverseOperation = (operands: Array<string>, operator: Operator): strin
 }
 
 const readMonkeys = (file: string): Monkeys => {
-  const monkeys = readFileSync(resolve(__dirname, file), 'utf-8')
+  const monkeys = readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .map(line => {
@@ -93,7 +90,6 @@ const readMonkeys = (file: string): Monkeys => {
   return Object.fromEntries(monkeys)
 }
 
-// @ts-expect-error
 const getRootMonkeyValue = (file: string): number => {
   const monkeys = readMonkeys(file)
   const monkeyOperationCache = new Map<string, number>()
@@ -114,8 +110,7 @@ const getHumanValue = (file: string): number => {
   return 0
 }
 
-// solutionExample(getRootMonkeyValue('example.txt'))
-// solutionPart1(getRootMonkeyValue('input.txt'))
+const reader = (file: string): string => file
 
-solutionExample(getHumanValue('example.txt'))
-// solutionPart2(getHumanValue('input.txt'))
+await runExamples(2022, '21', reader, getRootMonkeyValue, getHumanValue)
+await runSolution(2022, '21', reader, getRootMonkeyValue, getHumanValue)

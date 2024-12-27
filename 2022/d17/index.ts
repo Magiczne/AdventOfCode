@@ -1,7 +1,5 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { solutionExample, solutionPart1 } from '../util'
 
 const enum Move {
   Left = '<',
@@ -17,7 +15,6 @@ type BoardItem = '.' | '#'
 type Piece = ReadonlyArray<Point>
 type Board = Array<Array<BoardItem>>
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
 const boardLength = 7
 const pieces: Array<Piece> = [
   [
@@ -55,7 +52,7 @@ const pieces: Array<Piece> = [
 ]
 
 const readMoves = (file: string): Array<Move> => {
-  return readFileSync(resolve(__dirname, file), 'utf-8').trim().split('') as Array<Move>
+  return readFileSync(file, 'utf-8').trim().split('') as Array<Move>
 }
 
 const printBoard = (board: Board, piece?: Piece): void => {
@@ -176,7 +173,9 @@ const getPieceFinalPosition = (piece: Piece, board: Board, moves: Array<Move>, d
   }
 }
 
-const getTowerHeight = (file: string, rocksCount: number): number => {
+const getTowerHeight = (file: string): number => {
+  const rocksCount = 2022
+
   // 3 units above floor + 4 as height of highest puzzle
   const board: Board = createEmptyBoardRows(4 + 3)
   const moves = readMoves(file)
@@ -201,5 +200,11 @@ const getTowerHeight = (file: string, rocksCount: number): number => {
   return currentMaxHeight
 }
 
-solutionExample(getTowerHeight('example.txt', 2022))
-solutionPart1(getTowerHeight('input.txt', 2022))
+const part2 = (file: string): number => {
+  return 0
+}
+
+const reader = (file: string): string => file
+
+await runExamples(2022, '18', reader, getTowerHeight, part2)
+await runSolution(2022, '18', reader, getTowerHeight, part2)

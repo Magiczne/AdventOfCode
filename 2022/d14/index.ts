@@ -1,9 +1,7 @@
+import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 import { windows } from '@magiczne/advent-of-code-ts-core/array'
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
 import { range, xprod } from 'ramda'
-import { solutionExample, solutionPart1, solutionPart2 } from '../util'
 
 type Point = { x: number; y: number }
 type Cell = '.' | '#' | 'o'
@@ -21,8 +19,6 @@ type Map = Array<Array<Cell>>
 //   }
 // }
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
-
 const getWallPositions = ([start, end]: [Point, Point]): Array<Point> => {
   const rangeX = range(Math.min(start.x, end.x), Math.max(start.x, end.x) + 1)
   const rangeY = range(Math.min(start.y, end.y), Math.max(start.y, end.y) + 1)
@@ -36,7 +32,7 @@ const getWallPositions = ([start, end]: [Point, Point]): Array<Point> => {
 }
 
 const readMap = (file: string): [Map, number] => {
-  const rocks: Array<Array<Point>> = readFileSync(resolve(__dirname, file), 'utf-8')
+  const rocks: Array<Array<Point>> = readFileSync(file, 'utf-8')
     .trim()
     .split('\n')
     .map(line => {
@@ -179,8 +175,7 @@ const getRestFactor = (file: string): number => {
   return sandUnitsCounter
 }
 
-solutionExample(getAbyssFactor('example.txt'))
-solutionPart1(getAbyssFactor('input.txt'))
+const reader = (file: string): string => file
 
-solutionExample(getRestFactor('example.txt'))
-solutionPart2(getRestFactor('input.txt'))
+await runExamples(2022, '14', reader, getAbyssFactor, getRestFactor)
+await runSolution(2022, '14', reader, getAbyssFactor, getRestFactor)
