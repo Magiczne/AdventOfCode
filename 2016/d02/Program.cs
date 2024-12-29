@@ -23,7 +23,7 @@ namespace Day_2
         {
             Console.WriteLine("Answers: ");
             Console.Write("*: ");
-            foreach (var key in File.ReadAllLines("2016/02/input.txt"))
+            foreach (var key in File.ReadAllLines("2016/d02/input.txt"))
             {
                 Data.Add(key);
                 Console.Write(ProcessSequenceOneStar(key));

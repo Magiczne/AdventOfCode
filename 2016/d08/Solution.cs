@@ -23,7 +23,7 @@ namespace Day_8
 
         public void Solve()
         {
-            foreach (var line in File.ReadAllLines("2016/08/input.txt"))
+            foreach (var line in File.ReadAllLines("2016/d08/input.txt"))
             {
                 (new Command(line)).Execute();
             }

@@ -40,7 +40,7 @@ namespace Day_4
 
         private void GetInput()
         {
-            var data = File.ReadAllLines("2016/04/input.txt");
+            var data = File.ReadAllLines("2016/d04/input.txt");
 
             foreach (var line in data)
             {

@@ -32,13 +32,13 @@ namespace Day_12
 
     internal partial class Solution
     {
-        private static Dictionary<string, int> _registers = new Dictionary<string, int>()xdd;
+        private static Dictionary<string, int> _registers = new Dictionary<string, int>();
 
         private readonly List<Command> _commands = new List<Command>();
 
         public Solution()
         {
-            var lines = File.ReadAllLines("2016/12/input.txt");
+            var lines = File.ReadAllLines("2016/d12/input.txt");
             foreach (var t in lines)
             {
                 _commands.Add(new Command(t.Trim()));

@@ -21,7 +21,7 @@ namespace Day_6
             
         public Solution()
         {
-            _data = File.ReadAllLines("2016/06/input.txt").ToList();
+            _data = File.ReadAllLines("2016/d06/input.txt").ToList();
         }
 
         public void Solve()

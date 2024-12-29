@@ -24,7 +24,7 @@ namespace Day_10
 
         public Solution()
         {
-            _data = File.ReadAllLines("2016/10/input.txt").ToList();
+            _data = File.ReadAllLines("2016/d10/input.txt").ToList();
             _data.Sort();
         }
 

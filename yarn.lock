@@ -230,6 +230,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@magiczne/advent-of-code-2016@workspace:2016":
+  version: 0.0.0-use.local
+  resolution: "@magiczne/advent-of-code-2016@workspace:2016"
+  languageName: unknown
+  linkType: soft
+
 "@magiczne/advent-of-code-2017@workspace:2017":
   version: 0.0.0-use.local
   resolution: "@magiczne/advent-of-code-2017@workspace:2017"

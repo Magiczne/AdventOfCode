@@ -50,7 +50,7 @@ namespace Day_3
 
         private void GetInput()
         {
-            using (var stream = File.OpenRead("2016/03/input.txt"))
+            using (var stream = File.OpenRead("2016/d03/input.txt"))
             {
                 using (var streamReader = new StreamReader(stream, Encoding.UTF8))
                 {

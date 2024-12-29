@@ -1,0 +1,7 @@
+{
+  "name": "@magiczne/advent-of-code-2016",
+  "private": true,
+  "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
+  "license": "MIT",
+  "type": "module"
+}

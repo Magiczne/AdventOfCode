@@ -19,7 +19,7 @@ namespace Day_9
 
         public void Solve()
         {
-            _data = File.ReadAllText("2016/09/input.txt").Trim();
+            _data = File.ReadAllText("2016/d09/input.txt").Trim();
 
             Console.WriteLine("Answers: ");
             Console.WriteLine("*: " + Decompress(_data));
