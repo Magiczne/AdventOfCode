@@ -230,6 +230,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@magiczne/advent-of-code-2017@workspace:2017":
+  version: 0.0.0-use.local
+  resolution: "@magiczne/advent-of-code-2017@workspace:2017"
+  languageName: unknown
+  linkType: soft
+
 "@magiczne/advent-of-code-2021@workspace:2021":
   version: 0.0.0-use.local
   resolution: "@magiczne/advent-of-code-2021@workspace:2021"
@@ -269,10 +275,11 @@ __metadata:
   resolution: "@magiczne/advent-of-code-2024@workspace:2024"
   dependencies:
     "@types/node": "npm:^22.10.1"
-    boxen: "npm:^8.0.1"
     chalk: "npm:^5.3.0"
+    heap-js: "npm:^2.5.0"
     radash: "npm:^12.1.0"
     typescript: "npm:^5.7.2"
+    z3-solver: "npm:^4.13.3"
   languageName: unknown
   linkType: soft
 
@@ -294,7 +301,6 @@ __metadata:
   dependencies:
     "@turbo/gen": "npm:^2.3.3"
     "@types/node": "npm:^22.10.1"
-    heap-js: "npm:^2.5.0"
     husky: "npm:^9.1.7"
     lint-staged: "npm:^15.2.10"
     prettier: "npm:^3.4.1"
@@ -302,7 +308,6 @@ __metadata:
     tsx: "npm:^4.19.2"
     turbo: "npm:^2.3.3"
     typescript: "npm:^5.7.2"
-    z3-solver: "npm:^4.13.3"
   languageName: unknown
   linkType: soft
 

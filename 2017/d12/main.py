@@ -1,10 +1,12 @@
-def main():
-    with open('input.txt') as f:
-        lines = [line.strip().split(' <-> ') for line in f.readlines()]
-        data = {int(l[0]): list(map(int, l[1].split(', '))) for l in lines}
+import inspect
+import os
+import sys
 
-    print("Part 1: ", len(get_nodes_containing(data, 0)))
-    print("Part 2: ", count_groups(data))
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_directory = os.path.dirname(current_directory)
+sys.path.append(parent_directory)
+
+from util.aoc import run_examples, run_solution  # NOQA
 
 
 def get_nodes_containing(data, index):
@@ -32,5 +34,22 @@ def count_groups(data):
     return grp_count
 
 
-if __name__ == '__main__':
-    main()
+def part1(data) -> int:
+    return len(get_nodes_containing(data, 0))
+
+
+def part2(data) -> int:
+    return count_groups(data)
+
+
+def reader(file: str):
+    with open(file) as f:
+        lines = [line.strip().split(" <-> ") for line in f.readlines()]
+        data = {int(l[0]): list(map(int, l[1].split(", "))) for l in lines}
+
+    return data
+
+
+if __name__ == "__main__":
+    run_examples(2017, "12", reader, part1, part2)
+    run_solution(2017, "12", reader, part1, part2)

@@ -1,13 +1,16 @@
+import inspect
+import os
+import sys
+
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_directory = os.path.dirname(current_directory)
+sys.path.append(parent_directory)
+
 from math import ceil, sqrt
+from util.aoc import run_examples, run_solution  # NOQA
 
 
-def main():
-    inp = 265149
-    print(part1(inp))
-    print(part2())
-
-
-def part1(n):
+def part1(n: int) -> int:
     # Calculate the side length of the square
     side_length = nearest_odd_square(n)
 
@@ -27,18 +30,23 @@ def part1(n):
     return distance_x + distance_y
 
 
-def part2():
+def part2(n: int) -> int:
     """
-        Just google it.
-        https://oeis.org/A141481
+    Just google it.
+    https://oeis.org/A141481
     """
     return 266330
 
 
-def nearest_odd_square(n):
+def nearest_odd_square(n: int) -> int:
     sq = ceil(sqrt(n))
     return sq + 1 if sq % 2 == 0 else sq
 
 
-if __name__ == '__main__':
-    main()
+def reader(file: str) -> int:
+    return int(open(file).read())
+
+
+if __name__ == "__main__":
+    run_examples(2017, "03", reader, part1, part2)
+    run_solution(2017, "03", reader, part1, part2)

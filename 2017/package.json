@@ -1,0 +1,10 @@
+{
+  "name": "@magiczne/advent-of-code-2017",
+  "private": true,
+  "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "format": "python -m black ."
+  }
+}

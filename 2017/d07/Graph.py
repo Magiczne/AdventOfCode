@@ -12,7 +12,12 @@ class Graph:
         return ret if len(ret) > 0 else None
 
     def get_root_node(self):
-        return list(filter(lambda node: self.get_parent_node(node.name) is None and node.children, self.nodes))[0]
+        return list(
+            filter(
+                lambda node: self.get_parent_node(node.name) is None and node.children,
+                self.nodes,
+            )
+        )[0]
 
     def calculate_weights(self, node=None):
         if node is None:
@@ -42,5 +47,5 @@ class Graph:
         return node
 
     def __repr__(self):
-        """ Debug purposes """
+        """Debug purposes"""
         return "\n".join([repr(node) for node in self.nodes])

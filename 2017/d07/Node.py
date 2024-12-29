@@ -11,5 +11,5 @@ class Node:
         self.children = _children
 
     def __repr__(self):
-        """ Debug purposes """
+        """Debug purposes"""
         return "{} ({}, {}) -> {}".format(self.name, self.weight, self.overall_weight, self.children)

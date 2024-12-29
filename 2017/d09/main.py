@@ -1,42 +1,47 @@
-from copy import copy
+import inspect
+import os
+import sys
+
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_directory = os.path.dirname(current_directory)
+sys.path.append(parent_directory)
+
 import re
+from util.aoc import run_examples, run_solution  # NOQA
 
 
-def main():
-    with open('input.txt') as f:
-        data = f.read().replace("!!", "")
-
-    print(part1(copy(data)))
-    print(part2(copy(data)))
-
-
-def part1(data):
-    data = re.sub('(?:<>|<.*?[^!]>)', '', data)
+def part1(data: str) -> int:
+    data = re.sub("(?:<>|<.*?[^!]>)", "", data)
 
     score = 0
     depth = 0
 
     for c in data:
-        if c == '{':
+        if c == "{":
             depth += 1
             score += depth
-        elif c == '}':
+        elif c == "}":
             depth -= 1
 
     return score
 
 
-def part2(data):
-    removed = re.findall('(?:<>|<.*?[^!]>)', data)
+def part2(data: str) -> int:
+    removed = re.findall("(?:<>|<.*?[^!]>)", data)
 
     garbage = 0
     for i in removed:
-        cancelled = "".join(re.findall('!.', i))
+        cancelled = "".join(re.findall("!.", i))
         cnt = len(i) - len(cancelled) - 2
         garbage += cnt
 
     return garbage
 
 
-if __name__ == '__main__':
-    main()
+def reader(file: str) -> str:
+    return open(file).read().replace("!!", "")
+
+
+if __name__ == "__main__":
+    run_examples(2017, "09", reader, part1, part2)
+    run_solution(2017, "09", reader, part1, part2)

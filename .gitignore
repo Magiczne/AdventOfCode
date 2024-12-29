@@ -24,6 +24,9 @@ yarn-error.log
 bin
 obj
 
+### Python ###
+__pycache__
+
 ### Typescript ###
 *.tsbuildinfo
 

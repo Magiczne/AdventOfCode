@@ -1,4 +1,5 @@
 {
   "*.json": ["prettier --write"],
+  "*.py": ["python -m black"],
   "*.ts": ["prettier --write"]
 }

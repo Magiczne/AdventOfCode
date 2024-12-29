@@ -1,13 +1,18 @@
+import inspect
+import os
+import sys
+
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_directory = os.path.dirname(current_directory)
+sys.path.append(parent_directory)
+
 import operator
 from collections import Counter
+from util.aoc import run_examples, run_solution  # NOQA
 
 
-def main():
-    with open('input.txt') as f:
-        data = f.read().splitlines()
-
+def solve(data: list[str]):
     registers = Counter()
-
     highest_value = 0
 
     op_map = {
@@ -18,7 +23,7 @@ def main():
         ">": operator.gt,
         ">=": operator.ge,
         "<": operator.lt,
-        "<=": operator.le
+        "<=": operator.le,
     }
 
     for line in data:
@@ -32,12 +37,21 @@ def main():
         if registers[data_reg] > highest_value:
             highest_value = registers[data_reg]
 
-    # Part 1
-    print("Part 1: ", max(registers.values()))
-
-    # Part 2
-    print("Part 2: ", highest_value)
+    return {"Part 1": max(registers.values()), "Part 2": highest_value}
 
 
-if __name__ == '__main__':
-    main()
+def part1(data: list[str]) -> int:
+    return solve(data)["Part 1"]
+
+
+def part2(data: list[str]) -> int:
+    return solve(data)["Part 2"]
+
+
+def reader(file: str) -> list[str]:
+    return open(file).read().splitlines()
+
+
+if __name__ == "__main__":
+    run_examples(2017, "08", reader, part1, part2)
+    run_solution(2017, "08", reader, part1, part2)

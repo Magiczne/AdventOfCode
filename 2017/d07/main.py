@@ -1,19 +1,15 @@
+import inspect
+import os
+import sys
+
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parent_directory = os.path.dirname(current_directory)
+sys.path.append(parent_directory)
+
 import re
+from util.aoc import run_examples, run_solution  # NOQA
 from Node import Node
 from Graph import Graph
-
-
-def main():
-    with open('input.txt') as f:
-        data = [parse_entry(entry) for entry in f.read().splitlines()]
-
-    graph = Graph()
-
-    for node in data:
-        graph.append(Node(node['name'], node['weight'], node['children']))
-
-    print(part1(graph))
-    print(part2(graph))
 
 
 def part1(graph):
@@ -33,11 +29,24 @@ def parse_entry(entry):
     data = entry.split(" -> ")
     basic_info = data[0].split()
     return {
-        'name':     basic_info[0],
-        'weight':   int(re.search('([0-9]+)', basic_info[1]).group(0)),
-        'children': [] if len(data) == 1 else data[1].split(", ")
+        "name": basic_info[0],
+        "weight": int(re.search("([0-9]+)", basic_info[1]).group(0)),
+        "children": [] if len(data) == 1 else data[1].split(", "),
     }
 
 
-if __name__ == '__main__':
-    main()
+def reader(file: str):
+    with open(file) as f:
+        data = [parse_entry(entry) for entry in f.read().splitlines()]
+
+    graph = Graph()
+
+    for node in data:
+        graph.append(Node(node["name"], node["weight"], node["children"]))
+
+    return graph
+
+
+if __name__ == "__main__":
+    run_examples(2017, "07", reader, part1, part2)
+    run_solution(2017, "07", reader, part1, part2)
