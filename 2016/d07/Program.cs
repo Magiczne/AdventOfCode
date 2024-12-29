@@ -5,36 +5,36 @@ using System.Linq;
 
 namespace Day_7
 {
-    internal static class Program
+  internal static class Program
+  {
+    private static void Main()
     {
-        private static void Main()
-        {
-            Console.WriteLine("Day 7");
+      Console.WriteLine("Day 7");
 
-            var solution = new Solution();
-            solution.Solve();
-        }
+      var solution = new Solution();
+      solution.Solve();
     }
+  }
 
-    internal class Solution
+  internal class Solution
+  {
+    private readonly List<IpAddressV7> _ips = new List<IpAddressV7>();
+
+    public void Solve()
     {
-        private readonly List<IpAddressV7> _ips = new List<IpAddressV7>();
+      var lines = File.ReadAllLines("2016/d07/input.txt");
 
-        public void Solve()
-        {
-            var lines = File.ReadAllLines("2016/d07/input.txt");
+      foreach (var line in lines)
+      {
+        _ips.Add(new IpAddressV7(line));
+      }
 
-            foreach (var line in lines)
-            {
-                _ips.Add(new IpAddressV7(line));
-            }
+      var supportsTls = _ips.Count(ip => ip.SupportsTls);
+      var supportsSsl = _ips.Count(ip => ip.SupportsSsl);
 
-            var supportsTls = _ips.Count(ip => ip.SupportsTls);
-            var supportsSsl = _ips.Count(ip => ip.SupportsSsl);
-
-            Console.WriteLine("Answers: ");
-            Console.WriteLine("*: " + supportsTls);
-            Console.WriteLine("**: " + supportsSsl);
-        }
+      Console.WriteLine("Answers: ");
+      Console.WriteLine("*: " + supportsTls);
+      Console.WriteLine("**: " + supportsSsl);
     }
+  }
 }

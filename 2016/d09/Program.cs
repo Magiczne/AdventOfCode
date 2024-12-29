@@ -4,70 +4,70 @@ using System.Linq;
 
 namespace Day_9
 {
-    internal static class Program
+  internal static class Program
+  {
+    private static void Main()
     {
-        private static void Main()
-        {
-            var solution = new Solution();
-            solution.Solve();
-        }
+      var solution = new Solution();
+      solution.Solve();
+    }
+  }
+
+  internal class Solution
+  {
+    private string _data = string.Empty;
+
+    public void Solve()
+    {
+      _data = File.ReadAllText("2016/d09/input.txt").Trim();
+
+      Console.WriteLine("Answers: ");
+      Console.WriteLine("*: " + Decompress(_data));
+      Console.WriteLine("**: " + Decompress(_data, true));
     }
 
-    internal class Solution
+    private long Decompress(string input, bool twoStars = false)
     {
-        private string _data = string.Empty;
+      long output = 0;
+      var i = 0;
 
-        public void Solve()
+      while (i < input.Length)
+      {
+        var ch = input[i];
+        i++;
+
+        if (ch != '(')
         {
-            _data = File.ReadAllText("2016/d09/input.txt").Trim();
-
-            Console.WriteLine("Answers: ");
-            Console.WriteLine("*: " + Decompress(_data));
-            Console.WriteLine("**: " + Decompress(_data, true));
+          output++;
+          continue;
         }
 
-        private long Decompress(string input, bool twoStars = false)
+        //First param of the marker
+        var tmp = new string(input.Skip(i).TakeWhile(c => c != 'x').ToArray());
+        var repetitionLength = int.Parse(tmp);
+        i += tmp.Length + 1;
+
+
+        //Second param of the marker
+        tmp = new string(input.Skip(i).TakeWhile(c => c != ')').ToArray());
+        var repetitionCount = int.Parse(tmp);
+        i += tmp.Length + 1;
+
+        if (twoStars)
         {
-            long output = 0;
-            var i = 0;
-
-            while (i < input.Length)
-            {
-                var ch = input[i];
-                i++;
-
-                if (ch != '(')
-                {
-                    output++;
-                    continue;
-                }
-
-                //First param of the marker
-                var tmp = new string(input.Skip(i).TakeWhile(c => c != 'x').ToArray());
-                var repetitionLength = int.Parse(tmp);
-                i += tmp.Length + 1;
-
-
-                //Second param of the marker
-                tmp = new string(input.Skip(i).TakeWhile(c => c != ')').ToArray());
-                var repetitionCount = int.Parse(tmp);
-                i += tmp.Length + 1;
-
-                if (twoStars)
-                {
-                    var data = Decompress(input.Substring(i, repetitionLength), true);
-                    output += data*repetitionCount;
-                }
-                else
-                {
-                    var data = input.Substring(i, repetitionLength);
-                    output += data.Length*repetitionCount;
-                }
-
-                i += repetitionLength;
-            }
-
-            return output;
+          var data = Decompress(input.Substring(i, repetitionLength), true);
+          output += data * repetitionCount;
         }
+        else
+        {
+          var data = input.Substring(i, repetitionLength);
+          output += data.Length * repetitionCount;
+        }
+
+        i += repetitionLength;
+      }
+
+      return output;
     }
+  }
 }

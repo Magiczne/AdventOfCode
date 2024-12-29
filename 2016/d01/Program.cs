@@ -1,129 +1,143 @@
-﻿int Part1(string[] instructions)
+﻿using Aoc.Day01;
+using Util.Aoc;
+using Util.Math;
+
+int Distance(Vec2 point)
 {
-    var currentDirection = Direction.North;
-    var distanceVertical = 0;
-    var distanceHorizontal = 0;
-    List<Point> visited = [];
+  return Math.Abs(point.X) + Math.Abs(point.Y);
+}
 
-    foreach (var i in instructions)
+int Part1(string[] instructions)
+{
+  var currentDirection = Direction.North;
+  var distanceVertical = 0;
+  var distanceHorizontal = 0;
+  List<Vec2> visited = [];
+
+  foreach (var i in instructions)
+  {
+    if (i[0] == 'R')
     {
-        if (i[0] == 'R') currentDirection++;
-        else currentDirection--;
-
-        if (currentDirection > (Direction) 4) currentDirection = Direction.North;
-        if (currentDirection < (Direction) 1) currentDirection = Direction.West;
-
-        var steps = int.Parse(i.Substring(1));
-
-        for (var j = 1; j <= steps; j++)
-        {
-            switch (currentDirection)
-            {
-                case Direction.North:
-                    distanceVertical++;
-                    break;
-                case Direction.West:
-                    distanceHorizontal--;
-                    break;
-                case Direction.South:
-                    distanceVertical--;
-                    break;
-                case Direction.East:
-                    distanceHorizontal++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            visited.Add(new Point(distanceHorizontal, distanceVertical));
-        }
+      currentDirection++;
+    }
+    else
+    {
+      currentDirection--;
     }
 
-    return visited.Last().Distance;
+    if (currentDirection > (Direction)4)
+    {
+      currentDirection = Direction.North;
+    }
+
+    if (currentDirection < (Direction)1)
+    {
+      currentDirection = Direction.West;
+    }
+
+    var steps = int.Parse(i[1..]);
+
+    for (var j = 1; j <= steps; j++)
+    {
+      switch (currentDirection)
+      {
+        case Direction.North:
+          distanceVertical++;
+          break;
+        case Direction.West:
+          distanceHorizontal--;
+          break;
+        case Direction.South:
+          distanceVertical--;
+          break;
+        case Direction.East:
+          distanceHorizontal++;
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+
+      visited.Add(new Vec2(distanceHorizontal, distanceVertical));
+    }
+  }
+
+  return Distance(visited.Last());
 }
 
 int Part2(string[] instructions)
 {
-    var currentDirection = Direction.North;
-    var distanceVertical = 0;
-    var distanceHorizontal = 0;
-    bool crossingFound = false;
-    Point? firstCrossed = null;
-    List<Point> visited = [];
+  var currentDirection = Direction.North;
+  var distanceVertical = 0;
+  var distanceHorizontal = 0;
+  bool crossingFound = false;
+  Vec2? firstCrossed = null;
+  List<Vec2> visited = [];
 
-    foreach (var i in instructions)
+  foreach (var i in instructions)
+  {
+    if (i[0] == 'R')
     {
-        if (i[0] == 'R') currentDirection++;
-        else currentDirection--;
-
-        if (currentDirection > (Direction) 4) currentDirection = Direction.North;
-        if (currentDirection < (Direction) 1) currentDirection = Direction.West;
-
-        var steps = int.Parse(i.Substring(1));
-
-        for (var j = 1; j <= steps; j++)
-        {
-            switch (currentDirection)
-            {
-                case Direction.North:
-                    distanceVertical++;
-                    break;
-                case Direction.West:
-                    distanceHorizontal--;
-                    break;
-                case Direction.South:
-                    distanceVertical--;
-                    break;
-                case Direction.East:
-                    distanceHorizontal++;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
-
-            var point = new Point(distanceHorizontal, distanceVertical);
-
-            if (!crossingFound)
-            {
-                if (visited.Contains(point))
-                {
-                    firstCrossed = point;
-                    crossingFound = true;
-                }
-            }
-
-            visited.Add(point);
-        }
+      currentDirection++;
+    }
+    else
+    {
+      currentDirection--;
     }
 
-    return firstCrossed!.Distance;
+    if (currentDirection > (Direction)4)
+    {
+      currentDirection = Direction.North;
+    }
+
+    if (currentDirection < (Direction)1)
+    {
+      currentDirection = Direction.West;
+    }
+
+    var steps = int.Parse(i[1..]);
+
+    for (var j = 1; j <= steps; j++)
+    {
+      switch (currentDirection)
+      {
+        case Direction.North:
+          distanceVertical++;
+          break;
+        case Direction.West:
+          distanceHorizontal--;
+          break;
+        case Direction.South:
+          distanceVertical--;
+          break;
+        case Direction.East:
+          distanceHorizontal++;
+          break;
+        default:
+          throw new ArgumentOutOfRangeException();
+      }
+
+      var point = new Vec2(distanceHorizontal, distanceVertical);
+
+      if (!crossingFound)
+      {
+        if (visited.Contains(point))
+        {
+          firstCrossed = point;
+          crossingFound = true;
+        }
+      }
+
+      visited.Add(point);
+    }
+  }
+
+  return Distance(firstCrossed!);
 }
 
 string[] Reader(string file)
 {
-    return File.ReadAllText(file).Split([", "], StringSplitOptions.None);
+  return File.ReadAllText(file).Split([", "], StringSplitOptions.None);
 }
 
-Util.Aoc.Solver.RunExamples(2016, "01", Reader, Part1, Part2);
-Util.Aoc.Solver.RunSolution(2016, "01", Reader, Part1, Part2);
-
-enum Direction
-{
-    North = 1,
-    East = 2,
-    South = 3,
-    West = 4,
-}
-
-class Point(int x, int y) : IEquatable<Point>
-{
-    private int X { get; } = x;
-    private int Y { get; } = y;
-
-    public int Distance => Math.Abs(X) + Math.Abs(Y);
-
-    public bool Equals(Point? other)
-    {
-        return other != null && X == other.X && Y == other.Y;
-    }
-}
+Solver.RunExamples(2016, "01", Reader, Part1, Part2);
+Solver.RunSolution(2016, "01", Reader, Part1, Part2);

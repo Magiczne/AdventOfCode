@@ -1,51 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using Aoc.Day04;
+using Util.Aoc;
 
-namespace Day_4
+int Part1(IEnumerable<Room> rooms)
 {
-    internal static class Program
-    {
-        private static void Main()
-        {
-            var solution = new Solution();
-            solution.Solve();
-        }
-    }
-
-    internal class Solution
-    {
-        private readonly List<Room> _rooms = new List<Room>();
-
-        public void Solve()
-        {
-            GetInput();
-
-            var sectorSum = _rooms.Where(room => room.IsValid).Sum(room => room.SectorId);
-
-            Console.WriteLine("Answers: ");
-            Console.WriteLine("*: " + sectorSum);
-            Console.Write("**: ");
-
-            foreach (var r in _rooms)
-            {
-                if (r.DecryptedName.Contains("north"))
-                {
-                    Console.WriteLine(r.DecryptedName + "\t -> " + r.SectorId);
-                    break;
-                }
-            }
-        }
-
-        private void GetInput()
-        {
-            var data = File.ReadAllLines("2016/d04/input.txt");
-
-            foreach (var line in data)
-            {
-                _rooms.Add(new Room(line));
-            }
-        }
-    }
+  return rooms.Where(room => room.IsValid).Sum(room => room.SectorId);
 }
+
+int Part2(IEnumerable<Room> rooms)
+{
+  var ret = string.Empty;
+
+  foreach (var room in rooms)
+  {
+    if (room.DecryptedName.Contains("north"))
+    {
+      return room.SectorId;
+    }
+  }
+
+  return -1;
+}
+
+IEnumerable<Room> Reader(string file)
+{
+  return File.ReadAllLines(file).Select(line => { return new Room(line); });
+}
+
+Solver.RunExamples(2016, "04", Reader, Part1, Part2);
+Solver.RunSolution(2016, "04", Reader, Part1, Part2);

@@ -29,8 +29,42 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
     },
   ]
 
+  plop.setGenerator('C#', {
+    description: 'Generate C# AoC day skeleton',
+    prompts,
+    actions: [
+      {
+        type: 'add',
+        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/{{ day }}.csproj',
+        templateFile: 'templates/c#/day.csproj',
+      },
+      {
+        type: 'add',
+        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/Program.cs',
+        templateFile: 'templates/c#/Program.cs.hbs',
+      },
+      {
+        type: 'add',
+        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/input.txt',
+        templateFile: 'templates/c#/input.txt',
+      },
+      {
+        type: 'add',
+        path: '{{ turbo.paths.root }}/{{ year }}/d{{ day }}/test-runs/0.txt',
+        templateFile: 'templates/c#/test-runs/0.txt',
+        skip: ({ withTestRuns }: { withTestRuns: boolean }) => {
+          if (withTestRuns) {
+            return false
+          }
+
+          return 'Test runs skipped'
+        },
+      },
+    ],
+  })
+
   plop.setGenerator('Elixir', {
-    description: 'Generate Typescript AoC day skeleton',
+    description: 'Generate Elixir AoC day skeleton',
     prompts,
     actions: [
       {

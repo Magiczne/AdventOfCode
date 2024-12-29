@@ -1,86 +1,73 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
+using Util.Aoc;
 
-namespace Day_3
+bool IsValidTriangle(IEnumerable<int> sides)
 {
-    internal static class Program
+  var tmp = new List<int>(sides);
+  tmp.Sort();
+
+  return tmp[0] + tmp[1] > tmp[2];
+}
+
+int Part1(List<List<int>> triangles)
+{
+  return triangles.Count(IsValidTriangle);
+}
+
+int Part2(List<List<int>> triangles)
+{
+  var possibleTriangles = 0;
+
+  for (var i = 0; i < triangles.Count; i += 3)
+  {
+    for (var j = 0; j < 3; j++)
     {
-        private static void Main()
-        {
-            var solution = new Solution();
-            solution.Solve();
-        }
+      var list = new List<int>()
+      {
+        triangles[i][j],
+        triangles[i + 1][j],
+        triangles[i + 2][j]
+      };
+
+      if (IsValidTriangle(list))
+      {
+        possibleTriangles++;
+      }
     }
+  }
 
-    internal class Solution
-    {
-        private readonly List<List<int>> _data = new List<List<int>>();
+  return possibleTriangles;
+}
 
-        public void Solve()
-        {
-            GetInput();
+List<List<int>> Reader(string file)
+{
+  using var stream = File.OpenRead("2016/d03/input.txt");
+  using var streamReader = new StreamReader(stream, Encoding.UTF8);
 
-            var possible = _data.Count(IsValidTriangle);
-            var possible2 = 0;
+  List<List<int>> data = [];
+  string? line = null;
 
-            //Part 2
-            for (var i = 0; i < _data.Count; i += 3)
-            {
-                for (var j = 0; j < 3; j++)
-                {
-                    var list = new List<int>()
-                    {
-                        _data[i][j],
-                        _data[i + 1][j],
-                        _data[i + 2][j]
-                    };
+  while ((line = streamReader.ReadLine()) != null)
+  {
+    var clean = WhitespaceRegex().Replace(line.Trim(), " ");
+    var sides = clean.Split([" "], StringSplitOptions.None);
 
-                    if (IsValidTriangle(list)) possible2++;
-                }
-            }
+    data.Add([
+      int.Parse(sides[0]),
+      int.Parse(sides[1]),
+      int.Parse(sides[2])
+    ]);
+  }
 
-            Console.WriteLine("Answers: ");
-            Console.WriteLine("*: " + possible);
-            Console.WriteLine("**: " + possible2);
-        }
+  return data;
+}
 
-        private void GetInput()
-        {
-            using (var stream = File.OpenRead("2016/d03/input.txt"))
-            {
-                using (var streamReader = new StreamReader(stream, Encoding.UTF8))
-                {
-                    string? line = null;
+Solver.RunExamples(2016, "03", Reader, Part1, Part2);
+Solver.RunSolution(2016, "03", Reader, Part1, Part2);
 
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        var clean = line.Trim();
-                        clean = Regex.Replace(clean, @"\s+", " ");
-
-                        var sides = clean.Split(new[] {" "}, StringSplitOptions.None);
-
-                        var list = new List<int>()
-                        {
-                            int.Parse(sides[0]),
-                            int.Parse(sides[1]),
-                            int.Parse(sides[2])
-                        };
-
-                        _data.Add(list);
-                    }
-                }
-            }
-        }
-
-        private static bool IsValidTriangle(IEnumerable<int> sides)
-        {
-            var tmp = new List<int>(sides);
-            tmp.Sort();
-            return tmp[0] + tmp[1] > tmp[2];
-        }
-    }
+partial class Program
+{
+  [GeneratedRegex(@"\s+")]
+  private static partial Regex WhitespaceRegex();
 }

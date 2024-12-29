@@ -3,5 +3,8 @@
   "private": true,
   "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
   "license": "MIT",
-  "type": "module"
+  "type": "module",
+  "scripts": {
+    "format": "dotnet jb cleanupcode ."
+  }
 }

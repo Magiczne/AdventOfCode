@@ -2,12 +2,12 @@
 
 namespace Day_8
 {
-    internal static class Program
+  internal static class Program
+  {
+    private static void Main()
     {
-        private static void Main()
-        {
-            var solution = new Solution();
-            solution.Solve();
-        }
+      var solution = new Solution();
+      solution.Solve();
     }
+  }
 }

@@ -1,138 +1,150 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using Util.Aoc;
 
-namespace Day_2
+char[][] keypad =
+[
+  ['0', '0', '1', '0', '0'],
+  ['0', '2', '3', '4', '5'],
+  ['5', '6', '7', '8', '9'],
+  ['0', 'A', 'B', 'C', '0'],
+  ['0', '0', 'D', '0', '0']
+];
+
+int lastRow = 1;
+int lastColumn = 1;
+
+int ProcessSequenceOneStar(string key)
 {
-    internal static class Program
+  foreach (var ch in key)
+  {
+    switch (ch)
     {
-        private static readonly List<string> Data = new List<string>();
-        private static readonly char[][] Keypad =
-        {
-            new []{'0', '0', '1', '0', '0'},
-            new []{'0', '2', '3', '4', '5'},
-            new []{'5', '6', '7', '8', '9'},
-            new []{'0', 'A', 'B', 'C', '0'},
-            new []{'0', '0', 'D', '0', '0'}
-        };
-
-        private static int _lastRow = 1;
-        private static int _lastColumn = 1;
-
-        private static void Main()
-        {
-            Console.WriteLine("Answers: ");
-            Console.Write("*: ");
-            foreach (var key in File.ReadAllLines("2016/d02/input.txt"))
-            {
-                Data.Add(key);
-                Console.Write(ProcessSequenceOneStar(key));
-            }
-            Console.WriteLine();
-
-            _lastRow = 2;
-            _lastColumn = 0;
-
-            Console.Write("**: ");
-            foreach (var key in Data)
-            {
-                Console.Write(ProcesSequenceTwoStars(key));
-            }
-        }
-
-        private static int ProcessSequenceOneStar(string key)
-        {
-            foreach (var ch in key)
-            {
-                switch (ch)
-                {
-                    case 'U':
-                        if (_lastRow > 0) _lastRow--;
-                        break;
-                    case 'D':
-                        if (_lastRow < 2) _lastRow++;
-                        break;
-                    case 'L':
-                        if (_lastColumn > 0) _lastColumn--;
-                        break;
-                    case 'R':
-                        if (_lastColumn < 2) _lastColumn++;
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            return _lastRow * 3 + _lastColumn + 1;
-        }
-
-        private static char ProcesSequenceTwoStars(string key)
-        {
-            foreach (var ch in key)
-            {
-                switch (ch)
-                {
-                    case 'U':
-                        switch (_lastColumn)
-                        {
-                            case 1:
-                            case 3:
-                                if (_lastRow > 1) _lastRow--;
-                                break;
-                            case 2:
-                                if (_lastRow > 0) _lastRow--;
-                                break;
-                        }
-                        break;
-
-                    case 'D':
-                        switch (_lastColumn)
-                        {
-                            case 1:
-                            case 3:
-                                if (_lastRow < 3) _lastRow++;
-                                break;
-
-                            case 2:
-                                if (_lastRow < 4) _lastRow++;
-                                break;
-                        }
-                        break;
-
-                    case 'L':
-                        switch (_lastRow)
-                        {
-                            case 1:
-                            case 3:
-                                if (_lastColumn > 1) _lastColumn--;
-                                break;
-
-                            case 2:
-                                if (_lastColumn > 0) _lastColumn--;
-                                break;
-                        }
-                        break;
-
-                    case 'R':
-                        switch (_lastRow)
-                        {
-                            case 1:
-                            case 3:
-                                if (_lastColumn < 3) _lastColumn++;
-                                break;
-
-                            case 2:
-                                if (_lastColumn < 4) _lastColumn++;
-                                break;
-                        }
-                        break;
-
-                    default:
-                        throw new ArgumentOutOfRangeException();
-                }
-            }
-
-            return Keypad[_lastRow][_lastColumn];
-        }
+      case 'U':
+        if (lastRow > 0) lastRow--;
+        break;
+      case 'D':
+        if (lastRow < 2) lastRow++;
+        break;
+      case 'L':
+        if (lastColumn > 0) lastColumn--;
+        break;
+      case 'R':
+        if (lastColumn < 2) lastColumn++;
+        break;
+      default:
+        throw new ArgumentOutOfRangeException();
     }
+  }
+
+  return lastRow * 3 + lastColumn + 1;
 }
+
+char ProcesSequenceTwoStars(string key)
+{
+  foreach (var ch in key)
+  {
+    switch (ch)
+    {
+      case 'U':
+        switch (lastColumn)
+        {
+          case 1:
+          case 3:
+            if (lastRow > 1) lastRow--;
+            break;
+          case 2:
+            if (lastRow > 0) lastRow--;
+            break;
+        }
+
+        break;
+
+      case 'D':
+        switch (lastColumn)
+        {
+          case 1:
+          case 3:
+            if (lastRow < 3) lastRow++;
+            break;
+
+          case 2:
+            if (lastRow < 4) lastRow++;
+            break;
+        }
+
+        break;
+
+      case 'L':
+        switch (lastRow)
+        {
+          case 1:
+          case 3:
+            if (lastColumn > 1) lastColumn--;
+            break;
+
+          case 2:
+            if (lastColumn > 0) lastColumn--;
+            break;
+        }
+
+        break;
+
+      case 'R':
+        switch (lastRow)
+        {
+          case 1:
+          case 3:
+            if (lastColumn < 3) lastColumn++;
+            break;
+
+          case 2:
+            if (lastColumn < 4) lastColumn++;
+            break;
+        }
+
+        break;
+
+      default:
+        throw new ArgumentOutOfRangeException();
+    }
+  }
+
+  return keypad[lastRow][lastColumn];
+}
+
+string Part1(string[] keys)
+{
+  var ret = string.Empty;
+
+  lastRow = 1;
+  lastColumn = 1;
+
+  foreach (var key in keys)
+  {
+    ret += ProcessSequenceOneStar(key);
+  }
+
+  return ret;
+}
+
+string Part2(string[] keys)
+{
+  var ret = string.Empty;
+
+  lastRow = 2;
+  lastColumn = 0;
+
+  foreach (var key in keys)
+  {
+    ret += ProcesSequenceTwoStars(key);
+  }
+
+  return ret;
+}
+
+string[] Reader(string file)
+{
+  return File.ReadAllLines(file);
+}
+
+Solver.RunExamples(2016, "02", Reader, Part1, Part2);
+Solver.RunSolution(2016, "02", Reader, Part1, Part2);

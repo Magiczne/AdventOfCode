@@ -1,59 +1,48 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
+using Util.Aoc;
+using Util.Extensions;
 
-namespace Day_5
+string Part1(string input)
 {
-    internal static class Program
+  var password = string.Empty;
+
+  for (var i = 0; password.Length < 8; i++)
+  {
+    var encoded = (input + i).GetMD5();
+
+    if (encoded[..5] == "00000")
     {
-        private static void Main()
-        {
-            var solution = new Solution();
-            solution.Solve();
-            solution.SolveTwoStars();
-        }
+      password += encoded[5];
     }
+  }
 
-    internal class Solution
-    {
-        private const string Input = "cxdnnyjw";
-
-        public void Solve()
-        {
-            var password = string.Empty;
-
-            for (var i = 0; password.Length < 8; i++)
-            {
-                var encoded = Util.HashMd5(Input + i);
-
-                if (encoded.Substring(0, 5) == "00000")
-                {
-                    password += encoded[5];
-                }
-            }
-
-            Console.WriteLine("*: " + password);
-        }
-
-        public void SolveTwoStars()
-        {
-            var password = new StringBuilder("--------");
-
-            for (var i = 0; password.ToString().Contains("-"); i++)
-            {
-                var encoded = Util.HashMd5(Input + i);
-
-                if (encoded.Substring(0, 5) == "00000")
-                {
-                    int index;
-
-                    if (int.TryParse(encoded[5].ToString(), out index) && index < 8 && password[index] == '-')
-                    {
-                        password[index] = encoded[6];
-                    }
-                }
-            }
-
-            Console.WriteLine("**: " + password);
-        }
-    }
+  return password;
 }
+
+string Part2(string input)
+{
+  var password = new StringBuilder("--------");
+
+  for (var i = 0; password.ToString().Contains('-'); i++)
+  {
+    var encoded = (input + i).GetMD5();
+
+    if (encoded[..5] == "00000")
+    {
+      if (int.TryParse(encoded[5].ToString(), out int index) && index < 8 && password[index] == '-')
+      {
+        password[index] = encoded[6];
+      }
+    }
+  }
+
+  return password.ToString();
+}
+
+string Reader(string file)
+{
+  return File.ReadAllText(file);
+}
+
+Solver.RunExamples(2016, "05", Reader, Part1, Part2);
+Solver.RunSolution(2016, "05", Reader, Part1, Part2);
