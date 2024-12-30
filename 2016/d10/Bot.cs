@@ -1,94 +1,91 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 
-namespace Day_10
+namespace Aoc.Day10;
+
+partial class Solution
 {
-  internal partial class Solution
+  class Bot
   {
-    private class Bot
+    private readonly int?[] _chips = [null, null];
+
+    public Bot(int id, int high, int low, bool highOutput, bool lowOutput)
     {
-      private readonly int?[] _chips = { null, null };
+      Id = id;
+      High = high;
+      Low = low;
+      HighOutput = highOutput;
+      LowOutput = lowOutput;
+    }
 
-      public Bot(int id, int high, int low, bool highOutput, bool lowOutput)
+    public int Id { get; }
+
+    private int High { get; }
+    private int Low { get; }
+
+    private bool HighOutput { get; }
+    private bool LowOutput { get; }
+
+    public void GiveChip(int chip)
+    {
+      if (!_chips[0].HasValue) _chips[0] = chip;
+      else if (!_chips[1].HasValue) _chips[1] = chip;
+    }
+
+    public void Process(bool throwIfSolutionFound)
+    {
+      if (!_chips[0].HasValue || !_chips[1].HasValue)
       {
-        Id = id;
-        High = high;
-        Low = low;
-        HighOutput = highOutput;
-        LowOutput = lowOutput;
+        return;
       }
 
-      public int Id { get; }
-
-      private int High { get; }
-      private int Low { get; }
-
-      private bool HighOutput { get; }
-      private bool LowOutput { get; }
-
-      public void GiveChip(int chip)
+      //One Star
+      if (throwIfSolutionFound && _chips.Contains(61) && _chips.Contains(17))
       {
-        if (!_chips[0].HasValue) _chips[0] = chip;
-        else if (!_chips[1].HasValue) _chips[1] = chip;
+        throw new UnauthorizedAccessException(Id.ToString());
       }
 
-      public void Process()
+      int high;
+      int low;
+
+      if (_chips[0] > _chips[1])
       {
-        if (!_chips[0].HasValue || !_chips[1].HasValue)
-        {
-          return;
-        }
+        high = _chips[0]!.Value;
+        low = _chips[1]!.Value;
+      }
+      else
+      {
+        high = _chips[1]!.Value;
+        low = _chips[0]!.Value;
+      }
 
-        //One Star
-        if (_chips.Contains(61) && _chips.Contains(17))
-        {
-          Console.WriteLine("*: Bot " + Id);
-        }
+      _chips[0] = null;
+      _chips[1] = null;
 
-        int high;
-        int low;
+      if (HighOutput)
+      {
+        Outputs[High] = high;
+      }
+      else
+      {
+        var highBot = Bots.Find(b => b.Id == High);
 
-        if (_chips[0] > _chips[1])
-        {
-          high = _chips[0].Value;
-          low = _chips[1].Value;
-        }
-        else
-        {
-          high = _chips[1].Value;
-          low = _chips[0].Value;
-        }
+        Debug.Assert(highBot != null);
 
-        _chips[0] = null;
-        _chips[1] = null;
+        highBot.GiveChip(high);
+        highBot.Process(throwIfSolutionFound);
+      }
 
-        if (HighOutput)
-        {
-          Outputs[High] = high;
-        }
-        else
-        {
-          var highBot = Bots.Find(b => b.Id == High);
+      if (LowOutput)
+      {
+        Outputs[Low] = low;
+      }
+      else
+      {
+        var lowBot = Bots.Find(b => b.Id == Low);
+        Debug.Assert(lowBot != null);
 
-          Debug.Assert(highBot != null);
-
-          highBot.GiveChip(high);
-          highBot.Process();
-        }
-
-        if (LowOutput)
-        {
-          Outputs[Low] = low;
-        }
-        else
-        {
-          var lowBot = Bots.Find(b => b.Id == Low);
-          Debug.Assert(lowBot != null);
-
-          lowBot.GiveChip(low);
-          lowBot.Process();
-        }
+        lowBot.GiveChip(low);
+        lowBot.Process(throwIfSolutionFound);
       }
     }
   }

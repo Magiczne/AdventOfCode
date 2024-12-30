@@ -1,114 +1,133 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Text.RegularExpressions;
+using Util.Aoc;
+using Util.Extensions;
 
-namespace Day_14
+int Part1(string data)
 {
-  internal static class Program
-  {
-    private static void Main()
-    {
-      Console.WriteLine("Answers: ");
-      var solution = new Solution();
-      solution.Solve();
-      solution.TwoStars();
+  var solution = new Solution(data);
 
-      Console.Read();
+  return solution.Solve();
+}
+
+int Part2(string data)
+{
+  var solution = new Solution(data);
+
+  return solution.TwoStars();
+}
+
+string Reader(string file)
+{
+  return File.ReadAllText(file);
+}
+
+Solver.RunExamples(2016, "14", Reader, Part1, Part2);
+Solver.RunSolution(2016, "14", Reader, Part1, Part2);
+
+
+class Solution(string input)
+{
+  private readonly Dictionary<int, string> _checksumCache = [];
+  private readonly Dictionary<int, string> _strechedCache = [];
+  private readonly List<string> _foundKeys = [];
+
+  public string Input { get; } = input;
+
+  public int Solve()
+  {
+    for (var i = 0; _foundKeys.Count < 64; i++)
+    {
+      var md5 = HashOrCache(i);
+
+      if (HasTriple(md5, out char tripleMaker))
+      {
+        for (var j = i + 1; j < i + 1000; j++)
+        {
+          var hash = HashOrCache(j);
+
+          if (HasQuintuple(hash, tripleMaker))
+          {
+            _foundKeys.Add(md5);
+            break;
+          }
+        }
+      }
     }
+
+    return _checksumCache.First(pair => pair.Value == _foundKeys.Last()).Key;
   }
 
-  internal class Solution
+  public int TwoStars()
   {
-    private const string Input = "cuanljph";
+    _foundKeys.Clear();
 
-    private readonly Dictionary<int, string> _checksumCache = new Dictionary<int, string>();
-    private readonly Dictionary<int, string> _strechedCache = new Dictionary<int, string>();
-    private readonly List<string> _foundKeys = new List<string>();
-
-    public void Solve()
+    for (var i = 0; _foundKeys.Count < 64; i++)
     {
-      for (var i = 0; _foundKeys.Count < 64; i++)
+      var md5 = StrechedHash(i);
+
+      if (HasTriple(md5, out char tripleMaker))
       {
-        var md5 = HashOrCache(i);
-
-        char tripleMaker;
-
-        if (md5.HasTriple(out tripleMaker))
+        for (var j = i + 1; j < i + 1000; j++)
         {
-          for (var j = i + 1; j < i + 1000; j++)
-          {
-            var hash = HashOrCache(j);
+          var hash = StrechedHash(j);
 
-            if (hash.HasQuintuple(tripleMaker))
-            {
-              _foundKeys.Add(md5);
-              break;
-            }
+          if (HasQuintuple(hash, tripleMaker))
+          {
+            _foundKeys.Add(md5);
+            break;
           }
         }
       }
-
-      var p = _checksumCache.First(pair => pair.Value == _foundKeys.Last());
-      Console.WriteLine("*: " + p.Key);
     }
 
-    public void TwoStars()
+    return _strechedCache.First(pair => pair.Value == _foundKeys.Last()).Key;
+  }
+
+  private string HashOrCache(int index)
+  {
+    if (_checksumCache.ContainsKey(index))
     {
-      _foundKeys.Clear();
-
-      for (var i = 0; _foundKeys.Count < 64; i++)
-      {
-        var md5 = StrechedHash(i);
-
-        char tripleMaker;
-
-        if (md5.HasTriple(out tripleMaker))
-        {
-          for (var j = i + 1; j < i + 1000; j++)
-          {
-            var hash = StrechedHash(j);
-
-            if (hash.HasQuintuple(tripleMaker))
-            {
-              _foundKeys.Add(md5);
-              break;
-            }
-          }
-        }
-      }
-
-      var p = _strechedCache.First(pair => pair.Value == _foundKeys.Last());
-      Console.WriteLine("**: " + p.Key);
-    }
-
-    private string HashOrCache(int index)
-    {
-      if (_checksumCache.ContainsKey(index))
-      {
-        return _checksumCache[index];
-      }
-
-      _checksumCache[index] = Util.HashMd5(Input + index).ToLower();
       return _checksumCache[index];
     }
 
-    private string StrechedHash(int index)
+    _checksumCache[index] = (Input + index).GetMD5().ToLower();
+    return _checksumCache[index];
+  }
+
+  private string StrechedHash(int index)
+  {
+    if (_strechedCache.ContainsKey(index))
     {
-      if (_strechedCache.ContainsKey(index))
-      {
-        return _strechedCache[index];
-      }
-
-      var hash = HashOrCache(index);
-
-      for (var i = 0; i < 2016; i++)
-      {
-        hash = Util.HashMd5(hash).ToLower();
-      }
-
-      _strechedCache[index] = hash.ToLower();
-
       return _strechedCache[index];
     }
+
+    var hash = HashOrCache(index);
+
+    for (var i = 0; i < 2016; i++)
+    {
+      hash = hash.GetMD5().ToLower();
+    }
+
+    _strechedCache[index] = hash.ToLower();
+
+    return _strechedCache[index];
+  }
+
+  public bool HasTriple(string s, out char c)
+  {
+    var regex = new Regex(@"(?<char>.)\1\1");
+
+    var match = regex.Match(s);
+
+    c = match.Success ? match.Groups["char"].Value[0] : ' ';
+
+    return match.Success;
+  }
+
+  public bool HasQuintuple(string s, char c)
+  {
+    var match = new string(c, 5);
+
+    return s.Contains(match);
   }
 }

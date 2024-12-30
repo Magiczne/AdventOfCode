@@ -1,96 +1,99 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
+using Util.Aoc;
 
-namespace Day_6
+char MostCommon(string line)
 {
-  internal static class Program
-  {
-    private static void Main()
-    {
-      var solution = new Solution();
-      solution.Solve();
-    }
-  }
+  var lettersCount = GetLettersFrequency(line);
 
-  internal class Solution
-  {
-    private readonly List<string> _data;
-
-    public Solution()
-    {
-      _data = File.ReadAllLines("2016/d06/input.txt").ToList();
-    }
-
-    public void Solve()
-    {
-      var length = _data[0].Length;
-
-      var vertical = new StringBuilder[length];
-
-      for (var i = 0; i < length; i++)
-      {
-        vertical[i] = new StringBuilder();
-      }
-
-      foreach (var line in _data)
-      {
-        for (var i = 0; i < length; i++)
-        {
-          vertical[i].Append(line[i]);
-        }
-      }
-
-      Console.Write("*: ");
-      foreach (var line in vertical)
-      {
-        Console.Write(MostCommon(line.ToString()));
-      }
-
-      Console.WriteLine();
-
-      Console.Write("**: ");
-      foreach (var line in vertical)
-      {
-        Console.Write(LeastCommon(line.ToString()));
-      }
-
-      Console.WriteLine();
-    }
-
-    private static char MostCommon(string line)
-    {
-      var lettersCount = GetLettersFrequency(line);
-
-      return lettersCount.First(p => p.Value == lettersCount.Values.Max()).Key;
-    }
-
-    private static char LeastCommon(string line)
-    {
-      var lettersCount = GetLettersFrequency(line);
-
-      return lettersCount.First(p => p.Value == lettersCount.Values.Min()).Key;
-    }
-
-    private static Dictionary<char, int> GetLettersFrequency(string line)
-    {
-      var lettersCount = new Dictionary<char, int>();
-
-      foreach (var c in line)
-      {
-        if (lettersCount.ContainsKey(c))
-        {
-          lettersCount[c]++;
-        }
-        else
-        {
-          lettersCount[c] = 1;
-        }
-      }
-
-      return lettersCount;
-    }
-  }
+  return lettersCount.First(p => p.Value == lettersCount.Values.Max()).Key;
 }
+
+char LeastCommon(string line)
+{
+  var lettersCount = GetLettersFrequency(line);
+
+  return lettersCount.First(p => p.Value == lettersCount.Values.Min()).Key;
+}
+
+Dictionary<char, int> GetLettersFrequency(string line)
+{
+  var lettersCount = new Dictionary<char, int>();
+
+  foreach (var c in line)
+  {
+    if (lettersCount.ContainsKey(c))
+    {
+      lettersCount[c]++;
+    }
+    else
+    {
+      lettersCount[c] = 1;
+    }
+  }
+
+  return lettersCount;
+}
+
+string Part1(List<string> lines)
+{
+  var length = lines[0].Length;
+  var vertical = new StringBuilder[length];
+
+  for (var i = 0; i < length; i++)
+  {
+    vertical[i] = new StringBuilder();
+  }
+
+  foreach (var line in lines)
+  {
+    for (var i = 0; i < length; i++)
+    {
+      vertical[i].Append(line[i]);
+    }
+  }
+
+  var ret = string.Empty;
+
+  foreach (var line in vertical)
+  {
+    ret += MostCommon(line.ToString());
+  }
+
+  return ret;
+}
+
+string Part2(List<string> lines)
+{
+  var length = lines[0].Length;
+  var vertical = new StringBuilder[length];
+
+  for (var i = 0; i < length; i++)
+  {
+    vertical[i] = new StringBuilder();
+  }
+
+  foreach (var line in lines)
+  {
+    for (var i = 0; i < length; i++)
+    {
+      vertical[i].Append(line[i]);
+    }
+  }
+
+  var ret = string.Empty;
+
+  foreach (var line in vertical)
+  {
+    ret += LeastCommon(line.ToString());
+  }
+
+  return ret;
+}
+
+List<string> Reader(string file)
+{
+  return File.ReadAllLines(file).ToList();
+}
+
+Solver.RunExamples(2016, "06", Reader, Part1, Part2);
+Solver.RunSolution(2016, "06", Reader, Part1, Part2);

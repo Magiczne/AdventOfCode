@@ -10,7 +10,7 @@ internal class Printer
     double durationInMs
   )
   {
-    return $"{type} {label,-10} {part} {result,-45} {durationInMs:F4}ms";
+    return $"{type} {label,-10} {part} {result,-45} {durationInMs.ToString("F4").Replace(',', '.')}ms";
   }
 
   public static void ExamplePart1<TResult>(TResult result, string testFileName, double durationInMs)

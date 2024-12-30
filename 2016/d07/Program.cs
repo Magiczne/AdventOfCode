@@ -1,40 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using Aoc.Day07;
+using Util.Aoc;
 
-namespace Day_7
+int Part1(List<IpAddressV7> ips)
 {
-  internal static class Program
-  {
-    private static void Main()
-    {
-      Console.WriteLine("Day 7");
-
-      var solution = new Solution();
-      solution.Solve();
-    }
-  }
-
-  internal class Solution
-  {
-    private readonly List<IpAddressV7> _ips = new List<IpAddressV7>();
-
-    public void Solve()
-    {
-      var lines = File.ReadAllLines("2016/d07/input.txt");
-
-      foreach (var line in lines)
-      {
-        _ips.Add(new IpAddressV7(line));
-      }
-
-      var supportsTls = _ips.Count(ip => ip.SupportsTls);
-      var supportsSsl = _ips.Count(ip => ip.SupportsSsl);
-
-      Console.WriteLine("Answers: ");
-      Console.WriteLine("*: " + supportsTls);
-      Console.WriteLine("**: " + supportsSsl);
-    }
-  }
+  return ips.Count(ip => ip.SupportsTls);
 }
+
+int Part2(List<IpAddressV7> ips)
+{
+  return ips.Count(ip => ip.SupportsSsl);
+}
+
+List<IpAddressV7> Reader(string file)
+{
+  return File.ReadAllLines(file).Select(line => new IpAddressV7(line)).ToList();
+}
+
+Solver.RunExamples(2016, "07", Reader, Part1, Part2);
+Solver.RunSolution(2016, "07", Reader, Part1, Part2);
