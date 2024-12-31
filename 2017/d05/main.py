@@ -9,7 +9,7 @@ sys.path.append(parent_directory)
 from util.aoc import run_examples, run_solution  # NOQA
 
 
-def part1(data):
+def part1(data: list[int]) -> int:
     steps = 0
     idx = 0
 
@@ -21,7 +21,7 @@ def part1(data):
     return steps
 
 
-def part2(data):
+def part2(data: list[int]) -> int:
     steps = 0
     idx = 0
 

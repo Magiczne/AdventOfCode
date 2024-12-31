@@ -8,10 +8,13 @@ sys.path.append(parent_directory)
 
 import operator
 from collections import Counter
+from typing import NamedTuple
 from util.aoc import run_examples, run_solution  # NOQA
 
+Solution = NamedTuple("Solution", [("part1", int), ("part2", int)])
 
-def solve(data: list[str]):
+
+def solve(data: list[str]) -> Solution:
     registers = Counter()
     highest_value = 0
 
@@ -37,15 +40,15 @@ def solve(data: list[str]):
         if registers[data_reg] > highest_value:
             highest_value = registers[data_reg]
 
-    return {"Part 1": max(registers.values()), "Part 2": highest_value}
+    return Solution(part1=max(registers.values()), part2=highest_value)
 
 
 def part1(data: list[str]) -> int:
-    return solve(data)["Part 1"]
+    return solve(data).part1
 
 
 def part2(data: list[str]) -> int:
-    return solve(data)["Part 2"]
+    return solve(data).part2
 
 
 def reader(file: str) -> list[str]:

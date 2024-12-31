@@ -7,16 +7,17 @@ parent_directory = os.path.dirname(current_directory)
 sys.path.append(parent_directory)
 
 import re
+from typing import Any, Dict
 from util.aoc import run_examples, run_solution  # NOQA
 from Node import Node
 from Graph import Graph
 
 
-def part1(graph):
+def part1(graph: Graph) -> Node:
     return graph.get_root_node()
 
 
-def part2(graph):
+def part2(graph: Graph) -> list[int]:
     graph.calculate_weights()
     unbalanced = graph.find_unbalanced()
 
@@ -25,7 +26,7 @@ def part2(graph):
     return weights
 
 
-def parse_entry(entry):
+def parse_entry(entry: str) -> Dict[str, Any]:
     data = entry.split(" -> ")
     basic_info = data[0].split()
     return {
@@ -35,7 +36,7 @@ def parse_entry(entry):
     }
 
 
-def reader(file: str):
+def reader(file: str) -> Graph:
     with open(file) as f:
         data = [parse_entry(entry) for entry in f.read().splitlines()]
 

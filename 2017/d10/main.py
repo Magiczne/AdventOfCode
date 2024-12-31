@@ -6,24 +6,21 @@ current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.curr
 parent_directory = os.path.dirname(current_directory)
 sys.path.append(parent_directory)
 
+from dataclasses import dataclass
 from itertools import zip_longest
+from typing import NamedTuple
 from functools import reduce
 from util.aoc import run_examples, run_solution  # NOQA
 
 
-# def main():
-#     with open("input.txt") as f:
-#         data = f.read().strip()
-#         lengths = [int(i) for i in data.split(",")]
-#         ascii_lengths = [ord(i) for i in data] + [17, 31, 73, 47, 23]
-
-#     sequence = [i for i in range(0, 256)]
-
-#     print(solve_part1(copy(sequence), lengths))
-#     print(solve_part2(copy(sequence), ascii_lengths))
+@dataclass
+class Input:
+    lengths: list[int]
+    ascii_lengths: list[int]
+    sequence: list[int]
 
 
-def solve_part1(sequence, lengths):
+def solve_part1(sequence: list[int], lengths: list[int]) -> int:
     current_pos = 0
     skip_size = 0
 
@@ -36,7 +33,7 @@ def solve_part1(sequence, lengths):
     return sequence[0] * sequence[1]
 
 
-def solve_part2(sequence, lengths):
+def solve_part2(sequence: list[int], lengths: list[int]) -> str:
     actual_lengths = lengths * 64
 
     current_pos = 0
@@ -55,7 +52,7 @@ def solve_part2(sequence, lengths):
     return "".join(dense_hash)
 
 
-def reverse_fragment(arr, start, length):
+def reverse_fragment(arr: list[int], start: int, length: int) -> None:
     tmp = arr * 2
     tmp[start : start + length] = tmp[start : start + length][::-1]
 
@@ -63,20 +60,20 @@ def reverse_fragment(arr, start, length):
     arr[:] = tmp[0 : len(arr)]
 
 
-def group_by(n, iterable):
+def group_by(n: int, iterable: list[int]):
     args = [iter(iterable)] * n
     return zip_longest(*args)
 
 
-def part1(data) -> int:
-    return solve_part1(data[2], data[0])
+def part1(data: Input) -> int:
+    return solve_part1(data.sequence, data.lengths)
 
 
-def part2(data) -> int:
-    return solve_part1(data[2], data[1])
+def part2(data: Input) -> str:
+    return solve_part2(data.sequence, data.ascii_lengths)
 
 
-def reader(file: str):
+def reader(file: str) -> list[list[int]]:
     with open(file) as f:
         data = f.read().strip()
         lengths = [int(i) for i in data.split(",")]
@@ -84,7 +81,7 @@ def reader(file: str):
 
     sequence = [i for i in range(0, 256)]
 
-    return [lengths, ascii_lengths, sequence]
+    return Input(lengths=lengths, ascii_lengths=ascii_lengths, sequence=sequence)
 
 
 if __name__ == "__main__":

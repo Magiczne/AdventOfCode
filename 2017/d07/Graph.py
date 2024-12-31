@@ -1,17 +1,20 @@
-class Graph:
-    nodes = []
+from Node import Node
 
-    def append(self, node):
+
+class Graph:
+    nodes: list[Node] = []
+
+    def append(self, node: Node) -> None:
         self.nodes.append(node)
 
-    def get_by_name(self, node_name):
+    def get_by_name(self, node_name: str) -> Node:
         return list(filter(lambda node: node.name == node_name, self.nodes))[0]
 
-    def get_parent_node(self, node_name):
+    def get_parent_node(self, node_name: str) -> Node | None:
         ret = list(filter(lambda node: node_name in node.children, self.nodes))
         return ret if len(ret) > 0 else None
 
-    def get_root_node(self):
+    def get_root_node(self) -> Node:
         return list(
             filter(
                 lambda node: self.get_parent_node(node.name) is None and node.children,
@@ -19,7 +22,7 @@ class Graph:
             )
         )[0]
 
-    def calculate_weights(self, node=None):
+    def calculate_weights(self, node: Node | None = None) -> int:
         if node is None:
             node = self.get_root_node()
 
@@ -31,11 +34,11 @@ class Graph:
 
         return node.overall_weight
 
-    def is_node_balanced(self, node):
+    def is_node_balanced(self, node: Node) -> bool:
         weights = set([self.get_by_name(child).overall_weight for child in node.children])
         return len(weights) == 1
 
-    def find_unbalanced(self, node=None):
+    def find_unbalanced(self, node: Node | None = None):
         if node is None:
             node = self.get_root_node()
 

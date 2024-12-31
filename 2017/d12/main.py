@@ -9,7 +9,7 @@ sys.path.append(parent_directory)
 from util.aoc import run_examples, run_solution  # NOQA
 
 
-def get_nodes_containing(data, index):
+def get_nodes_containing(data: dict[int, list[int]], index: int) -> int:
     to_check = set(data[index])
     connected = {index}
 
@@ -22,7 +22,7 @@ def get_nodes_containing(data, index):
     return connected
 
 
-def count_groups(data):
+def count_groups(data: dict[int, list[int]]) -> int:
     nodes = set(list(data.keys()))
     grp_count = 0
 
@@ -34,15 +34,15 @@ def count_groups(data):
     return grp_count
 
 
-def part1(data) -> int:
+def part1(data: dict[int, list[int]]) -> int:
     return len(get_nodes_containing(data, 0))
 
 
-def part2(data) -> int:
+def part2(data: dict[int, list[int]]) -> int:
     return count_groups(data)
 
 
-def reader(file: str):
+def reader(file: str) -> dict[int, list[int]]:
     with open(file) as f:
         lines = [line.strip().split(" <-> ") for line in f.readlines()]
         data = {int(l[0]): list(map(int, l[1].split(", "))) for l in lines}
