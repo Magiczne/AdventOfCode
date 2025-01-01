@@ -5,6 +5,6 @@ runAll({
     return `py ${year}/${dayDirectory}/main.py`
   },
   year: 2017,
-  skippedBecauseTooLong: [],
+  skippedBecauseTooLong: [15],
   skippedBecauseManual: [],
 })

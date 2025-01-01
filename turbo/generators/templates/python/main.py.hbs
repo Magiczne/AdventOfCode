@@ -2,12 +2,11 @@ import inspect
 import os
 import sys
 
-current_directory = os.path.dirname(
-    os.path.abspath(inspect.getfile(inspect.currentframe())))
+current_directory = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_directory = os.path.dirname(current_directory)
 sys.path.append(parent_directory)
 
-from util.aoc import run_examples, run_solution  # NOQA
+from util.aoc import run_examples, run_solution
 
 def reader(file: str) -> str:
   return open(file).read()
