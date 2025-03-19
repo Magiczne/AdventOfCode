@@ -52,15 +52,16 @@ def run_examples(
         test_files = os.listdir(dir_path)
 
         for file in test_files:
-            test_data = reader(os.path.join(dir_path, file))
+            test_data_1 = reader(os.path.join(dir_path, file))
+            test_data_2 = reader(os.path.join(dir_path, file))
 
             start1 = time.perf_counter()
-            value_part1 = part1(test_data)
+            value_part1 = part1(test_data_1)
             duration1 = (time.perf_counter() - start1) * 1000
             example_part1(value_part1, file, duration1)
 
             start2 = time.perf_counter()
-            value_part2 = part2(test_data)
+            value_part2 = part2(test_data_2)
             duration2 = (time.perf_counter() - start2) * 1000
             example_part2(value_part2, file, duration2)
 
@@ -73,15 +74,16 @@ def run_solution(
     part2: Callable[[TInput], Any],
 ) -> None:
     file_path = os.path.join(root_directory, f"{year}/d{day}/input.txt")
-    data = reader(file_path)
+    data_1 = reader(file_path)
+    data_2 = reader(file_path)
 
     start1 = time.perf_counter()
-    value_part1 = part1(data)
+    value_part1 = part1(data_1)
     duration1 = (time.perf_counter() - start1) * 1000
     solution_part1(value_part1, duration1)
 
     start2 = time.perf_counter()
-    value_part2 = part2(data)
+    value_part2 = part2(data_2)
     duration2 = (time.perf_counter() - start2) * 1000
     solution_part2(value_part2, duration2)
 

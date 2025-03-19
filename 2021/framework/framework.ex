@@ -33,12 +33,13 @@ defmodule Aoc.Core do
     if File.exists?(directory) do
       File.ls!(directory)
       |> Enum.each(fn file ->
-        testData = reader.("#{directory}/#{file}")
+        testData1 = reader.("#{directory}/#{file}")
+        testData2 = reader.("#{directory}/#{file}")
 
-        {duration1microSeconds, resultPart1} = :timer.tc(part1, [testData])
+        {duration1microSeconds, resultPart1} = :timer.tc(part1, [testData1])
         example_part1(resultPart1, file, duration1microSeconds / 1000)
 
-        {duration2microSeconds, resultPart2} = :timer.tc(part2, [testData])
+        {duration2microSeconds, resultPart2} = :timer.tc(part2, [testData2])
         example_part2(resultPart2, file, duration2microSeconds / 1000)
       end)
     end
@@ -46,12 +47,13 @@ defmodule Aoc.Core do
 
   def run_solution(day, reader, part1, part2) do
     filePath = "2021/d#{day}/input.txt"
-    data = reader.(filePath)
+    data1 = reader.(filePath)
+    data2 = reader.(filePath)
 
-    {duration1microSeconds, resultPart1} = :timer.tc(part1, [data])
+    {duration1microSeconds, resultPart1} = :timer.tc(part1, [data1])
     solution_part1(resultPart1, duration1microSeconds / 1000)
 
-    {duration2microSeconds, resultPart2} = :timer.tc(part2, [data])
+    {duration2microSeconds, resultPart2} = :timer.tc(part2, [data2])
     solution_part2(resultPart2, duration2microSeconds / 1000)
   end
 end

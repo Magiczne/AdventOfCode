@@ -37,14 +37,15 @@ func TestRuns[TInput, TResult interface{}](
 		PanicOrProceed(err)
 
 		for _, v := range testRuns {
-			testData := reader(fmt.Sprintf("%s/%s", path, v.Name()))
+			testData1 := reader(fmt.Sprintf("%s/%s", path, v.Name()))
+			testData2 := reader(fmt.Sprintf("%s/%s", path, v.Name()))
 
 			start := time.Now()
-			valuePart1 := part1(testData)
+			valuePart1 := part1(testData1)
 			duration1 := time.Since(start)
 
 			start = time.Now()
-			valuePart2 := part2(testData)
+			valuePart2 := part2(testData2)
 			duration2 := time.Since(start)
 
 			testRun1(valuePart1, v.Name(), duration1.Milliseconds())
@@ -60,14 +61,15 @@ func SolutionRuns[TInput, TResult interface{}](
 	part2 func(data TInput) TResult,
 ) {
 	path := fmt.Sprintf("./d%s/input.txt", day)
-	data := reader(path)
+	data1 := reader(path)
+	data2 := reader(path)
 
 	start := time.Now()
-	valuePart1 := part1(data)
+	valuePart1 := part1(data1)
 	duration1 := time.Since(start)
 
 	start = time.Now()
-	valuePart2 := part2(data)
+	valuePart2 := part2(data2)
 	duration2 := time.Since(start)
 
 	solutionPart1(valuePart1, duration1.Milliseconds())
