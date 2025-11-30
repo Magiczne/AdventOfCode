@@ -1,0 +1,19 @@
+{
+  "name": "@magiczne/advent-of-code-2025",
+  "private": true,
+  "author": "Michał Kleszczyński <michalkamilkleszczynski@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "check": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "radash": "^12.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "chalk": "^5.6.2",
+    "typescript": "^5.9.3"
+  }
+}
