@@ -2,8 +2,5 @@
   "compilerOptions": {
     "noEmit": true
   },
-  "references": [
-    { "path": "./2024" },
-    { "path": "./ts-core" },
-  ]
+  "references": [{ "path": "./2024" }, { "path": "./2025" }, { "path": "./ts-core" }]
 }
