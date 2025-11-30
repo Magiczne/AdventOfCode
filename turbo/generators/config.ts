@@ -6,7 +6,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       type: 'input',
       name: 'year',
       message: 'Enter year in which you want to create day skeleton',
-      default: '2021',
+      default: new Date().getFullYear().toString(),
     },
     {
       type: 'input',
