@@ -3,7 +3,7 @@ import { readFileSync } from 'node:fs'
 import { runExamples, runSolution } from '@magiczne/advent-of-code-ts-core/aoc'
 
 interface Operation {
-  direction: 'L' | 'R'
+  direction: -1 | 1
   value: number
 }
 
@@ -12,8 +12,7 @@ const part1 = (data: ReadonlyArray<Operation>): number => {
   let equalToZero = 0
 
   for (const operation of data) {
-    const delta = operation.direction === 'L' ? -1 : 1
-    pointing += delta * operation.value
+    pointing += operation.direction * operation.value
     pointing %= 100
 
     if (pointing === 0) {
@@ -29,10 +28,8 @@ const part2 = (data: ReadonlyArray<Operation>): number => {
   let crossedZero = 0
 
   for (const operation of data) {
-    const delta = operation.direction === 'L' ? -1 : 1
-
-    crossedZero += Math.trunc((((100 + delta * pointing) % 100) + operation.value) / 100)
-    pointing += delta * operation.value
+    crossedZero += Math.trunc((((100 + operation.direction * pointing) % 100) + operation.value) / 100)
+    pointing += operation.direction * operation.value
     pointing %= 100
   }
 
@@ -45,7 +42,7 @@ const reader = (file: string): ReadonlyArray<Operation> => {
     .split('\n')
     .map(line => {
       return {
-        direction: line[0],
+        direction: line[0] === 'L' ? -1 : 1,
         value: parseInt(line.substring(1), 10),
       }
     }) as ReadonlyArray<Operation>
