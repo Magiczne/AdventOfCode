@@ -1,0 +1,6 @@
+{
+  "extends": "@magiczne/advent-of-code-tsconfig/tsconfig.json",
+  "compilerOptions": {
+    "composite": true
+  }
+}
