@@ -1,4 +1,5 @@
 export { DirectedGraph } from './directed-graph'
+export { HashMap } from './hash-map'
 export { CircularLinkedList, LinkedList, LinkedListNode } from './linked-list'
 export { Matrix } from './matrix'
 export { ObjectSet } from './object-set'
