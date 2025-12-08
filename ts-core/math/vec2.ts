@@ -48,6 +48,10 @@ class Vec2 implements IVec2 {
     this.y = other.y
   }
 
+  distance(other: IVec2): number {
+    return Math.sqrt(Math.pow(this.x - other.x, 2) + Math.pow(this.y - other.y, 2))
+  }
+
   manhattanDistance(other: IVec2): number {
     return Math.abs(this.x - other.x) + Math.abs(this.y - other.y)
   }
