@@ -9,7 +9,8 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "radash": "^12.1.1"
+    "radash": "^12.1.1",
+    "z3-solver": "^4.15.4"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
