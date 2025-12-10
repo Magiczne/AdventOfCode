@@ -1,3 +1,5 @@
+export { Box2 } from './box2'
 export { Direction } from './direction'
+export { Line2 } from './line2'
 export { Vec2 } from './vec2'
 export { Vec3 } from './vec3'
