@@ -15,7 +15,7 @@ Some editions were finished later, or even done in a different time (for example
 | [2022](2022) | [TypeScript][lang-ts] | 38/50 🗒️ | With some help from [Radash][lib-radash] and [Ramda][lib-ramda] |
 | [2023](2023) | [TypeScript][lang-ts] | 20/50 🗒️ | With some help from [Radash][lib-radash] and [Ramda][lib-ramda] |
 | [2024](2024) | [TypeScript][lang-ts] | 50/50 ⭐   | With some help from [Radash][lib-radash]                        |
-| [2025](2025) | [TypeScript][lang-ts] | 20/24 🗒️ | With some help from [Radash][lib-radash]                        |
+| [2025](2025) | [TypeScript][lang-ts] | 22/24 🗒️ | With some help from [Radash][lib-radash]                        |
 
 [lang-c#]: https://learn.microsoft.com/pl-pl/dotnet/csharp/
 [lang-elixir]: https://elixir-lang.org/
