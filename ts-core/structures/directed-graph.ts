@@ -15,6 +15,13 @@ class DirectedGraph {
     this.edges++
   }
 
+  addEdgeByLabels(vLabel: string, wLabel: string): void {
+    const v = this.getIdByLabel(vLabel)
+    const w = this.getIdByLabel(wLabel)
+
+    this.addEdge(v, w)
+  }
+
   bfs(root: number, goal: number): number {
     console.log('Running BFS from', root, 'to', goal)
 
